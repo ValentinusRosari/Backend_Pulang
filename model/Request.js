@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+process.env.TZ = "Asia/Bangkok";
 
 const requestSchema = new mongoose.Schema({
   item: {
@@ -6,10 +7,6 @@ const requestSchema = new mongoose.Schema({
     required: true,
   },
   quantity: {
-    type: String,
-    required: true,
-  },
-  item: {
     type: String,
     required: true,
   },
