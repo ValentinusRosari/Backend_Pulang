@@ -37,7 +37,7 @@ def process_file(sample_file, input_file):
     dfs = []
     try:
         df = clean_csv(input_file, expected_columns)
-        delete_columns = ['VIP', 'Breakfast','Lunch', 'Dinner', 'Other', 'Rate Code', 'K-Card', 'remarks', 'Member No', 'Member Type', 'Guest No']
+        delete_columns = ['VIP', 'Lunch', 'Dinner', 'Other', 'Rate Code', 'K-Card', 'remarks', 'Member No', 'Member Type', 'Guest No']
         df.drop(columns=delete_columns, inplace=True)
         df['Name'] = df['Last Name']
         df.drop(columns=['First Name', 'Last Name'], inplace=True)
