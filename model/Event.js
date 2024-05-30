@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-process.env.TZ = "Asia/Bangkok";
+const moment = require("moment-timezone");
 
 const eventSchema = new mongoose.Schema(
   {
@@ -21,5 +21,16 @@ const eventSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+eventSchema.methods.toJSON = function () {
+  const obj = this.toObject();
+  obj.checkInDate = moment(obj.checkInDate).tz("Asia/Bangkok").format();
+  obj.checkOutDate = obj.checkOutDate
+    ? moment(obj.checkOutDate).tz("Asia/Bangkok").format()
+    : null;
+  obj.createdAt = moment(obj.createdAt).tz("Asia/Bangkok").format();
+  obj.updatedAt = moment(obj.updatedAt).tz("Asia/Bangkok").format();
+  return obj;
+};
 
 module.exports = mongoose.model("Event", eventSchema);
