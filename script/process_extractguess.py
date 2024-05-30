@@ -8,8 +8,8 @@ def process_extractguess(import_file):
 
     # Rename columns
     data.columns = ['Number', 'GuestName', 'Type ID', 'ID Number', 'Membership ID', 'Member Type', 'Address', 'Zip',
-                  'City', 'Nationality', 'Country', 'Local Region',
-                  'Phone', 'Mobile Phone', 'Sex', 'Birthdate', 'Email', 'Occupation', 'Credit Limit']
+                  'City', 'Nationality', 'Country', 'LocalRegion',
+                  'Phone', 'MobilePhone', 'Sex', 'Birthdate', 'Email', 'Occupation', 'Credit Limit']
 
     # Drop first row
     data = data.drop(0, axis=0)

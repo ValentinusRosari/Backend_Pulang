@@ -24,6 +24,7 @@ const upload = multer({ storage: storage });
 
 router.post('/upload', upload.single('file'), combinedController.uploadAndImport);
 router.get('/files', combinedController.home);
+router.get('/view', combinedController.view);
 router.delete('/delete/:id', combinedController.delete);
 
 module.exports = router;

@@ -95,6 +95,16 @@ const home = async (req, res) => {
     }
 };
 
+const view = async (req, res) => {
+    try {
+        const filesData = await CombinedModel.find({}, 'file data').exec();
+        res.status(200).send({ success: true, files: filesData });
+    } catch (error) {
+        console.error('Error fetching files data:', error);
+        res.status(500).send({ success: false, msg: 'Internal server error.' });
+    }
+}
+
 const deleteDocument = async (req, res) => {
     try {
         const { id } = req.params;
@@ -112,4 +122,4 @@ const deleteDocument = async (req, res) => {
 };
 
 
-module.exports = { uploadAndImport, home, delete: deleteDocument };
+module.exports = { uploadAndImport, view, home, delete: deleteDocument };
