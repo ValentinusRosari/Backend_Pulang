@@ -14,7 +14,7 @@ const createRequest = async (req, res) => {
 
 const readRequest = async (req, res) => {
   try {
-    const request = await Request.find();
+    const request = await Request.find().populate("employeeId");
 
     res.status(200).json({ succes: true, data: request });
   } catch (error) {
