@@ -2,7 +2,6 @@ import sys
 import csv
 import pandas as pd
 
-# Column names
 column_names = [
     'Number', 'In House Date', 'Room Number', 'Room Type',
     'Arrangement', 'Guest No', 'First Name', 'Last Name',
@@ -55,15 +54,26 @@ def process_file(sample_file, input_file):
             'Pay Article': 'Pay_Article',
             'Rate Code': 'Rate_Code',
             'Res No': 'Res_No',
-            'Local Region': 'Local_Region',
+            'Local Region': 'LocalRegion',
             'C/I Time': 'CI_Time',
             'C/O Time': 'CO_Time',
             'Company / TA':'Company_TA'
         }, inplace=True)
+
+        df['LocalRegion'] = df['LocalRegion'].apply(lambda x: x[:3] if isinstance(x, str) else x)
+
         df['Age'] = pd.to_numeric(df['Age'], errors='coerce')
         mean_age = df['Age'].mean()
         df['Age'].fillna(mean_age, inplace=True)
         df['Age'] = df['Age'].astype(int)
+
+        df['Adult'] = df['Adult'].astype(int)
+        df['Child'] = df['Child'].astype(int)
+        df['visitor_number'] = df['Adult'] + df['Child']
+        df['visitor_category'] = df['visitor_number'].apply(lambda x: 'family/group' if x > 1 else 'individual')
+
+        name_counts = df['Name'].value_counts()
+        df['Repeater'] = df['Name'].map(lambda x: name_counts[x] if name_counts[x] > 1 else 'No')
 
         dfs.append(df)
     except pd.errors.EmptyDataError:

@@ -1,4 +1,3 @@
-// models.js
 const mongoose = require('mongoose');
 
 const fileSchema = new mongoose.Schema({
@@ -9,35 +8,36 @@ const fileSchema = new mongoose.Schema({
 
 const dataSchema = new mongoose.Schema({
   Name: { type: String },
-  Nationality: {type: String},
-  LocalRegion: {type: String},
-  MobilePhone: {type: String},
-  Sex: {type: String},
+  Nationality: { type: String },
+  LocalRegion: { type: String },
+  MobilePhone: { type: String },
+  Sex: { type: String },
   Occupation: { type: String },
   In_House_Date: { type: String },
   Room_Type: { type: String },
   Room_Number: { type: String },
   Arrangement: { type: String },
   Birth_Date: { type: String },
-  Age: { type: String },
+  Age: { type: Number },
   Lodging: { type: String },
+  visitor_number: { type: Number },
+  visitor_category: { type: String },
   Breakfast: { type: String },
-  Adult: { type: String },
-  Child: { type: String },
   Company_TA: { type: String },
   SOB: { type: String },
   Arrival: { type: String },
   Depart: { type: String },
-  Night: { type: String },
+  Night: { type: Number },
   Created: { type: String },
   CO_Time: { type: String },
   CI_Time: { type: String },
   Segment: { type: String },
+  Repeater: { type: String },
 });
 
 const combinedSchema = new mongoose.Schema({
   file: fileSchema,
-  data: [dataSchema]  // Array of data objects
+  data: [dataSchema]
 }, {
   timestamps: {
     options: { timeZone: 'Asia/Kolkata' }
