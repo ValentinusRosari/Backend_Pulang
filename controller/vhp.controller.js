@@ -104,17 +104,17 @@ const mergeInHouseAndExtractFiles = async () => {
         }
 
         const inHouseFields = [
-            "Name", "In_House_Date", "Room_Type", "Room_Number", "Arrangement",
+            "Name", "Room_Type", "Room_Number", "Arrangement",
             "Birth_Date", "Age", "Lodging", "Breakfast", "visitor_number", "visitor_category",
             "Company_TA", "SOB", "Arrival", "Depart", "Night", "Created",
-            "CO_Time", "CI_Time", "Segment", "LocalRegion", "Repeater"
+            "CO_Time", "CI_Time", "Segment", "LocalRegion"
         ];
 
         const extractFields = [
             "Name", "Nationality", "LocalRegion", "MobilePhone", "Sex", "Occupation"
         ];
 
-        const allFields = [...new Set([...inHouseFields, ...extractFields])];
+        const allFields = [...new Set([...inHouseFields, ...extractFields, "Repeater"])];
 
         const ensureAllFields = (record, fields) => {
             const result = {};
@@ -124,28 +124,85 @@ const mergeInHouseAndExtractFiles = async () => {
             return result;
         };
 
-        const mergedData = [];
+        const mergedInHouseData = {};
 
+        // Merge InHouse files based on Name, Arrival, and Depart
         for (const inHouseDoc of inHouseFiles) {
             inHouseDoc.data.forEach(record => {
-                const mergedRecord = ensureAllFields(record, inHouseFields);
-                mergedData.push(mergedRecord);
-            });
-        }
-
-        for (const extractDoc of extractFiles) {
-            extractDoc.data.forEach(record => {
-                const existingRecordIndex = mergedData.findIndex(r => r.Name === record.Name);
-                if (existingRecordIndex !== -1) {
-                    const existingRecord = mergedData[existingRecordIndex];
-                    const mergedRecord = { ...existingRecord, ...ensureAllFields(record, extractFields) };
-                    mergedData[existingRecordIndex] = mergedRecord;
+                const key = `${record.Name}_${record.Arrival}_${record.Depart}`;
+                if (!mergedInHouseData[key]) {
+                    mergedInHouseData[key] = ensureAllFields(record, inHouseFields);
                 } else {
-                    const newRecord = ensureAllFields(record, allFields);
-                    mergedData.push(newRecord);
+                    mergedInHouseData[key] = { ...mergedInHouseData[key], ...ensureAllFields(record, inHouseFields) };
                 }
             });
         }
+
+        // Flatten mergedInHouseData to a list
+        const flattenedInHouseData = Object.values(mergedInHouseData);
+
+        const mergedExtractData = {};
+
+        // Merge Extract files based on Name
+        for (const extractDoc of extractFiles) {
+            extractDoc.data.forEach(record => {
+                const name = record.Name;
+                if (!mergedExtractData[name]) {
+                    mergedExtractData[name] = ensureAllFields(record, extractFields);
+                } else {
+                    mergedExtractData[name] = { ...mergedExtractData[name], ...ensureAllFields(record, extractFields) };
+                }
+            });
+        }
+
+        const finalMergedData = [];
+
+        // Create a map of names to their corresponding merged InHouse records
+        const nameToInHouseRecords = {};
+        flattenedInHouseData.forEach(record => {
+            const name = record.Name;
+            if (!nameToInHouseRecords[name]) {
+                nameToInHouseRecords[name] = [];
+            }
+            nameToInHouseRecords[name].push(record);
+        });
+
+        // Perform outer join between InHouse and Extract data
+        for (const name in mergedExtractData) {
+            const extractRecord = mergedExtractData[name];
+            const inHouseRecords = nameToInHouseRecords[name] || [ensureAllFields({}, inHouseFields)];
+
+            inHouseRecords.forEach(inHouseRecord => {
+                const mergedRecord = { ...inHouseRecord, ...extractRecord };
+                finalMergedData.push(mergedRecord);
+            });
+
+            // Remove the entry from the map to track names processed
+            delete nameToInHouseRecords[name];
+        }
+
+        // Add any remaining InHouse records that didn't have matching Extract records
+        Object.values(nameToInHouseRecords).forEach(records => {
+            records.forEach(record => {
+                finalMergedData.push(record);
+            });
+        });
+
+        // Calculate the Repeater count based on finalMergedData
+        const nameCount = {};
+        finalMergedData.forEach(record => {
+            const name = record.Name;
+            if (!nameCount[name]) {
+                nameCount[name] = 0;
+            }
+            nameCount[name]++;
+        });
+
+        // Update the Repeater field in finalMergedData
+        finalMergedData.forEach(record => {
+            const name = record.Name;
+            record.Repeater = nameCount[name];
+        });
 
         const fileData = [];
         inHouseFiles.forEach(doc => fileData.push({ fileName: doc.file.fileName, data: doc.data }));
@@ -155,10 +212,10 @@ const mergeInHouseAndExtractFiles = async () => {
         const mergedDocument = new MergedDataModel({
             file: {
                 fileName: 'Merged-Data.json',
-                filePath: '', 
-                file: '' 
+                filePath: '',
+                file: ''
             },
-            data: mergedData,
+            data: finalMergedData,
             fileData: fileData,
         });
         await mergedDocument.save();
@@ -183,32 +240,32 @@ const createAggregatedCollection = async () => {
                 if (!aggregatedData[name]) {
                     aggregatedData[name] = {
                         Name: name,
-                        Age: record.Age || 0,
-                        Night: record.Night || 0,
+                        Age: record.Age || null,
+                        Night: record.Night || null,
                         Repeater: 1,
-                        Sex: record.Sex || 'Unknown',
-                        Occupation: record.Occupation || 'Unknown',
-                        Nationality: record.Nationality || 'Unknown',
-                        LocalRegion: record.LocalRegion || 'Unknown',
-                        Segment: record.Segment || 'Unknown',
+                        Sex: record.Sex !== undefined ? record.Sex : null,
+                        Occupation: record.Occupation !== undefined ? record.Occupation : null,
+                        Nationality: record.Nationality !== undefined ? record.Nationality : null,
+                        LocalRegion: record.LocalRegion !== undefined ? record.LocalRegion : null,
+                        Segment: record.Segment !== undefined ? record.Segment : null,
                     };
                 } else {
-                    aggregatedData[name].Age = Math.max(aggregatedData[name].Age, record.Age || 0);
-                    aggregatedData[name].Night += record.Night || 0;
+                    aggregatedData[name].Age = Math.max(aggregatedData[name].Age, record.Age || null);
+                    aggregatedData[name].Night += record.Night || null;
                     aggregatedData[name].Repeater += 1;
-                    if (aggregatedData[name].Sex === 'Unknown' && record.Sex) {
+                    if (aggregatedData[name].Sex === null && record.Sex !== undefined) {
                         aggregatedData[name].Sex = record.Sex;
                     }
-                    if (aggregatedData[name].Occupation === 'Unknown' && record.Occupation) {
+                    if (aggregatedData[name].Occupation === null && record.Occupation !== undefined) {
                         aggregatedData[name].Occupation = record.Occupation;
                     }
-                    if (aggregatedData[name].Nationality === 'Unknown' && record.Nationality) {
+                    if (aggregatedData[name].Nationality === null && record.Nationality !== undefined) {
                         aggregatedData[name].Nationality = record.Nationality;
                     }
-                    if (aggregatedData[name].LocalRegion === 'Unknown' && record.LocalRegion) {
+                    if (aggregatedData[name].LocalRegion === null && record.LocalRegion !== undefined) {
                         aggregatedData[name].LocalRegion = record.LocalRegion;
                     }
-                    if (aggregatedData[name].Segment === 'Unknown' && record.Segment) {
+                    if (aggregatedData[name].Segment === null && record.Segment !== undefined) {
                         aggregatedData[name].Segment = record.Segment;
                     }
                 }
@@ -232,34 +289,35 @@ const createAggregatedCompany = async () => {
     try {
         const mergedDocuments = await MergedDataModel.find();
 
-        const companyData = {};
+        const companySegmentData = {};
 
         mergedDocuments.forEach(doc => {
             doc.data.forEach(record => {
                 const company = record.Company_TA;
+                const segment = record.Segment;
+                const key = `${company}_${segment}`;
 
-                if (!companyData[company]) {
-                    companyData[company] = {
+                if (!companySegmentData[key]) {
+                    companySegmentData[key] = {
                         Company_TA: company,
-                        Night: record.Night || 0,
-                        Repeater: 1,
+                        Segment: segment,
+                        Repeater: 1
                     };
                 } else {
-                    companyData[company].Night += record.Night || 0;
-                    companyData[company].Repeater += 1;
+                    companySegmentData[key].Repeater += 1;
                 }
             });
         });
 
-        const aggregatedArray = Object.values(companyData);
+        const aggregatedArray = Object.values(companySegmentData);
 
         await CompanyModel.deleteMany({});
 
         await CompanyModel.create({ data: aggregatedArray });
 
-        console.log('Aggregated data successfully created!');
+        console.log('Aggregated data by company and segment successfully created!');
     } catch (error) {
-        console.error('Error creating aggregated data:', error);
+        console.error('Error creating aggregated data by company and segment:', error);
     }
 };
 
@@ -380,22 +438,19 @@ const getSexCounts = async (req, res) => {
         }
 
         const sexCounts = aggregatedDoc.data.reduce((acc, record) => {
-            const { Sex, Night } = record;
-            if (Sex && Night !== null && Night !== undefined) {
-                if (!acc[Sex]) {
-                    acc[Sex] = { count: 0, totalNight: 0 };
+            const sex = record.Sex;
+            if (sex !== null && sex !== undefined) {
+                if (!acc[sex]) {
+                    acc[sex] = 0;
                 }
-                acc[Sex].count += 1;
-                acc[Sex].totalNight += Night;
+                acc[sex] += 1;
             }
             return acc;
         }, {});
 
-        // Calculate total records and total nights
-        const totalRecords = Object.values(sexCounts).reduce((acc, { count }) => acc + count, 0);
-        const totalNight = Object.values(sexCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
+        const totalRecords = aggregatedDoc.data.length;
 
-        res.status(200).json({ success: true, sexCounts, totalRecords, totalNight });
+        res.status(200).json({ success: true, sexCounts, totalRecords });
     } catch (error) {
         console.error('Error getting sex counts:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
@@ -405,7 +460,7 @@ const getSexCounts = async (req, res) => {
 // Get Occupation
 const getOccupationCounts = async (req, res) => {
     try {
-        const aggregatedDoc = await AggregatedModel.findOne();
+        const aggregatedDoc = await MergedDataModel.findOne();
 
         if (!aggregatedDoc) {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
@@ -437,7 +492,7 @@ const getOccupationCounts = async (req, res) => {
 // Get City
 const getCityCounts = async (req, res) => {
     try {
-        const aggregatedDoc = await AggregatedModel.findOne();
+        const aggregatedDoc = await MergedDataModel.findOne();
 
         if (!aggregatedDoc) {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
@@ -469,7 +524,7 @@ const getCityCounts = async (req, res) => {
 // Get Country
 const getCountryCounts = async (req, res) => {
     try {
-        const aggregatedDoc = await AggregatedModel.findOne();
+        const aggregatedDoc = await MergedDataModel.findOne();
 
         if (!aggregatedDoc) {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
@@ -501,7 +556,7 @@ const getCountryCounts = async (req, res) => {
 // Get Segment
 const getSegmentCounts = async (req, res) => {
     try {
-        const aggregatedDoc = await AggregatedModel.findOne();
+        const aggregatedDoc = await MergedDataModel.findOne();
 
         if (!aggregatedDoc) {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
@@ -545,7 +600,13 @@ const getSortedByNight = async (req, res) => {
             Night: record.Night
         }));
 
-        res.status(200).json({ success: true, data: result });
+        const totalNight = sortedData.reduce((sum, record) => sum + (record.Night || 0), 0);
+
+        res.status(200).json({ 
+            success: true, 
+            totalNight, 
+            data: result 
+        });
     } catch (error) {
         console.error('Error getting sorted data by night:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
@@ -584,9 +645,8 @@ const getDataByColumn = async (req, res) => {
             return res.status(400).json({ success: false, msg: 'Column and value query parameters are required' });
         }
 
-        // Validate column name to prevent injection attacks
         const validColumns = [
-            "Name", "In_House_Date", "Room_Type", "Room_Number", "Arrangement",
+            "Name", "Room_Type", "Room_Number", "Arrangement",
             "Birth_Date", "Age", "Lodging", "Breakfast", "Adult", "Child",
             "Company_TA", "SOB", "Arrival", "Depart", "Night", "Created",
             "CO_Time", "CI_Time", "Segment", "Repeater", "Nationality", 
@@ -600,14 +660,12 @@ const getDataByColumn = async (req, res) => {
         const query = {};
         query[column] = value;
 
-        // Find the merged document
         const mergedDoc = await MergedDataModel.findOne({ 'file.fileName': 'Merged-Data.json' });
 
         if (!mergedDoc) {
             return res.status(404).json({ success: false, msg: 'Merged data document not found' });
         }
 
-        // Filter data based on query
         const records = mergedDoc.data.filter(record => record[column] === value);
 
         res.status(200).json({ success: true, data: records });
@@ -616,6 +674,50 @@ const getDataByColumn = async (req, res) => {
         res.status(500).json({ success: false, msg: 'Internal server error' });
     }
 };
+const getAggregatedByColumn = async (req, res) => {
+    try {
+        const { column, value } = req.query;
+
+        if (!column || !value) {
+            return res.status(400).json({ success: false, msg: 'Column and value query parameters are required' });
+        }
+
+        const validColumns = [
+            "Name", "Age", "Night", "Sex", "Nationality", 
+            "LocalRegion", "Occupation", "Segment", "visitor_number", 
+            "visitor_category", "Repeater"
+        ];
+
+        if (!validColumns.includes(column)) {
+            return res.status(400).json({ success: false, msg: 'Invalid column name' });
+        }
+
+        const query = {};
+        query[`data.${column}`] = value;
+
+        const aggregatedDocs = await AggregatedModel.find(query);
+
+        if (!aggregatedDocs || aggregatedDocs.length === 0) {
+            return res.status(404).json({ success: false, msg: 'Aggregated data document not found' });
+        }
+
+        // Flatten the data from the aggregated documents
+        const records = [];
+        aggregatedDocs.forEach(doc => {
+            doc.data.forEach(record => {
+                if (record[column] === value) {
+                    records.push(record);
+                }
+            });
+        });
+
+        res.status(200).json({ success: true, data: records });
+    } catch (error) {
+        console.error('Error fetching data by column:', error);
+        res.status(500).json({ success: false, msg: 'Internal server error' });
+    }
+};
+
 
 // Get Category visitor
 const getVisitorCategoryCounts = async (req, res) => {
@@ -690,19 +792,27 @@ const getSortedCompanyByRepeater = async (req, res) => {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
         }
 
-        const sortedData = aggregatedDoc.data.sort((a, b) => b.Repeater - a.Repeater);
+        const validSegments = ['COR-FIT', 'COR-GROUP', 'GOV-FIT', 'GOV-GROUP'];
+
+        const filteredData = aggregatedDoc.data.filter(record => validSegments.includes(record.Segment));
+        const sortedData = filteredData.sort((a, b) => b.Repeater - a.Repeater);
 
         const result = sortedData.map(record => ({
             Company_TA: record.Company_TA,
-            Repeater: record.Repeater
+            Segment: record.Segment,
+            Repeater: record.Repeater,
         }));
 
-        res.status(200).json({ success: true, data: result });
+        const totalRepeater = sortedData.reduce((sum, record) => sum + (record.Repeater || 0), 0);
+
+        res.status(200).json({ success: true, totalRepeater, data: result });
     } catch (error) {
-        console.error('Error getting sorted data by Repeater:', error);
+        console.error('Error getting sorted data by company and segment:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
     }
 };
+
+
 
 module.exports = {
     uploadAndImport,
@@ -721,4 +831,5 @@ module.exports = {
     getSortedCompanyByRepeater,
     getVisitorCategoryCounts,
     getRoomCounts,
+    getAggregatedByColumn,
 };

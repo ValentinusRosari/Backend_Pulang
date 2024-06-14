@@ -17,16 +17,75 @@ def process_extractguess(import_file):
     data['Sex'] = data['Sex'].replace('M', 'Unknown')
 
     replacements = {
-        'PELAJAR MAHASISWA' : ['pelajar', 'Pelajar', 'PELAJAR','PELAJAR ', 'mahasiswa', 'Mahasiswa', 'MAHASISWA', 'siswa', 'Siswa', 'SISWA', 'pelajar mahasiswa', 'PELAJAR MAHASISWA','MAHASISWI','PELAJAR / MAHASISWA','PELAJAR/ MAHASISWA','PELAJAR/MAHASISWA','PELAJAR/MAHASIWA','PELAJAR/MHS','PELAJAR/NAHASISWA'],
-        'BUMD' : ['KARYAWAN BUMD', 'BUMD','KARY BUMN'],
-        'BUMN' : ['KARYAWAN BUMN', 'Bumn','KARYWN BUMN'],
-        'HONORER' : ['HONORER','KARYAWAN HONORER'],
-        'MRT' : ['IBU RUMAH TANGGA', 'IRT','IRT ','MENGURUS RUMAH TANGGA','MRT','RUMAH TANGGA'],
-        'PEDAGANG' : ['PEDAGANG', 'PERDAGANGAN'],
-        'PNS':['PEG NEGERI','PEGAWAI NEGERI','PEGAWAI NEGERI SIPIL','PEGAWAI NEGRI','PEGAWAI NEGRI SIPIL','PNS'],
-        'SWASTA':['KAR SWASTA','KARYAWAN SWASTA','KARY SWASTA','KARYAWAB SWASTA','KARYAWAN SWASTA','KARYAWAN SWATA','KARYWAN SWASTA','PEG. SWASTA','PEGAWAI SWASTA','KARYAWAN','KARYAWATI'],
-        'TIDAK BEKERJA':['BELM BEKERJA','BELUM BEKERJA','BELUM TIDAK BEKERJA','BELUM/TIDAK BEKERJA','TDK BEKERJA','TIDAK BEKERJA'],
-        'WIRASWASTA':['WIRASWASTA','WIRASWATA']
+    'BUMD': [
+        'KARYAWAN BUMD', 'karyawan bumd', 'KARYAWAN bumd', 'karyawan BUMD', 
+        'BUMD', 'bumd', 
+        'KARY BUMN', 'kary bumn', 'KARY bumn', 'kary BUMN'
+    ],
+    'BUMN': [
+        'KARYAWAN BUMN', 'karyawan bumn', 'KARYAWAN bumn', 'karyawan BUMN', 
+        'BUMN', 'bumn', 
+        'KARYWN BUMN', 'karywn bumn', 'KARYWN bumn', 'karywn BUMN'
+    ],
+    'HONORER': [
+        'HONORER', 'honorer', 'Honorer', 
+        'KARYAWAN HONORER', 'karyawan honorer', 'KARYAWAN honorer', 'karyawan HONORER'
+    ],
+    'MRT': [
+        'IBU RUMAH TANGGA', 'ibu rumah tangga', 'IBU rumah tangga', 'ibu RUMAH TANGGA', 
+        'IRT', 'irt', 
+        'IRT ', 'irt ', 
+        'MENGURUS RUMAH TANGGA', 'mengurus rumah tangga', 'MENGURUS rumah tangga', 'mengurus RUMAH TANGGA', 
+        'MRT', 'mrt', 
+        'RUMAH TANGGA', 'rumah tangga', 'RUMAH tangga', 'rumah TANGGA'
+    ],
+    'PEDAGANG': [
+        'PEDAGANG', 'pedagang', 'Pedagang', 
+        'PERDAGANGAN', 'perdagangan', 'Perdagangan'
+    ],
+    'PNS': [
+        'PEG NEGERI', 'peg negeri', 'PEG negeri', 'peg NEGERI', 
+        'PEGAWAI NEGERI', 'pegawai negeri', 'PEGAWAI negeri', 'pegawai NEGERI', 
+        'PEGAWAI NEGERI SIPIL', 'pegawai negeri sipil', 'PEGAWAI negeri sipil', 'pegawai NEGERI SIPIL', 
+        'PEGAWAI NEGRI', 'pegawai negri', 'PEGAWAI negri', 'pegawai NEGRI', 
+        'PEGAWAI NEGRI SIPIL', 'pegawai negri sipil', 'PEGAWAI negri sipil', 'pegawai NEGRI SIPIL', 
+        'PNS', 'pns'
+    ],
+    'SWASTA': [
+        'KAR SWASTA', 'kar swasta', 'KAR swasta', 'kar SWASTA', 
+        'KARYAWAN SWASTA', 'karyawan swasta', 'KARYAWAN swasta', 'karyawan SWASTA', 
+        'KARY SWASTA', 'kary swasta', 'KARY swasta', 'kary SWASTA', 
+        'KARYAWAB SWASTA', 'karyawab swasta', 'KARYAWAB swasta', 'karyawab SWASTA', 
+        'KARYAWAN SWATA', 'karyawan swata', 'KARYAWAN swata', 'karyawan SWATA', 
+        'KARYWAN SWASTA', 'karywan swasta', 'KARYWAN swasta', 'karywan SWASTA', 
+        'PEG. SWASTA', 'peg. swasta', 'PEG. swasta', 'peg. SWASTA', 
+        'PEGAWAI SWASTA', 'pegawai swasta', 'PEGAWAI swasta', 'pegawai SWASTA', 
+        'KARYAWAN', 'karyawan', 'KARYAWAN', 'karyawan', 
+        'KARYAWATI', 'karyawati', 'KARYAWATI', 'karyawati'
+        'SWASTA', 'swasta', "Swasta",
+    ],
+    'TIDAK BEKERJA': [
+        'BELM BEKERJA', 'belm bekerja', 'BELM bekerja', 'belm BEKERJA', 
+        'BELUM BEKERJA', 'belum bekerja', 'BELUM bekerja', 'belum BEKERJA', 
+        'BELUM TIDAK BEKERJA', 'belum tidak bekerja', 'BELUM tidak bekerja', 'belum TIDAK BEKERJA', 
+        'BELUM/TIDAK BEKERJA', 'belum/tidak bekerja', 'BELUM/tidak bekerja', 'belum/TIDAK BEKERJA', 
+        'TDK BEKERJA', 'tdk bekerja', 'TDK bekerja', 'tdk BEKERJA', 
+        'TIDAK BEKERJA', 'tidak bekerja', 'TIDAK bekerja', 'tidak BEKERJA'
+    ],
+    'WIRASWASTA': [
+        'WIRASWASTA', 'wiraswasta', 'WIRASWASTA', 'wiraswasta', 
+        'WIRASWATA', 'wiraswata', 'WIRASWATA', 'wiraswata'
+    ],
+    'PELAJAR MAHASISWA': [
+        'pelajar', 'Pelajar', 'PELAJAR', 'PELAJAR ',
+        'mahasiswa', 'Mahasiswa', 'MAHASISWA', 
+        'siswa', 'Siswa', 'SISWA', 
+        'pelajar mahasiswa', 'PELAJAR MAHASISWA',
+        'MAHASISWI', 'PELAJAR / MAHASISWA', 
+        'PELAJAR/ MAHASISWA', 'PELAJAR/MAHASISWA',
+        'PELAJAR/MAHASIWA', 'PELAJAR/MHS', 
+        'PELAJAR/NAHASISWA'
+    ]
     }
 
     for replacement, patterns in replacements.items():

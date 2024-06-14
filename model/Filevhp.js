@@ -32,7 +32,6 @@ const dataSchema = new mongoose.Schema({
   CO_Time: { type: String },
   CI_Time: { type: String },
   Segment: { type: String },
-  Repeater: { type: String },
 });
 
 const combinedSchema = new mongoose.Schema({

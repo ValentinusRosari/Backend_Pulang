@@ -72,9 +72,6 @@ def process_file(sample_file, input_file):
         df['visitor_number'] = df['Adult'] + df['Child']
         df['visitor_category'] = df['visitor_number'].apply(lambda x: 'family/group' if x > 1 else 'individual')
 
-        name_counts = df['Name'].value_counts()
-        df['Repeater'] = df['Name'].map(lambda x: name_counts[x] if name_counts[x] > 1 else 'No')
-
         dfs.append(df)
     except pd.errors.EmptyDataError:
         print(f"No data in file: {input_file}")
