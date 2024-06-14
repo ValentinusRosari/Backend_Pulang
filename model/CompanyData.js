@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const dataSchema = new mongoose.Schema({
     Company_TA: String,
-    Night: Number,
     Repeater: Number,
+    Segment: String,
 })
 
 const companySchema = new mongoose.Schema({
@@ -13,4 +13,3 @@ const companySchema = new mongoose.Schema({
 const CompanyModel = mongoose.model('CompanyData', companySchema);
 
 module.exports = CompanyModel;
-

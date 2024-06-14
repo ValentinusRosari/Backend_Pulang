@@ -53,6 +53,7 @@ router.get('/getSortedByRepeater', combinedController.getSortedByRepeater);
 router.get('/getVisitorCategoryCounts', combinedController.getVisitorCategoryCounts);
 router.get('/getRoomCounts', combinedController.getRoomCounts);
 router.get('/getSortedCompanyByRepeater', combinedController.getSortedCompanyByRepeater);
+router.get('/getAggregatedByColumn', combinedController.getAggregatedByColumn);
 router.get('/data', combinedController.getDataByColumn);
 
 module.exports = router;
