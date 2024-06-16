@@ -4,7 +4,7 @@ const path = require('path');
 const CombinedModel = require('../model/Filevhp');
 const AggregatedModel = require('../model/AgregatedData');
 const MergedDataModel = require('../model/MergedCombined');
-const CompanyModel = require('../model/CompanyData')
+const CompanyModel = require('../model/CompanyData');
 
 // Upload File
 const uploadAndImport = async (req, res) => {
@@ -25,7 +25,7 @@ const uploadAndImport = async (req, res) => {
             scriptPath = path.resolve(__dirname, '../script/process_inhousefile.py');
             args = [scriptPath, sampleFilePath, filePath];
         } else if (file.originalname.includes('Extract')) {
-            scriptPath = path.resolve(__dirname, '../script/process_extractguess.py');
+            scriptPath = path.resolve(__dirname, '../script/process_extractguest.py');
             args = [scriptPath, filePath];
         } else {
             return res.status(400).send({ success: false, msg: 'Unknown file type.' });
@@ -91,7 +91,13 @@ const uploadAndImport = async (req, res) => {
     }
 };
 
-// Join inhouse's files and extractguest's files
+// Function to extract the month from the filename
+const getMonthFromFileName = (fileName) => {
+    const match = fileName.match(/(JAN 1-16|JAN 17-31|FEB 1-16|FEB 1-28|MAR 1-16|MAR 17-31|APR 1-16|APR 17-30|MAY 1-16|MAY 17-31|JUN 1-16|JUN 17-30|JUL 1-16|JUL 17-31|AUG 1-16|AUG 17-31|SEP 1-16|SEP 17-30|OCT 1-16|OCT 17-31|NOV 1-16|NOV 17-30|DEC 1-16|DEC 17-31)/i);
+    return match ? match[0].toUpperCase() : null;
+};
+
+// Join InHouse and Extract files
 const mergeInHouseAndExtractFiles = async () => {
     try {
         const inHouseFiles = await CombinedModel.find({ 'file.fileName': /InHouse/ });
@@ -114,8 +120,6 @@ const mergeInHouseAndExtractFiles = async () => {
             "Name", "Nationality", "LocalRegion", "MobilePhone", "Sex", "Occupation"
         ];
 
-        const allFields = [...new Set([...inHouseFields, ...extractFields, "Repeater"])];
-
         const ensureAllFields = (record, fields) => {
             const result = {};
             fields.forEach(field => {
@@ -124,71 +128,85 @@ const mergeInHouseAndExtractFiles = async () => {
             return result;
         };
 
-        const mergedInHouseData = {};
+        const mergedDataByMonth = {};
 
-        // Merge InHouse files based on Name, Arrival, and Depart
         for (const inHouseDoc of inHouseFiles) {
+            const month = getMonthFromFileName(inHouseDoc.file.fileName);
+            if (!month) continue;
+
+            if (!mergedDataByMonth[month]) {
+                mergedDataByMonth[month] = { inHouse: {}, extract: {} };
+            }
+
             inHouseDoc.data.forEach(record => {
                 const key = `${record.Name}_${record.Arrival}_${record.Depart}`;
-                if (!mergedInHouseData[key]) {
-                    mergedInHouseData[key] = ensureAllFields(record, inHouseFields);
+                if (!mergedDataByMonth[month].inHouse[key]) {
+                    mergedDataByMonth[month].inHouse[key] = ensureAllFields(record, inHouseFields);
                 } else {
-                    mergedInHouseData[key] = { ...mergedInHouseData[key], ...ensureAllFields(record, inHouseFields) };
+                    mergedDataByMonth[month].inHouse[key] = {
+                        ...mergedDataByMonth[month].inHouse[key],
+                        ...ensureAllFields(record, inHouseFields)
+                    };
                 }
             });
         }
 
-        // Flatten mergedInHouseData to a list
-        const flattenedInHouseData = Object.values(mergedInHouseData);
-
-        const mergedExtractData = {};
-
-        // Merge Extract files based on Name
         for (const extractDoc of extractFiles) {
+            const month = getMonthFromFileName(extractDoc.file.fileName);
+            if (!month) continue;
+
+            if (!mergedDataByMonth[month]) {
+                mergedDataByMonth[month] = { inHouse: {}, extract: {} };
+            }
+
             extractDoc.data.forEach(record => {
                 const name = record.Name;
-                if (!mergedExtractData[name]) {
-                    mergedExtractData[name] = ensureAllFields(record, extractFields);
+                if (!mergedDataByMonth[month].extract[name]) {
+                    mergedDataByMonth[month].extract[name] = ensureAllFields(record, extractFields);
                 } else {
-                    mergedExtractData[name] = { ...mergedExtractData[name], ...ensureAllFields(record, extractFields) };
+                    mergedDataByMonth[month].extract[name] = {
+                        ...mergedDataByMonth[month].extract[name],
+                        ...ensureAllFields(record, extractFields)
+                    };
                 }
             });
         }
 
-        const finalMergedData = [];
+        let finalMergedData = [];
 
-        // Create a map of names to their corresponding merged InHouse records
-        const nameToInHouseRecords = {};
-        flattenedInHouseData.forEach(record => {
-            const name = record.Name;
-            if (!nameToInHouseRecords[name]) {
-                nameToInHouseRecords[name] = [];
+        Object.keys(mergedDataByMonth).forEach(month => {
+            const inHouseData = Object.values(mergedDataByMonth[month].inHouse);
+            const extractData = mergedDataByMonth[month].extract;
+
+            const nameToInHouseRecords = {};
+            inHouseData.forEach(record => {
+                const name = record.Name;
+                if (!nameToInHouseRecords[name]) {
+                    nameToInHouseRecords[name] = [];
+                }
+                nameToInHouseRecords[name].push(record);
+            });
+
+            for (const name in extractData) {
+                const extractRecord = extractData[name];
+                const inHouseRecords = nameToInHouseRecords[name] || [ensureAllFields({}, inHouseFields)];
+
+                inHouseRecords.forEach(inHouseRecord => {
+                    const mergedRecord = { ...inHouseRecord, ...extractRecord };
+                    finalMergedData.push(mergedRecord);
+                });
+                delete nameToInHouseRecords[name];
             }
-            nameToInHouseRecords[name].push(record);
-        });
 
-        // Perform outer join between InHouse and Extract data
-        for (const name in mergedExtractData) {
-            const extractRecord = mergedExtractData[name];
-            const inHouseRecords = nameToInHouseRecords[name] || [ensureAllFields({}, inHouseFields)];
-
-            inHouseRecords.forEach(inHouseRecord => {
-                const mergedRecord = { ...inHouseRecord, ...extractRecord };
-                finalMergedData.push(mergedRecord);
+            Object.values(nameToInHouseRecords).forEach(records => {
+                records.forEach(record => {
+                    finalMergedData.push(record);
+                });
             });
 
-            // Remove the entry from the map to track names processed
-            delete nameToInHouseRecords[name];
-        }
-
-        // Add any remaining InHouse records that didn't have matching Extract records
-        Object.values(nameToInHouseRecords).forEach(records => {
-            records.forEach(record => {
-                finalMergedData.push(record);
-            });
+            console.log(`InHouse and Extract files for ${month} merged successfully into a single document!`);
         });
 
-        // Calculate the Repeater count based on finalMergedData
         const nameCount = {};
         finalMergedData.forEach(record => {
             const name = record.Name;
@@ -198,7 +216,6 @@ const mergeInHouseAndExtractFiles = async () => {
             nameCount[name]++;
         });
 
-        // Update the Repeater field in finalMergedData
         finalMergedData.forEach(record => {
             const name = record.Name;
             record.Repeater = nameCount[name];
@@ -220,11 +237,12 @@ const mergeInHouseAndExtractFiles = async () => {
         });
         await mergedDocument.save();
 
-        console.log('InHouse and Extract files merged successfully into a single document!');
+        console.log('All data merged and saved successfully!');
     } catch (error) {
         console.error('Error merging InHouse and Extract files:', error);
     }
 };
+
 
 // Create collection by name
 const createAggregatedCollection = async () => {
