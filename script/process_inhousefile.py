@@ -57,7 +57,7 @@ def process_file(sample_file, input_file):
             'Local Region': 'LocalRegion',
             'C/I Time': 'CI_Time',
             'C/O Time': 'CO_Time',
-            'Company / TA':'Company_TA'
+            'Company / TA': 'Company_TA'
         }, inplace=True)
 
         df['LocalRegion'] = df['LocalRegion'].apply(lambda x: x[:3] if isinstance(x, str) else x)
@@ -71,6 +71,39 @@ def process_file(sample_file, input_file):
         df['Child'] = df['Child'].astype(int)
         df['visitor_number'] = df['Adult'] + df['Child']
         df['visitor_category'] = df['visitor_number'].apply(lambda x: 'family/group' if x > 1 else 'individual')
+
+        # Merge records with the same Name, Arrival, and Depart
+        df = df.groupby(['Name', 'Arrival', 'Depart'], as_index=False).agg({
+            'In_House_Date': 'first',
+            'Room_Number': 'first',
+            'Room_Type': 'first',
+            'Arrangement': 'first',
+            'Birth_Date': 'first',
+            'Age': 'first',
+            'Email': 'first',
+            'Mobile_Phone': 'first',
+            'Room Rate': 'first',
+            'Lodging': 'first',
+            'Breakfast': 'first',
+            'Bill_Number': 'first',
+            'Pay_Article': 'first',
+            'Res_No': 'first',
+            'Adult': 'first',
+            'Child': 'first',
+            'Compliment': 'first',
+            'Nat': 'first',
+            'LocalRegion': 'first',
+            'Company_TA': 'first',
+            'SOB': 'first',
+            'Night': 'first',
+            'CI_Time': 'first',
+            'CO_Time': 'first',
+            'Segment': 'first',
+            'Created': 'first',
+            'By': 'first',
+            'visitor_number': 'first',
+            'visitor_category': 'first'
+        })
 
         dfs.append(df)
     except pd.errors.EmptyDataError:
