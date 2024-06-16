@@ -19,11 +19,41 @@ const storage = multer.diskStorage({
         cb(null, `${Date.now()}-${file.originalname}`);
     }
 });
+function checkFileType(file, cb) {
+    const filetypes = /csv|xlsx|xls/;
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = filetypes.test(file.mimetype);
 
-const upload = multer({ storage: storage });
+    if (mimetype && extname) {
+        return cb(null, true);
+    } else {
+        cb('Error: Only CSV and Excel files are allowed!');
+    }
+}
+
+const upload = multer({ 
+    storage: storage,
+    fileFilter: function (req, file, cb) {
+        checkFileType(file, cb);
+    }
+});
 
 router.post('/upload', upload.single('file'), combinedController.uploadAndImport);
 router.get('/files', combinedController.home);
+router.get('/view', combinedController.view);
 router.delete('/delete/:id', combinedController.delete);
+router.get('/getAgeCounts', combinedController.getAgeCounts);
+router.get('/getSexCounts', combinedController.getSexCounts);
+router.get('/getOccupationCounts', combinedController.getOccupationCounts);
+router.get('/getCountryCounts', combinedController.getCountryCounts);
+router.get('/getCityCounts', combinedController.getCityCounts);
+router.get('/getSegmentCounts', combinedController.getSegmentCounts);
+router.get('/getSortedByNight', combinedController.getSortedByNight);
+router.get('/getSortedByRepeater', combinedController.getSortedByRepeater);
+router.get('/getVisitorCategoryCounts', combinedController.getVisitorCategoryCounts);
+router.get('/getRoomCounts', combinedController.getRoomCounts);
+router.get('/getSortedCompanyByRepeater', combinedController.getSortedCompanyByRepeater);
+router.get('/getAggregatedByColumn', combinedController.getAggregatedByColumn);
+router.get('/data', combinedController.getDataByColumn);
 
 module.exports = router;
