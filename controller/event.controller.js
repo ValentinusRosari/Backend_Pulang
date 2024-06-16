@@ -14,7 +14,7 @@ const createEvent = async (req, res) => {
 
 const readEvent = async (req, res) => {
   try {
-    const event = await Event.find();
+    const event = await Event.find().populate();
 
     res.status(200).json({ succes: true, data: event });
   } catch (error) {
