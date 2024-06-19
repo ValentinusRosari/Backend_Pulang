@@ -22,6 +22,35 @@ const readRoom = async (req, res) => {
   }
 };
 
+const readRoomByNumber = async (req, res) => {
+  try {
+    // Get the room number from the query parameters
+    const { roomNumber } = req.query;
+
+    // Check if roomNumber is provided
+    if (!roomNumber) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Room number is required" });
+    }
+
+    // Find the room by its number
+    const room = await Room.findOne({ roomNumber });
+
+    // Check if the room exists
+    if (!room) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Room not found" });
+    }
+
+    // Send the room data as response
+    res.status(200).json({ success: true, data: room });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 const updateRoom = async (req, res) => {
   try {
     const roomId = req.params.id;
@@ -56,6 +85,7 @@ const deleteRoom = async (req, res) => {
 module.exports = {
   createRoom,
   readRoom,
+  readRoomByNumber,
   updateRoom,
   deleteRoom,
 };
