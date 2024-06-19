@@ -4,6 +4,8 @@ const dataSchema = new mongoose.Schema({
     Company_TA: String,
     Repeater: Number,
     Segment: String,
+    Arrival: Date,
+    Depart: Date,
 })
 
 const companySchema = new mongoose.Schema({

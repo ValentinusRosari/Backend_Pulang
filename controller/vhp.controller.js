@@ -123,7 +123,11 @@ const mergeInHouseAndExtractFiles = async () => {
         const ensureAllFields = (record, fields) => {
             const result = {};
             fields.forEach(field => {
-                result[field] = record[field] !== undefined ? record[field] : null;
+                if (field === "Night") {
+                    result[field] = record[field] !== undefined && record[field] !== null ? record[field] : 0;
+                } else {
+                    result[field] = record[field] !== undefined ? record[field] : null;
+                }
             });
             return result;
         };
@@ -243,8 +247,6 @@ const mergeInHouseAndExtractFiles = async () => {
     }
 };
 
-
-// Create collection by name
 const createAggregatedCollection = async () => {
     try {
         const mergedDocuments = await MergedDataModel.find();
@@ -258,31 +260,52 @@ const createAggregatedCollection = async () => {
                 if (!aggregatedData[name]) {
                     aggregatedData[name] = {
                         Name: name,
-                        Age: record.Age || null,
-                        Night: record.Night || null,
+                        Age: record.Age !== undefined ? record.Age : null,
+                        Night: record.Night !== undefined ? record.Night : null,
                         Repeater: 1,
                         Sex: record.Sex !== undefined ? record.Sex : null,
+                        Arrival: record.Arrival !== undefined ? new Date(record.Arrival) : null,
+                        Depart: record.Depart !== undefined ? new Date(record.Depart) : null,
                         Occupation: record.Occupation !== undefined ? record.Occupation : null,
                         Nationality: record.Nationality !== undefined ? record.Nationality : null,
                         LocalRegion: record.LocalRegion !== undefined ? record.LocalRegion : null,
                         Segment: record.Segment !== undefined ? record.Segment : null,
                     };
                 } else {
-                    aggregatedData[name].Age = Math.max(aggregatedData[name].Age, record.Age || null);
-                    aggregatedData[name].Night += record.Night || null;
+                    aggregatedData[name].Age = record.Age !== null && record.Age !== undefined ? record.Age : aggregatedData[name].Age;
+                    aggregatedData[name].Night += record.Night !== null && record.Night !== undefined ? record.Night : 0;
                     aggregatedData[name].Repeater += 1;
+
                     if (aggregatedData[name].Sex === null && record.Sex !== undefined) {
                         aggregatedData[name].Sex = record.Sex;
                     }
+
+                    if (record.Arrival !== undefined) {
+                        const arrivalDate = new Date(record.Arrival);
+                        if (aggregatedData[name].Arrival === null || arrivalDate < aggregatedData[name].Arrival) {
+                            aggregatedData[name].Arrival = arrivalDate;
+                        }
+                    }
+
+                    if (record.Depart !== undefined) {
+                        const departDate = new Date(record.Depart);
+                        if (aggregatedData[name].Depart === null || departDate > aggregatedData[name].Depart) {
+                            aggregatedData[name].Depart = departDate;
+                        }
+                    }
+
                     if (aggregatedData[name].Occupation === null && record.Occupation !== undefined) {
                         aggregatedData[name].Occupation = record.Occupation;
                     }
+
                     if (aggregatedData[name].Nationality === null && record.Nationality !== undefined) {
                         aggregatedData[name].Nationality = record.Nationality;
                     }
+
                     if (aggregatedData[name].LocalRegion === null && record.LocalRegion !== undefined) {
                         aggregatedData[name].LocalRegion = record.LocalRegion;
                     }
+
                     if (aggregatedData[name].Segment === null && record.Segment !== undefined) {
                         aggregatedData[name].Segment = record.Segment;
                     }
@@ -319,7 +342,9 @@ const createAggregatedCompany = async () => {
                     companySegmentData[key] = {
                         Company_TA: company,
                         Segment: segment,
-                        Repeater: 1
+                        Repeater: 1,
+                        Arrival: record.Arrival,
+                        Depart: record.Depart
                     };
                 } else {
                     companySegmentData[key].Repeater += 1;
@@ -330,7 +355,6 @@ const createAggregatedCompany = async () => {
         const aggregatedArray = Object.values(companySegmentData);
 
         await CompanyModel.deleteMany({});
-
         await CompanyModel.create({ data: aggregatedArray });
 
         console.log('Aggregated data by company and segment successfully created!');
@@ -419,25 +443,36 @@ const deleteDocument = async (req, res) => {
 
 // Get Age
 const getAgeCounts = async (req, res) => {
-    try {
-        const aggregatedDoc = await AggregatedModel.findOne();
+    const { startdate, enddate } = req.query;
 
-        if (!aggregatedDoc) {
+    try {
+        const aggregatedDocs = await AggregatedModel.find();
+
+        if (!aggregatedDocs || aggregatedDocs.length === 0) {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
         }
 
-        const ageCounts = aggregatedDoc.data.reduce((acc, record) => {
+        const allData = aggregatedDocs.flatMap(doc => doc.data);
+
+        const filteredData = allData.filter(record => {
+            const arrivalDate = new Date(record.Arrival).setUTCHours(0, 0, 0, 0);
+            const isWithinDateRange = (!startdate || arrivalDate >= new Date(startdate).setUTCHours(0, 0, 0, 0)) &&
+                                      (!enddate || arrivalDate <= new Date(enddate).setUTCHours(23, 59, 59, 999));
+            const isAgeValid = record.Age !== null && record.Age !== undefined;
+
+            return isWithinDateRange && isAgeValid;
+        });
+
+        const ageCounts = filteredData.reduce((acc, record) => {
             const age = record.Age;
-            if (age !== null && age !== undefined) {
-                if (!acc[age]) {
-                    acc[age] = 0;
-                }
-                acc[age] += 1;
+            if (!acc[age]) {
+                acc[age] = 0;
             }
+            acc[age] += 1;
             return acc;
         }, {});
 
-        const totalRecords = aggregatedDoc.data.length;
+        const totalRecords = filteredData.length;
 
         res.status(200).json({ success: true, ageCounts, totalRecords });
     } catch (error) {
@@ -448,25 +483,36 @@ const getAgeCounts = async (req, res) => {
 
 // Get Sex
 const getSexCounts = async (req, res) => {
-    try {
-        const aggregatedDoc = await AggregatedModel.findOne();
+    const { startdate, enddate } = req.query;
 
-        if (!aggregatedDoc) {
+    try {
+        const aggregatedDocs = await AggregatedModel.find();
+
+        if (!aggregatedDocs || aggregatedDocs.length === 0) {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
         }
 
-        const sexCounts = aggregatedDoc.data.reduce((acc, record) => {
+        const allData = aggregatedDocs.flatMap(doc => doc.data);
+
+        const filteredData = allData.filter(record => {
+            const arrivalDate = new Date(record.Arrival);
+            const isWithinDateRange = (!startdate || arrivalDate >= new Date(startdate)) &&
+                                      (!enddate || arrivalDate <= new Date(enddate));
+            const isSexValid = record.Sex !== null && record.Sex !== undefined;
+
+            return isWithinDateRange && isSexValid;
+        });
+
+        const sexCounts = filteredData.reduce((acc, record) => {
             const sex = record.Sex;
-            if (sex !== null && sex !== undefined) {
-                if (!acc[sex]) {
-                    acc[sex] = 0;
-                }
-                acc[sex] += 1;
+            if (!acc[sex]) {
+                acc[sex] = 0;
             }
+            acc[sex] += 1;
             return acc;
         }, {});
 
-        const totalRecords = aggregatedDoc.data.length;
+        const totalRecords = filteredData.length;
 
         res.status(200).json({ success: true, sexCounts, totalRecords });
     } catch (error) {
@@ -477,26 +523,40 @@ const getSexCounts = async (req, res) => {
 
 // Get Occupation
 const getOccupationCounts = async (req, res) => {
-    try {
-        const aggregatedDoc = await MergedDataModel.findOne();
+    const { startdate, enddate } = req.query;
 
-        if (!aggregatedDoc) {
+    try {
+        const aggregatedDocs = await MergedDataModel.find();
+
+        if (!aggregatedDocs || aggregatedDocs.length === 0) {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
         }
 
-        const occupationCounts = aggregatedDoc.data.reduce((acc, record) => {
-            const { Occupation, Night } = record;
-            if (Occupation && Night !== null && Night !== undefined) {
-                if (!acc[Occupation]) {
-                    acc[Occupation] = { count: 0, totalNight: 0 };
-                }
-                acc[Occupation].count += 1;
-                acc[Occupation].totalNight += Night;
+        const allData = aggregatedDocs.flatMap(doc => doc.data);
+
+        const filteredData = allData.filter(record => {
+            const arrivalDate = record.Arrival ? new Date(record.Arrival) : null;
+            const isWithinDateRange = (!startdate || (arrivalDate && arrivalDate >= new Date(startdate))) &&
+                                      (!enddate || (arrivalDate && arrivalDate <= new Date(enddate)));
+            const isOccupationValid = record.Occupation !== null && record.Occupation !== undefined;
+
+            return isWithinDateRange && isOccupationValid;
+        });
+
+        const occupationCounts = filteredData.reduce((acc, record) => {
+            const { Night = 0 } = record;
+            const { Occupation } = record;
+
+            if (!acc[Occupation]) {
+                acc[Occupation] = { count: 0, totalNight: 0 };
             }
+
+            acc[Occupation].count += 1;
+            acc[Occupation].totalNight += Night;
+
             return acc;
         }, {});
 
-        // Calculate total records and total nights
         const totalRecords = Object.values(occupationCounts).reduce((acc, { count }) => acc + count, 0);
         const totalNight = Object.values(occupationCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
 
@@ -509,26 +569,40 @@ const getOccupationCounts = async (req, res) => {
 
 // Get City
 const getCityCounts = async (req, res) => {
-    try {
-        const aggregatedDoc = await MergedDataModel.findOne();
+    const { startdate, enddate } = req.query;
 
-        if (!aggregatedDoc) {
+    try {
+        const aggregatedDocs = await MergedDataModel.find();
+
+        if (!aggregatedDocs || aggregatedDocs.length === 0) {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
         }
 
-        const localregionCounts = aggregatedDoc.data.reduce((acc, record) => {
-            const { LocalRegion, Night } = record;
-            if (LocalRegion && Night !== null && Night !== undefined) {
-                if (!acc[LocalRegion]) {
-                    acc[LocalRegion] = { count: 0, totalNight: 0 };
-                }
-                acc[LocalRegion].count += 1;
-                acc[LocalRegion].totalNight += Night;
+        const allData = aggregatedDocs.flatMap(doc => doc.data);
+
+        const filteredData = allData.filter(record => {
+            const arrivalDate = record.Arrival ? new Date(record.Arrival) : null;
+            const isWithinDateRange = (!startdate || (arrivalDate && arrivalDate >= new Date(startdate))) &&
+                                      (!enddate || (arrivalDate && arrivalDate <= new Date(enddate)));
+            const isLocalRegionValid = record.LocalRegion !== null && record.LocalRegion !== undefined;
+
+            return isWithinDateRange && isLocalRegionValid;
+        });
+
+        const localregionCounts = filteredData.reduce((acc, record) => {
+            const { Night = 0 } = record;
+            const { LocalRegion } = record;
+
+            if (!acc[LocalRegion]) {
+                acc[LocalRegion] = { count: 0, totalNight: 0 };
             }
+
+            acc[LocalRegion].count += 1;
+            acc[LocalRegion].totalNight += Night;
+
             return acc;
         }, {});
 
-        // Calculate total records and total nights
         const totalRecords = Object.values(localregionCounts).reduce((acc, { count }) => acc + count, 0);
         const totalNight = Object.values(localregionCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
 
@@ -541,26 +615,40 @@ const getCityCounts = async (req, res) => {
 
 // Get Country
 const getCountryCounts = async (req, res) => {
-    try {
-        const aggregatedDoc = await MergedDataModel.findOne();
+    const { startdate, enddate } = req.query;
 
-        if (!aggregatedDoc) {
+    try {
+        const aggregatedDocs = await MergedDataModel.find();
+
+        if (!aggregatedDocs || aggregatedDocs.length === 0) {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
         }
 
-        const nationalityCounts = aggregatedDoc.data.reduce((acc, record) => {
-            const { Nationality, Night } = record;
-            if (Nationality && Night !== null && Night !== undefined) {
-                if (!acc[Nationality]) {
-                    acc[Nationality] = { count: 0, totalNight: 0 };
-                }
-                acc[Nationality].count += 1;
-                acc[Nationality].totalNight += Night;
+        const allData = aggregatedDocs.flatMap(doc => doc.data);
+
+        const filteredData = allData.filter(record => {
+            const arrivalDate = record.Arrival ? new Date(record.Arrival) : null;
+            const isWithinDateRange = (!startdate || (arrivalDate && arrivalDate >= new Date(startdate))) &&
+                                      (!enddate || (arrivalDate && arrivalDate <= new Date(enddate)));
+            const isNationalityValid = record.Nationality !== null && record.Nationality !== undefined;
+
+            return isWithinDateRange && isNationalityValid;
+        });
+
+        const nationalityCounts = filteredData.reduce((acc, record) => {
+            const { Night = 0 } = record;
+            const { Nationality } = record;
+
+            if (!acc[Nationality]) {
+                acc[Nationality] = { count: 0, totalNight: 0 };
             }
+
+            acc[Nationality].count += 1;
+            acc[Nationality].totalNight += Night;
+
             return acc;
         }, {});
 
-        // Calculate total records and total nights
         const totalRecords = Object.values(nationalityCounts).reduce((acc, { count }) => acc + count, 0);
         const totalNight = Object.values(nationalityCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
 
@@ -573,22 +661,37 @@ const getCountryCounts = async (req, res) => {
 
 // Get Segment
 const getSegmentCounts = async (req, res) => {
-    try {
-        const aggregatedDoc = await MergedDataModel.findOne();
+    const { startdate, enddate } = req.query;
 
-        if (!aggregatedDoc) {
+    try {
+        const aggregatedDocs = await MergedDataModel.find();
+
+        if (!aggregatedDocs || aggregatedDocs.length === 0) {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
         }
 
-        const segmentCounts = aggregatedDoc.data.reduce((acc, record) => {
-            const { Segment, Night } = record;
-            if (Segment && Night !== null && Night !== undefined) {
-                if (!acc[Segment]) {
-                    acc[Segment] = { count: 0, totalNight: 0 };
-                }
-                acc[Segment].count += 1;
-                acc[Segment].totalNight += Night;
+        const allData = aggregatedDocs.flatMap(doc => doc.data);
+
+        const filteredData = allData.filter(record => {
+            const arrivalDate = record.Arrival ? new Date(record.Arrival) : null;
+            const isWithinDateRange = (!startdate || (arrivalDate && arrivalDate >= new Date(startdate))) &&
+                                      (!enddate || (arrivalDate && arrivalDate <= new Date(enddate)));
+            const isSegmentValid = record.Segment !== null && record.Segment !== undefined;
+
+            return isWithinDateRange && isSegmentValid;
+        });
+
+        const segmentCounts = filteredData.reduce((acc, record) => {
+            const { Night = 0 } = record;
+            const { Segment } = record;
+
+            if (!acc[Segment]) {
+                acc[Segment] = { count: 0, totalNight: 0 };
             }
+
+            acc[Segment].count += 1;
+            acc[Segment].totalNight += Night;
+
             return acc;
         }, {});
 
@@ -604,27 +707,47 @@ const getSegmentCounts = async (req, res) => {
 
 // Get Sorted Night
 const getSortedByNight = async (req, res) => {
-    try {
-        const aggregatedDoc = await AggregatedModel.findOne();
+    const { startdate, enddate } = req.query;
 
-        if (!aggregatedDoc) {
+    try {
+        const aggregatedDocs = await MergedDataModel.find();
+
+        if (!aggregatedDocs || aggregatedDocs.length === 0) {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
         }
 
-        const sortedData = aggregatedDoc.data.sort((a, b) => b.Night - a.Night);
+        const allData = aggregatedDocs.flatMap(doc => doc.data);
 
-        const result = sortedData.map(record => ({
-            Name: record.Name,
-            Night: record.Night
-        }));
+        const filteredData = allData.filter(record => {
+            const arrivalDate = record.Arrival ? new Date(record.Arrival) : null;
+            const isWithinDateRange = (!startdate || (arrivalDate && arrivalDate >= new Date(startdate))) &&
+                                      (!enddate || (arrivalDate && arrivalDate <= new Date(enddate)));
 
-        const totalNight = sortedData.reduce((sum, record) => sum + (record.Night || 0), 0);
-
-        res.status(200).json({ 
-            success: true, 
-            totalNight, 
-            data: result 
+            return isWithinDateRange;
         });
+
+        const nightCounts = filteredData.reduce((acc, record) => {
+            const { Name, Night = 0 } = record;
+
+            if (!acc[Name]) {
+                acc[Name] = { count: 0, totalNight: 0 };
+            }
+
+            acc[Name].count += 1;
+            acc[Name].totalNight += Night;
+
+            return acc;
+        }, {});
+
+        const sortedData = Object.entries(nightCounts)
+            .map(([name, { totalNight }]) => ({ Name: name, Night: totalNight }))
+            .sort((a, b) => b.Night - a.Night)
+            .slice(0, 10);
+
+        const totalRecords = Object.values(nightCounts).reduce((acc, { count }) => acc + count, 0);
+        const totalNight = Object.values(nightCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
+
+        res.status(200).json({ success: true, sortedData, totalRecords, totalNight });
     } catch (error) {
         console.error('Error getting sorted data by night:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
@@ -633,21 +756,45 @@ const getSortedByNight = async (req, res) => {
 
 // Get Sorted Repeater
 const getSortedByRepeater = async (req, res) => {
-    try {
-        const aggregatedDoc = await AggregatedModel.findOne();
+    const { startdate, enddate } = req.query;
 
-        if (!aggregatedDoc) {
+    try {
+        const aggregatedDocs = await MergedDataModel.find();
+
+        if (!aggregatedDocs || aggregatedDocs.length === 0) {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
         }
 
-        const sortedData = aggregatedDoc.data.sort((a, b) => b.Repeater - a.Repeater);
+        const allData = aggregatedDocs.flatMap(doc => doc.data);
 
-        const result = sortedData.map(record => ({
-            Name: record.Name,
-            Repeater: record.Repeater
-        }));
+        const filteredData = allData.filter(record => {
+            const arrivalDate = record.Arrival ? new Date(record.Arrival) : null;
+            const isWithinDateRange = (!startdate || (arrivalDate && arrivalDate >= new Date(startdate))) &&
+                                      (!enddate || (arrivalDate && arrivalDate <= new Date(enddate)));
 
-        res.status(200).json({ success: true, data: result });
+            return isWithinDateRange;
+        });
+
+        const repeaterCounts = filteredData.reduce((acc, record) => {
+            const { Name } = record;
+
+            if (!acc[Name]) {
+                acc[Name] = { count: 0 };
+            }
+
+            acc[Name].count += 1;
+
+            return acc;
+        }, {});
+
+        const sortedData = Object.entries(repeaterCounts)
+            .map(([name, { count }]) => ({ Name: name, Repeater: count }))
+            .sort((a, b) => b.Repeater - a.Repeater)
+            .slice(0, 10);
+
+        const totalRecords = Object.values(repeaterCounts).reduce((acc, { count }) => acc + count, 0);
+
+        res.status(200).json({ success: true, sortedData, totalRecords });
     } catch (error) {
         console.error('Error getting sorted data by Repeater:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
@@ -657,10 +804,10 @@ const getSortedByRepeater = async (req, res) => {
 // Get Data Join
 const getDataByColumn = async (req, res) => {
     try {
-        const { column, value } = req.query;
+        const { column, value, min, max } = req.query;
 
-        if (!column || !value) {
-            return res.status(400).json({ success: false, msg: 'Column and value query parameters are required' });
+        if (!column) {
+            return res.status(400).json({ success: false, msg: 'Column query parameter is required' });
         }
 
         const validColumns = [
@@ -676,7 +823,20 @@ const getDataByColumn = async (req, res) => {
         }
 
         const query = {};
-        query[column] = value;
+        
+        if (min !== undefined || max !== undefined) {
+            query[column] = {};
+            if (min !== undefined) query[column].$gte = new Date(min) || Number(min);
+            if (max !== undefined) query[column].$lte = new Date(max) || Number(max);
+        } else if (value !== undefined) {
+            if (value === 'null') {
+                query[column] = null;
+            } else {
+                query[column] = value;
+            }
+        } else {
+            return res.status(400).json({ success: false, msg: 'Value or range query parameters are required' });
+        }
 
         const mergedDoc = await MergedDataModel.findOne({ 'file.fileName': 'Merged-Data.json' });
 
@@ -684,25 +844,41 @@ const getDataByColumn = async (req, res) => {
             return res.status(404).json({ success: false, msg: 'Merged data document not found' });
         }
 
-        const records = mergedDoc.data.filter(record => record[column] === value);
+        const records = mergedDoc.data.filter(record => {
+            if (min !== undefined || max !== undefined) {
+                const recordValue = new Date(record[column]) || Number(record[column]);
+                return (!min || recordValue >= (new Date(min) || Number(min))) &&
+                       (!max || recordValue <= (new Date(max) || Number(max)));
+            } else {
+                if (value === 'null') {
+                    return record[column] === null;
+                } else {
+                    return record[column] === value;
+                }
+            }
+        });
 
-        res.status(200).json({ success: true, data: records });
+        const totalRecords = records.length;
+
+        res.status(200).json({ success: true, data: records, totalRecords });
     } catch (error) {
         console.error('Error fetching data by column:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
     }
 };
+
+// Get Aggregate Data
 const getAggregatedByColumn = async (req, res) => {
     try {
-        const { column, value } = req.query;
+        const { column, value, startdate, enddate } = req.query;
 
-        if (!column || !value) {
-            return res.status(400).json({ success: false, msg: 'Column and value query parameters are required' });
+        if (!column || (!value && (!startdate || !enddate))) {
+            return res.status(400).json({ success: false, msg: 'Column and value or both startdate and enddate query parameters are required' });
         }
 
         const validColumns = [
             "Name", "Age", "Night", "Sex", "Nationality", 
-            "LocalRegion", "Occupation", "Segment", "visitor_number", 
+            "LocalRegion", "Occupation", "Segment", "visitor_number", "Arrival", 
             "visitor_category", "Repeater"
         ];
 
@@ -711,7 +887,27 @@ const getAggregatedByColumn = async (req, res) => {
         }
 
         const query = {};
-        query[`data.${column}`] = value;
+
+        if (column === "Arrival") {
+            if (startdate && enddate) {
+                const start = new Date(startdate).setUTCHours(0, 0, 0, 0);
+                const end = new Date(enddate).setUTCHours(23, 59, 59, 999);
+                query[`data.${column}`] = {
+                    $gte: new Date(start),
+                    $lte: new Date(end)
+                };
+            } else {
+                const dateValue = new Date(value);
+                if (isNaN(dateValue)) {
+                    return res.status(400).json({ success: false, msg: 'Invalid date value' });
+                }
+                query[`data.${column}`] = {
+                    $eq: new Date(dateValue.setUTCHours(0, 0, 0, 0))
+                };
+            }
+        } else {
+            query[`data.${column}`] = value;
+        }
 
         const aggregatedDocs = await AggregatedModel.find(query);
 
@@ -719,23 +915,29 @@ const getAggregatedByColumn = async (req, res) => {
             return res.status(404).json({ success: false, msg: 'Aggregated data document not found' });
         }
 
-        // Flatten the data from the aggregated documents
         const records = [];
         aggregatedDocs.forEach(doc => {
             doc.data.forEach(record => {
-                if (record[column] === value) {
+                if (column === "Arrival") {
+                    const recordDate = new Date(record[column]).setUTCHours(0, 0, 0, 0);
+                    if ((value && recordDate === new Date(value).setUTCHours(0, 0, 0, 0)) ||
+                        (startdate && enddate && recordDate >= new Date(startdate).setUTCHours(0, 0, 0, 0) && recordDate <= new Date(enddate).setUTCHours(23, 59, 59, 999))) {
+                        records.push(record);
+                    }
+                } else if (record[column] === value) {
                     records.push(record);
                 }
             });
         });
 
-        res.status(200).json({ success: true, data: records });
+        const totalRecords = records.length;
+
+        res.status(200).json({ success: true, data: records, totalRecords });
     } catch (error) {
         console.error('Error fetching data by column:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
     }
 };
-
 
 // Get Category visitor
 const getVisitorCategoryCounts = async (req, res) => {
@@ -771,66 +973,110 @@ const getVisitorCategoryCounts = async (req, res) => {
 
 // Get Room
 const getRoomCounts = async (req, res) => {
+    const { startdate, enddate } = req.query;
+
     try {
-        const mergedDocuments = await MergedDataModel.find();
+        const aggregatedDocs = await MergedDataModel.find();
 
-        let totalRecords = 0;
-        let totalNight = 0;
+        if (!aggregatedDocs || aggregatedDocs.length === 0) {
+            return res.status(404).json({ success: false, msg: 'No aggregated data found' });
+        }
 
-        const roomCounts = mergedDocuments.reduce((acc, doc) => {
-            doc.data.forEach(record => {
-                const room = record.Room_Type || 'Unknown';
-                const night = record.Night || 0;
+        const allData = aggregatedDocs.flatMap(doc => doc.data);
 
-                if (!acc[room]) {
-                    acc[room] = { count: 0, totalNight: 0 };
-                }
+        const filteredData = allData.filter(record => {
+            const arrivalDate = record.Arrival ? new Date(record.Arrival) : null;
+            const isWithinDateRange = (!startdate || (arrivalDate && arrivalDate >= new Date(startdate))) &&
+                                      (!enddate || (arrivalDate && arrivalDate <= new Date(enddate)));
+            const isRoom_TypeValid = record.Room_Type !== null && record.Room_Type !== undefined;
 
-                acc[room].count += 1;
-                acc[room].totalNight += night;
-                totalRecords += 1;
-                totalNight += night;
-            });
+            return isWithinDateRange && isRoom_TypeValid;
+        });
+
+        const roomtypeCounts = filteredData.reduce((acc, record) => {
+            const { Night = 0 } = record;
+            const { Room_Type } = record;
+
+            if (!acc[Room_Type]) {
+                acc[Room_Type] = { count: 0, totalNight: 0 };
+            }
+
+            acc[Room_Type].count += 1;
+            acc[Room_Type].totalNight += Night;
+
             return acc;
         }, {});
 
-        res.status(200).json({ success: true, data: roomCounts, totalRecords, totalNight });
+        const totalRecords = Object.values(roomtypeCounts).reduce((acc, { count }) => acc + count, 0);
+        const totalNight = Object.values(roomtypeCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
+
+        res.status(200).json({ success: true, roomtypeCounts, totalRecords, totalNight });
     } catch (error) {
-        console.error('Error getting visitor room counts:', error);
+        console.error('Error getting room counts:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
     }
 };
 
 // Get Sorted Company
 const getSortedCompanyByRepeater = async (req, res) => {
-    try {
-        const aggregatedDoc = await CompanyModel.findOne();
+    const { startdate, enddate } = req.query;
 
-        if (!aggregatedDoc) {
+    try {
+        const aggregatedDocs = await CompanyModel.find();
+
+        if (!aggregatedDocs || aggregatedDocs.length === 0) {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
         }
 
         const validSegments = ['COR-FIT', 'COR-GROUP', 'GOV-FIT', 'GOV-GROUP'];
 
-        const filteredData = aggregatedDoc.data.filter(record => validSegments.includes(record.Segment));
-        const sortedData = filteredData.sort((a, b) => b.Repeater - a.Repeater);
+        const allData = aggregatedDocs.flatMap(doc => doc.data);
 
-        const result = sortedData.map(record => ({
-            Company_TA: record.Company_TA,
-            Segment: record.Segment,
-            Repeater: record.Repeater,
-        }));
+        const filteredData = allData.filter(record => {
+            const arrivalDate = record.Arrival ? new Date(record.Arrival) : null;
+            const isWithinDateRange = (!startdate || (arrivalDate && arrivalDate >= new Date(startdate))) &&
+                                      (!enddate || (arrivalDate && arrivalDate <= new Date(enddate)));
+            const isValidSegment = validSegments.includes(record.Segment);
 
-        const totalRepeater = sortedData.reduce((sum, record) => sum + (record.Repeater || 0), 0);
+            return isWithinDateRange && isValidSegment;
+        });
 
-        res.status(200).json({ success: true, totalRepeater, data: result });
+        const repeaterCounts = filteredData.reduce((acc, record) => {
+            const { Company_TA, Segment, Repeater = 0, Arrival, Depart } = record;
+
+            if (!acc[Company_TA]) {
+                acc[Company_TA] = {
+                    totalRepeater: 0,
+                    segments: record.Segment,
+                    Arrival: record.Arrival,
+                    Depart: record.Depart
+                };
+            }
+
+            acc[Company_TA].totalRepeater += Repeater;
+
+            return acc;
+        }, {});
+
+        const sortedData = Object.entries(repeaterCounts)
+            .map(([company, { totalRepeater, segments, Arrival, Depart }]) => ({
+                Company_TA: company,
+                totalRepeater,
+                segments,
+                Arrival,
+                Depart
+            }))
+            .sort((a, b) => b.totalRepeater - a.totalRepeater)
+            .slice(0, 10);
+
+        const totalRepeater = sortedData.reduce((sum, record) => sum + record.totalRepeater, 0);
+
+        res.status(200).json({ success: true, totalRepeater, data: sortedData });
     } catch (error) {
         console.error('Error getting sorted data by company and segment:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
     }
 };
-
-
 
 module.exports = {
     uploadAndImport,
