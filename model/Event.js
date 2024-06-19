@@ -22,7 +22,7 @@ const eventSchema = new mongoose.Schema(
       required: true,
     },
     voucherNumber: {
-      type: Number,
+      type: String,
     },
     guestPriority: {
       type: String,
