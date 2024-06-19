@@ -1,5 +1,5 @@
 import pandas as pd
-import json
+import numpy as np
 import sys
 
 def process_extractguest(import_file):
@@ -14,18 +14,18 @@ def process_extractguest(import_file):
     delete_columns = ['Member Type', 'Membership ID', 'Zip', 'Email', 'Credit Limit']
     data.drop(columns=delete_columns, inplace=True)
 
-    data['Sex'] = data['Sex'].replace('M', 'Unknown')
+    data['Sex'] = data['Sex'].replace('M', np.nan)
 
     replacements = {
         'BUMD': [
             'KARYAWAN BUMD', 'karyawan bumd', 'KARYAWAN bumd', 'karyawan BUMD',
             'BUMD', 'bumd',
-            'KARY BUMN', 'kary bumn', 'KARY bumn', 'kary BUMN'
+            'SLEMAN'
         ],
         'BUMN': [
             'KARYAWAN BUMN', 'karyawan bumn', 'KARYAWAN bumn', 'karyawan BUMN',
             'BUMN', 'bumn',
-            'KARYWN BUMN', 'karywn bumn', 'KARYWN bumn', 'karywn BUMN'
+            'KARYWN BUMN', 'karywn bumn', 'KARYWN bumn', 'karywn BUMN','KARY BUMN', 'kary bumn', 'KARY bumn', 'kary BUMN'
         ],
         'HONORER': [
             'HONORER', 'honorer', 'Honorer',
@@ -69,7 +69,7 @@ def process_extractguest(import_file):
             'BELUM BEKERJA', 'belum bekerja', 'BELUM bekerja', 'belum BEKERJA',
             'BELUM TIDAK BEKERJA', 'belum tidak bekerja', 'BELUM tidak bekerja', 'belum TIDAK BEKERJA',
             'BELUM/TIDAK BEKERJA', 'belum/tidak bekerja', 'BELUM/tidak bekerja', 'belum/TIDAK BEKERJA',
-            'TDK BEKERJA', 'tdk bekerja', 'TDK bekerja', 'tdk BEKERJA',
+            'TDK BEKERJA', 'tdk bekerja', 'TDK bekerja', 'tdk BEKERJA','Tdk bekerja',
             'TIDAK BEKERJA', 'tidak bekerja', 'TIDAK bekerja', 'tidak BEKERJA'
         ],
         'WIRASWASTA': [
@@ -85,6 +85,9 @@ def process_extractguest(import_file):
             'PELAJAR/ MAHASISWA', 'PELAJAR/MAHASISWA',
             'PELAJAR/MAHASIWA', 'PELAJAR/MHS',
             'PELAJAR/NAHASISWA'
+        ],
+        'DOSEN' : [
+            'DOSEN','dosen','Dosen'
         ]
     }
 

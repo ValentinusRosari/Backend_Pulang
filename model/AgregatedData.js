@@ -5,6 +5,8 @@ const dataSchema = new mongoose.Schema({
     Age: Number,
     Night: Number,
     Sex: String,
+    Arrival: Date,
+    Depart: Date,
     Nationality: String,
     LocalRegion: String,
     Occupation: String,
