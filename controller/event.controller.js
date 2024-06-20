@@ -1,12 +1,12 @@
 const Event = require("../model/Event");
-const { mergeInHouseAndExtractFiles } = require("./vhp.controller")
+const { mergeInHouseAndExtractFiles } = require("./vhp.controller");
 
 const createEvent = async (req, res) => {
   try {
     const event = new Event({ ...req.body });
 
     await event.save();
-    await mergeInHouseAndExtractFiles(); 
+    await mergeInHouseAndExtractFiles();
 
     res.status(201).json({ success: true, data: event });
   } catch (error) {
@@ -18,7 +18,8 @@ const readEvent = async (req, res) => {
   try {
     const event = await Event.find()
       .populate("guestId")
-      .populate("roomId");
+      .populate("roomId")
+      .populate("employeeId");
 
     res.status(200).json({ success: true, data: event });
   } catch (error) {
