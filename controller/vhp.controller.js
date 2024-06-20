@@ -5,6 +5,7 @@ const CombinedModel = require('../model/Filevhp');
 const AggregatedModel = require('../model/AgregatedData');
 const MergedDataModel = require('../model/MergedCombined');
 const CompanyModel = require('../model/CompanyData');
+const Event = require('../model/Event')
 
 // Upload File
 const uploadAndImport = async (req, res) => {
@@ -97,14 +98,87 @@ const getMonthFromFileName = (fileName) => {
     return match ? match[0].toUpperCase() : null;
 };
 
-// Join InHouse and Extract files
+// Add Event Record
+const fetchAndProcessEventData = async () => {
+    const dynamicEventFields = [
+        "guestId", "roomId", "checkInDate", "checkOutDate", "guestPurpose",
+        "escorting", "voucherNumber", "guestPriority", "plateNumber"
+    ];
+
+    const ensureEventFields = (record) => {
+        const result = {};
+
+        Object.keys(record).forEach(field => {
+            if (field === "roomId" && Array.isArray(record[field]) && record[field].length > 0) {
+                result.roomNumber = record[field][0].roomNumber;
+                result.Room_Type = record[field][0].roomType;
+                result.roomFloor = record[field][0].roomFloor;
+                result.roomCapacity = record[field][0].roomCapacity;
+            } else if (field === "guestId" && Array.isArray(record[field]) && record[field].length > 0) {
+                result.Name = record[field][0].guestName;
+                result.waNumber = record[field][0].waNumber;
+            } else if (field === "checkInDate") {
+                result.Arrival = record[field] !== undefined ? record[field] : null;
+            } else if (field === "checkOutDate") {
+                result.Depart = record[field] !== undefined ? record[field] : null;
+            } else if (dynamicEventFields.includes(field)) {
+                result[field] = record[field] !== undefined ? record[field] : null;
+            }
+        });
+
+        // Calculate the Night column
+        if (result.Arrival && result.Depart) {
+            const arrivalDate = new Date(result.Arrival);
+            const departDate = new Date(result.Depart);
+            const timeDiff = Math.abs(departDate - arrivalDate);
+            result.Night = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
+        } else {
+            result.Night = 0; // Default to 0 if either date is missing
+        }
+
+        return result;
+    };
+
+    const events = await Event.find()
+        .populate("guestId")
+        .populate("roomId");
+
+    const processedEvents = events.map(event => ensureEventFields(event.toObject()));
+
+    return processedEvents;
+};
+
+// Merged at event record
+const mergeDuplicateRecords = (records) => {
+    const recordMap = {};
+
+    records.forEach(record => {
+        const key = `${record.Name}_${record.Arrival}_${record.Depart}`;
+        if (!recordMap[key]) {
+            recordMap[key] = { ...record };
+        } else {
+            Object.keys(record).forEach(field => {
+                if (field !== 'Name' && field !== 'Arrival' && field !== 'Depart' && field !== 'Night') {
+                    if (!recordMap[key][field] && record[field]) {
+                        recordMap[key][field] = record[field];
+                    }
+                }
+            });
+        }
+    });
+
+    return Object.values(recordMap);
+};
+
+// Merged inhouse, extract, event
 const mergeInHouseAndExtractFiles = async () => {
     try {
         const inHouseFiles = await CombinedModel.find({ 'file.fileName': /InHouse/ });
         const extractFiles = await CombinedModel.find({ 'file.fileName': /Extract/ });
+        const eventData = await fetchAndProcessEventData();
 
-        if (inHouseFiles.length === 0 && extractFiles.length === 0) {
-            console.error('No InHouse or Extract files found.');
+        if (inHouseFiles.length === 0 && extractFiles.length === 0 && eventData.length === 0) {
+            console.error('No InHouse, Extract files or Event data found.');
             await MergedDataModel.deleteMany({});
             return;
         }
@@ -211,6 +285,10 @@ const mergeInHouseAndExtractFiles = async () => {
             console.log(`InHouse and Extract files for ${month} merged successfully into a single document!`);
         });
 
+        finalMergedData = finalMergedData.concat(eventData);
+
+        finalMergedData = mergeDuplicateRecords(finalMergedData);
+
         const nameCount = {};
         finalMergedData.forEach(record => {
             const name = record.Name;
@@ -243,10 +321,11 @@ const mergeInHouseAndExtractFiles = async () => {
 
         console.log('All data merged and saved successfully!');
     } catch (error) {
-        console.error('Error merging InHouse and Extract files:', error);
+        console.error('Error merging InHouse, Extract, and Event files:', error);
     }
 };
 
+// Create collection data
 const createAggregatedCollection = async () => {
     try {
         const mergedDocuments = await MergedDataModel.find();
@@ -1096,4 +1175,5 @@ module.exports = {
     getVisitorCategoryCounts,
     getRoomCounts,
     getAggregatedByColumn,
+    mergeInHouseAndExtractFiles,
 };
