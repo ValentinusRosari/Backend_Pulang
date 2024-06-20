@@ -636,10 +636,13 @@ const getOccupationCounts = async (req, res) => {
             return acc;
         }, {});
 
-        const totalRecords = Object.values(occupationCounts).reduce((acc, { count }) => acc + count, 0);
-        const totalNight = Object.values(occupationCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
+        const result = Object.entries(occupationCounts).map(([occupation, { count, totalNight }]) => ({
+            occupation,
+            count,
+            totalNight
+        }));
 
-        res.status(200).json({ success: true, occupationCounts, totalRecords, totalNight });
+        res.status(200).json({ success: true, data: result });
     } catch (error) {
         console.error('Error getting occupation counts:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
