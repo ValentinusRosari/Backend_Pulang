@@ -57,5 +57,6 @@ router.get('/getAggregatedByColumn', combinedController.getAggregatedByColumn);
 router.get('/data', combinedController.getDataByColumn);
 router.get('/getEscortingCounts', combinedController.getEscortingCounts);
 router.get('/getGuestPurposeCounts', combinedController.getGuestPurposeCounts);
+router.get('/getGuestPriority', combinedController.getGuestPriority);
 
 module.exports = router;

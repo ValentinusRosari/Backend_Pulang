@@ -125,7 +125,6 @@ const fetchAndProcessEventData = async () => {
                 result[field] = record[field] !== undefined ? record[field] : null;
             }
         });
-n
         if (result.Arrival && result.Depart) {
             const arrivalDate = new Date(result.Arrival);
             const departDate = new Date(result.Depart);
@@ -693,6 +692,43 @@ const getEscortingCounts = async (req, res) => {
         res.status(500).json({ success: false, msg: 'Internal server error' });
     }
 };
+
+// get Guest Priority
+const getGuestPriority = async (req, res) => {
+    const { startdate, enddate } = req.query;
+
+    try {
+        const aggregatedDocs = await MergedDataModel.find();
+
+        if (!aggregatedDocs || aggregatedDocs.length === 0) {
+            return res.status(404).json({ success: false, msg: 'No aggregated data found' });
+        }
+
+        const allData = aggregatedDocs.flatMap(doc => doc.data);
+
+        const filteredData = allData.filter(record => {
+            const arrivalDate = record.Arrival ? new Date(record.Arrival) : null;
+            const isWithinDateRange = (!startdate || (arrivalDate && arrivalDate >= new Date(startdate))) &&
+                                      (!enddate || (arrivalDate && arrivalDate <= new Date(enddate)));
+            const isGuestPriorityValid = record.guestPriority !== null && record.guestPriority !== undefined;
+
+            return isWithinDateRange && isGuestPriorityValid;
+        }).map(record => ({
+            Name: record.Name,
+            Arrival: record.Arrival,
+            Depart: record.Depart,
+            guestPriority: record.guestPriority
+        }));
+
+        res.status(200).json({ success: true, data: filteredData });
+    } catch (error) {
+        console.error('Error getting guest priority:', error);
+        res.status(500).json({ success: false, msg: 'Internal server error' });
+    }
+};
+
+module.exports = { getGuestPriority };
+
 
 // Get Purpose
 const getGuestPurposeCounts = async (req, res) => {
@@ -1272,4 +1308,5 @@ module.exports = {
     mergeInHouseAndExtractFiles,
     getEscortingCounts,
     getGuestPurposeCounts,
+    getGuestPriority,
 };
