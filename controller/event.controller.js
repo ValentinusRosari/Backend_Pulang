@@ -19,7 +19,9 @@ const readEvent = async (req, res) => {
     const event = await Event.find()
       .populate("guestId")
       .populate("roomId")
-      .populate("employeeId");
+      .populate("employeeId")
+      .populate("requestId")
+      .populate("feedbackId");
 
     res.status(200).json({ success: true, data: event });
   } catch (error) {
