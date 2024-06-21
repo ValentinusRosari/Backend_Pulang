@@ -125,15 +125,14 @@ const fetchAndProcessEventData = async () => {
                 result[field] = record[field] !== undefined ? record[field] : null;
             }
         });
-
-        // Calculate the Night column
+n
         if (result.Arrival && result.Depart) {
             const arrivalDate = new Date(result.Arrival);
             const departDate = new Date(result.Depart);
             const timeDiff = Math.abs(departDate - arrivalDate);
-            result.Night = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
+            result.Night = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
         } else {
-            result.Night = 0; // Default to 0 if either date is missing
+            result.Night = 0;
         }
 
         return result;
@@ -645,6 +644,98 @@ const getOccupationCounts = async (req, res) => {
         res.status(200).json({ success: true, data: result });
     } catch (error) {
         console.error('Error getting occupation counts:', error);
+        res.status(500).json({ success: false, msg: 'Internal server error' });
+    }
+};
+
+// Get Escort
+const getEscortingCounts = async (req, res) => {
+    const { startdate, enddate } = req.query;
+
+    try {
+        const aggregatedDocs = await MergedDataModel.find();
+
+        if (!aggregatedDocs || aggregatedDocs.length === 0) {
+            return res.status(404).json({ success: false, msg: 'No aggregated data found' });
+        }
+
+        const allData = aggregatedDocs.flatMap(doc => doc.data);
+
+        const filteredData = allData.filter(record => {
+            const arrivalDate = record.Arrival ? new Date(record.Arrival) : null;
+            const isWithinDateRange = (!startdate || (arrivalDate && arrivalDate >= new Date(startdate))) &&
+                                      (!enddate || (arrivalDate && arrivalDate <= new Date(enddate)));
+            const isEscortingValid = record.escorting !== null && record.escorting !== undefined;
+
+            return isWithinDateRange && isEscortingValid;
+        });
+
+        const escortingCounts = filteredData.reduce((acc, record) => {
+            const { Night = 0 } = record;
+            const { escorting } = record;
+
+            if (!acc[escorting]) {
+                acc[escorting] = { count: 0, totalNight: 0 };
+            }
+
+            acc[escorting].count += 1;
+            acc[escorting].totalNight += Night;
+
+            return acc;
+        }, {});
+
+        const totalRecords = Object.values(escortingCounts).reduce((acc, { count }) => acc + count, 0);
+        const totalNight = Object.values(escortingCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
+
+        res.status(200).json({ success: true, escortingCounts, totalRecords, totalNight });
+    } catch (error) {
+        console.error('Error getting escorting counts:', error);
+        res.status(500).json({ success: false, msg: 'Internal server error' });
+    }
+};
+
+// Get Purpose
+const getGuestPurposeCounts = async (req, res) => {
+    const { startdate, enddate } = req.query;
+
+    try {
+        const aggregatedDocs = await MergedDataModel.find();
+
+        if (!aggregatedDocs || aggregatedDocs.length === 0) {
+            return res.status(404).json({ success: false, msg: 'No aggregated data found' });
+        }
+
+        const allData = aggregatedDocs.flatMap(doc => doc.data);
+
+        const filteredData = allData.filter(record => {
+            const arrivalDate = record.Arrival ? new Date(record.Arrival) : null;
+            const isWithinDateRange = (!startdate || (arrivalDate && arrivalDate >= new Date(startdate))) &&
+                                      (!enddate || (arrivalDate && arrivalDate <= new Date(enddate)));
+            const isGuestPurposeValid = record.guestPurpose !== null && record.guestPurpose !== undefined;
+
+            return isWithinDateRange && isGuestPurposeValid;
+        });
+
+        const guestPurposeCounts = filteredData.reduce((acc, record) => {
+            const { Night = 0 } = record;
+            const { guestPurpose } = record;
+
+            if (!acc[guestPurpose]) {
+                acc[guestPurpose] = { count: 0, totalNight: 0 };
+            }
+
+            acc[guestPurpose].count += 1;
+            acc[guestPurpose].totalNight += Night;
+
+            return acc;
+        }, {});
+
+        const totalRecords = Object.values(guestPurposeCounts).reduce((acc, { count }) => acc + count, 0);
+        const totalNight = Object.values(guestPurposeCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
+
+        res.status(200).json({ success: true, guestPurposeCounts, totalRecords, totalNight });
+    } catch (error) {
+        console.error('Error getting guest purpose counts:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
     }
 };
@@ -1179,4 +1270,6 @@ module.exports = {
     getRoomCounts,
     getAggregatedByColumn,
     mergeInHouseAndExtractFiles,
+    getEscortingCounts,
+    getGuestPurposeCounts,
 };

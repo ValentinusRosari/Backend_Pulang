@@ -55,5 +55,7 @@ router.get('/getRoomCounts', combinedController.getRoomCounts);
 router.get('/getSortedCompanyByRepeater', combinedController.getSortedCompanyByRepeater);
 router.get('/getAggregatedByColumn', combinedController.getAggregatedByColumn);
 router.get('/data', combinedController.getDataByColumn);
+router.get('/getEscortingCounts', combinedController.getEscortingCounts);
+router.get('/getGuestPurposeCounts', combinedController.getGuestPurposeCounts);
 
 module.exports = router;
