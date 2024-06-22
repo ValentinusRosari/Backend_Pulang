@@ -1,26 +1,14 @@
 const UserModel = require('../model/User');
 const bcryptjs = require('bcryptjs');
-const { getAsync, setAsync } = require('../config/redisClient');
 
 // Get all users
 const Getuser = async (req, res) => {
-    const cacheKey = 'allUsers';
-
     try {
-        const cachedData = await getAsync(cacheKey);
-        if (cachedData) {
-            console.log('Data found in cache');
-            return res.status(200).json({ users: JSON.parse(cachedData) });
-        }
-
         const users = await UserModel.find();
-
-        await setAsync(cacheKey, JSON.stringify(users), 'EX', 3600);
-
         res.status(200).json({ users });
     } catch (error) {
         res.status(500).json({ message: 'Internal server error' });
-        console.error(error);
+        console.log(error);
     }
 };
 
