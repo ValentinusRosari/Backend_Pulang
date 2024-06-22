@@ -1,8 +1,10 @@
+// index.js
 const express = require("express");
 const dotenv = require("dotenv");
 const cookieparser = require("cookie-parser");
 const cors = require("cors");
 const connectToDB = require("./config/dbConnection");
+const { redisClient } = require('./config/redisClient');
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -23,7 +25,6 @@ app.use("/guest", require("./routes/guest"));
 app.use("/identity", require("./routes/identity"));
 app.use("/request", require("./routes/request"));
 app.use("/room", require("./routes/room"));
-app.use("/employee", require("./routes/employee"));
 app.use("/vhp", require("./routes/vhp"));
 app.use("/api/auth", require("./routes/Auth"));
 app.use("/api/admin", require("./routes/AdminRoutes"));
@@ -32,4 +33,9 @@ connectToDB().then(() => {
   app.listen(PORT, () => {
     console.log(`listening for request on port: ${PORT}`);
   });
+});
+
+process.on('SIGINT', async () => {
+    await redisClient.quit();
+    process.exit(0);
 });
