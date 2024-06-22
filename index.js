@@ -1,10 +1,8 @@
-// index.js
 const express = require("express");
 const dotenv = require("dotenv");
 const cookieparser = require("cookie-parser");
 const cors = require("cors");
 const connectToDB = require("./config/dbConnection");
-const { redisClient } = require('./config/redisClient');
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -34,9 +32,4 @@ connectToDB().then(() => {
   app.listen(PORT, () => {
     console.log(`listening for request on port: ${PORT}`);
   });
-});
-
-process.on('SIGINT', async () => {
-    await redisClient.quit();
-    process.exit(0);
 });

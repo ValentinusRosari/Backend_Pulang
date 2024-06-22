@@ -5,9 +5,7 @@ const CombinedModel = require('../model/Filevhp');
 const AggregatedModel = require('../model/AgregatedData');
 const MergedDataModel = require('../model/MergedCombined');
 const CompanyModel = require('../model/CompanyData');
-const Event = require('../model/Event');
-const { getAsync, setAsync, delAsync } = require('../config/redisClient');
-const CACHE_DURATION = 3600;
+const Event = require('../model/Event')
 
 // Upload File
 const uploadAndImport = async (req, res) => {
@@ -495,6 +493,16 @@ const home = async (req, res) => {
         res.status(500).json({ success: false, msg: 'Internal server error' });
     }
 };
+// Get View
+// const view = async (req, res) => {
+//     try {
+//         const filesData = await CombinedModel.find({}, 'file data').exec();
+//         res.status(200).send({ success: true, files: filesData });
+//     } catch (error) {
+//         console.error('Error fetching files data:', error);
+//         res.status(500).send({ success: false, msg: 'Internal server error.' });
+//     }
+// };
 
 // Delete file
 const deleteDocument = async (req, res) => {
@@ -538,19 +546,16 @@ const deleteDocument = async (req, res) => {
 // Get Age
 const getAgeCounts = async (req, res) => {
     const { startdate, enddate } = req.query;
+    const cacheKey = `ageCounts:${startdate || 'none'}:${enddate || 'none'}`;
 
     try {
-        // Check cache first
-        const cachedData = await getAsync('aggregated_data');
-        let aggregatedDocs;
-
+        const cachedData = await getAsync(cacheKey);
         if (cachedData) {
-            aggregatedDocs = JSON.parse(cachedData);
-        } else {
-            aggregatedDocs = await AggregatedModel.find();
-            // Cache the result
-            await setAsync('aggregated_data', JSON.stringify(aggregatedDocs), 'EX', CACHE_DURATION);
+            console.log('Data found in cache');
+            return res.status(200).json({ success: true, ...JSON.parse(cachedData) });
         }
+
+        const aggregatedDocs = await AggregatedModel.find();
 
         if (!aggregatedDocs || aggregatedDocs.length === 0) {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
@@ -589,15 +594,8 @@ const getAgeCounts = async (req, res) => {
 // Get Sex
 const getSexCounts = async (req, res) => {
     const { startdate, enddate } = req.query;
-    const cacheKey = `sexCounts:${startdate || 'none'}:${enddate || 'none'}`;
 
     try {
-        const cachedData = await getAsync(cacheKey);
-        if (cachedData) {
-            console.log('Data found in cache');
-            return res.status(200).json({ success: true, ...JSON.parse(cachedData) });
-        }
-
         const aggregatedDocs = await AggregatedModel.find();
 
         if (!aggregatedDocs || aggregatedDocs.length === 0) {
@@ -626,11 +624,7 @@ const getSexCounts = async (req, res) => {
 
         const totalRecords = filteredData.length;
 
-        const response = { success: true, sexCounts, totalRecords };
-
-        await setAsync(cacheKey, JSON.stringify(response), 'EX', 3600);
-
-        res.status(200).json(response);
+        res.status(200).json({ success: true, sexCounts, totalRecords });
     } catch (error) {
         console.error('Error getting sex counts:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
@@ -640,15 +634,8 @@ const getSexCounts = async (req, res) => {
 // Get Occupation
 const getOccupationCounts = async (req, res) => {
     const { startdate, enddate } = req.query;
-    const cacheKey = `occupationCounts:${startdate || 'none'}:${enddate || 'none'}`;
 
     try {
-        const cachedData = await getAsync(cacheKey);
-        if (cachedData) {
-            console.log('Data found in cache');
-            return res.status(200).json({ success: true, data: JSON.parse(cachedData) });
-        }
-
         const aggregatedDocs = await MergedDataModel.find();
 
         if (!aggregatedDocs || aggregatedDocs.length === 0) {
@@ -686,8 +673,6 @@ const getOccupationCounts = async (req, res) => {
             totalNight
         }));
 
-        await setAsync(cacheKey, JSON.stringify(result), 'EX', 3600);
-
         res.status(200).json({ success: true, data: result });
     } catch (error) {
         console.error('Error getting occupation counts:', error);
@@ -698,15 +683,8 @@ const getOccupationCounts = async (req, res) => {
 // Get Escort
 const getEscortingCounts = async (req, res) => {
     const { startdate, enddate } = req.query;
-    const cacheKey = `escortingCounts:${startdate || 'none'}:${enddate || 'none'}`;
 
     try {
-        const cachedData = await getAsync(cacheKey);
-        if (cachedData) {
-            console.log('Data found in cache');
-            return res.status(200).json({ success: true, ...JSON.parse(cachedData) });
-        }
-
         const aggregatedDocs = await MergedDataModel.find();
 
         if (!aggregatedDocs || aggregatedDocs.length === 0) {
@@ -741,16 +719,12 @@ const getEscortingCounts = async (req, res) => {
         const totalRecords = Object.values(escortingCounts).reduce((acc, { count }) => acc + count, 0);
         const totalNight = Object.values(escortingCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
 
-        const response = { success: true, escortingCounts, totalRecords, totalNight };
-
-        await setAsync(cacheKey, JSON.stringify(response), 'EX', 3600);
-
-        res.status(200).json(response);
+        res.status(200).json({ success: true, escortingCounts, totalRecords, totalNight });
     } catch (error) {
         console.error('Error getting escorting counts:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
     }
-}
+};
 
 // get Guest Priority
 const getGuestPriority = async (req, res) => {
@@ -786,18 +760,14 @@ const getGuestPriority = async (req, res) => {
     }
 };
 
+module.exports = { getGuestPriority };
+
+
 // Get Purpose
 const getGuestPurposeCounts = async (req, res) => {
     const { startdate, enddate } = req.query;
-    const cacheKey = `guestPurposeCounts:${startdate || 'none'}:${enddate || 'none'}`;
 
     try {
-        const cachedData = await getAsync(cacheKey);
-        if (cachedData) {
-            console.log('Data found in cache');
-            return res.status(200).json({ success: true, ...JSON.parse(cachedData) });
-        }
-
         const aggregatedDocs = await MergedDataModel.find();
 
         if (!aggregatedDocs || aggregatedDocs.length === 0) {
@@ -832,11 +802,7 @@ const getGuestPurposeCounts = async (req, res) => {
         const totalRecords = Object.values(guestPurposeCounts).reduce((acc, { count }) => acc + count, 0);
         const totalNight = Object.values(guestPurposeCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
 
-        const response = { success: true, guestPurposeCounts, totalRecords, totalNight };
-
-        await setAsync(cacheKey, JSON.stringify(response), 'EX', 3600);
-
-        res.status(200).json(response);
+        res.status(200).json({ success: true, guestPurposeCounts, totalRecords, totalNight });
     } catch (error) {
         console.error('Error getting guest purpose counts:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
@@ -846,15 +812,8 @@ const getGuestPurposeCounts = async (req, res) => {
 // Get City
 const getCityCounts = async (req, res) => {
     const { startdate, enddate } = req.query;
-    const cacheKey = `cityCounts:${startdate || 'none'}:${enddate || 'none'}`;
 
     try {
-        const cachedData = await getAsync(cacheKey);
-        if (cachedData) {
-            console.log('Data found in cache');
-            return res.status(200).json({ success: true, ...JSON.parse(cachedData) });
-        }
-
         const aggregatedDocs = await MergedDataModel.find();
 
         if (!aggregatedDocs || aggregatedDocs.length === 0) {
@@ -889,11 +848,7 @@ const getCityCounts = async (req, res) => {
         const totalRecords = Object.values(localregionCounts).reduce((acc, { count }) => acc + count, 0);
         const totalNight = Object.values(localregionCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
 
-        const response = { success: true, localregionCounts, totalRecords, totalNight };
-
-        await setAsync(cacheKey, JSON.stringify(response), 'EX', 3600);
-
-        res.status(200).json(response);
+        res.status(200).json({ success: true, localregionCounts, totalRecords, totalNight });
     } catch (error) {
         console.error('Error getting city counts:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
@@ -903,15 +858,8 @@ const getCityCounts = async (req, res) => {
 // Get Country
 const getCountryCounts = async (req, res) => {
     const { startdate, enddate } = req.query;
-    const cacheKey = `countryCounts:${startdate || 'none'}:${enddate || 'none'}`;
 
     try {
-        const cachedData = await getAsync(cacheKey);
-        if (cachedData) {
-            console.log('Data found in cache');
-            return res.status(200).json({ success: true, ...JSON.parse(cachedData) });
-        }
-
         const aggregatedDocs = await MergedDataModel.find();
 
         if (!aggregatedDocs || aggregatedDocs.length === 0) {
@@ -946,11 +894,7 @@ const getCountryCounts = async (req, res) => {
         const totalRecords = Object.values(nationalityCounts).reduce((acc, { count }) => acc + count, 0);
         const totalNight = Object.values(nationalityCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
 
-        const response = { success: true, nationalityCounts, totalRecords, totalNight };
-
-        await setAsync(cacheKey, JSON.stringify(response), 'EX', 3600);
-
-        res.status(200).json(response);
+        res.status(200).json({ success: true, nationalityCounts, totalRecords, totalNight });
     } catch (error) {
         console.error('Error getting country counts:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
@@ -960,15 +904,8 @@ const getCountryCounts = async (req, res) => {
 // Get Segment
 const getSegmentCounts = async (req, res) => {
     const { startdate, enddate } = req.query;
-    const cacheKey = `segmentCounts:${startdate || 'none'}:${enddate || 'none'}`;
 
     try {
-        const cachedData = await getAsync(cacheKey);
-        if (cachedData) {
-            console.log('Data found in cache');
-            return res.status(200).json({ success: true, ...JSON.parse(cachedData) });
-        }
-
         const aggregatedDocs = await MergedDataModel.find();
 
         if (!aggregatedDocs || aggregatedDocs.length === 0) {
@@ -1003,11 +940,7 @@ const getSegmentCounts = async (req, res) => {
         const totalRecords = Object.values(segmentCounts).reduce((acc, { count }) => acc + count, 0);
         const totalNight = Object.values(segmentCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
 
-        const response = { success: true, segmentCounts, totalRecords, totalNight };
-
-        await setAsync(cacheKey, JSON.stringify(response), 'EX', 3600);
-
-        res.status(200).json(response);
+        res.status(200).json({ success: true, segmentCounts, totalRecords, totalNight });
     } catch (error) {
         console.error('Error getting segment counts:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
@@ -1017,15 +950,8 @@ const getSegmentCounts = async (req, res) => {
 // Get Sorted Night
 const getSortedByNight = async (req, res) => {
     const { startdate, enddate } = req.query;
-    const cacheKey = `sortedByNight:${startdate || 'none'}:${enddate || 'none'}`;
 
     try {
-        const cachedData = await getAsync(cacheKey);
-        if (cachedData) {
-            console.log('Data found in cache');
-            return res.status(200).json({ success: true, ...JSON.parse(cachedData) });
-        }
-
         const aggregatedDocs = await MergedDataModel.find();
 
         if (!aggregatedDocs || aggregatedDocs.length === 0) {
@@ -1063,11 +989,7 @@ const getSortedByNight = async (req, res) => {
         const totalRecords = Object.values(nightCounts).reduce((acc, { count }) => acc + count, 0);
         const totalNight = Object.values(nightCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
 
-        const response = { success: true, sortedData, totalRecords, totalNight };
-
-        await setAsync(cacheKey, JSON.stringify(response), 'EX', 3600);
-
-        res.status(200).json(response);
+        res.status(200).json({ success: true, sortedData, totalRecords, totalNight });
     } catch (error) {
         console.error('Error getting sorted data by night:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
@@ -1077,15 +999,8 @@ const getSortedByNight = async (req, res) => {
 // Get Sorted Repeater
 const getSortedByRepeater = async (req, res) => {
     const { startdate, enddate } = req.query;
-    const cacheKey = `sortedByRepeater:${startdate || 'none'}:${enddate || 'none'}`;
 
     try {
-        const cachedData = await getAsync(cacheKey);
-        if (cachedData) {
-            console.log('Data found in cache');
-            return res.status(200).json({ success: true, ...JSON.parse(cachedData) });
-        }
-
         const aggregatedDocs = await MergedDataModel.find();
 
         if (!aggregatedDocs || aggregatedDocs.length === 0) {
@@ -1121,11 +1036,7 @@ const getSortedByRepeater = async (req, res) => {
 
         const totalRecords = Object.values(repeaterCounts).reduce((acc, { count }) => acc + count, 0);
 
-        const response = { success: true, sortedData, totalRecords };
-
-        await setAsync(cacheKey, JSON.stringify(response), 'EX', 3600);
-
-        res.status(200).json(response);
+        res.status(200).json({ success: true, sortedData, totalRecords });
     } catch (error) {
         console.error('Error getting sorted data by Repeater:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
@@ -1133,142 +1044,142 @@ const getSortedByRepeater = async (req, res) => {
 };
 
 // Get Data Join
-// const getDataByColumn = async (req, res) => {
-//     try {
-//         const { column, value, min, max } = req.query;
+const getDataByColumn = async (req, res) => {
+    try {
+        const { column, value, min, max } = req.query;
 
-//         if (!column) {
-//             return res.status(400).json({ success: false, msg: 'Column query parameter is required' });
-//         }
+        if (!column) {
+            return res.status(400).json({ success: false, msg: 'Column query parameter is required' });
+        }
 
-//         const validColumns = [
-//             "Name", "Room_Type", "Room_Number", "Arrangement",
-//             "Birth_Date", "Age", "Lodging", "Breakfast", "Adult", "Child",
-//             "Company_TA", "SOB", "Arrival", "Depart", "Night", "Created",
-//             "CO_Time", "CI_Time", "Segment", "Repeater", "Nationality", 
-//             "LocalRegion", "MobilePhone", "Sex", "Occupation"
-//         ];
+        const validColumns = [
+            "Name", "Room_Type", "Room_Number", "Arrangement",
+            "Birth_Date", "Age", "Lodging", "Breakfast", "Adult", "Child",
+            "Company_TA", "SOB", "Arrival", "Depart", "Night", "Created",
+            "CO_Time", "CI_Time", "Segment", "Repeater", "Nationality", 
+            "LocalRegion", "MobilePhone", "Sex", "Occupation"
+        ];
 
-//         if (!validColumns.includes(column)) {
-//             return res.status(400).json({ success: false, msg: 'Invalid column name' });
-//         }
+        if (!validColumns.includes(column)) {
+            return res.status(400).json({ success: false, msg: 'Invalid column name' });
+        }
 
-//         const query = {};
+        const query = {};
         
-//         if (min !== undefined || max !== undefined) {
-//             query[column] = {};
-//             if (min !== undefined) query[column].$gte = new Date(min) || Number(min);
-//             if (max !== undefined) query[column].$lte = new Date(max) || Number(max);
-//         } else if (value !== undefined) {
-//             if (value === 'null') {
-//                 query[column] = null;
-//             } else {
-//                 query[column] = value;
-//             }
-//         } else {
-//             return res.status(400).json({ success: false, msg: 'Value or range query parameters are required' });
-//         }
+        if (min !== undefined || max !== undefined) {
+            query[column] = {};
+            if (min !== undefined) query[column].$gte = new Date(min) || Number(min);
+            if (max !== undefined) query[column].$lte = new Date(max) || Number(max);
+        } else if (value !== undefined) {
+            if (value === 'null') {
+                query[column] = null;
+            } else {
+                query[column] = value;
+            }
+        } else {
+            return res.status(400).json({ success: false, msg: 'Value or range query parameters are required' });
+        }
 
-//         const mergedDoc = await MergedDataModel.findOne({ 'file.fileName': 'Merged-Data.json' });
+        const mergedDoc = await MergedDataModel.findOne({ 'file.fileName': 'Merged-Data.json' });
 
-//         if (!mergedDoc) {
-//             return res.status(404).json({ success: false, msg: 'Merged data document not found' });
-//         }
+        if (!mergedDoc) {
+            return res.status(404).json({ success: false, msg: 'Merged data document not found' });
+        }
 
-//         const records = mergedDoc.data.filter(record => {
-//             if (min !== undefined || max !== undefined) {
-//                 const recordValue = new Date(record[column]) || Number(record[column]);
-//                 return (!min || recordValue >= (new Date(min) || Number(min))) &&
-//                        (!max || recordValue <= (new Date(max) || Number(max)));
-//             } else {
-//                 if (value === 'null') {
-//                     return record[column] === null;
-//                 } else {
-//                     return record[column] === value;
-//                 }
-//             }
-//         });
+        const records = mergedDoc.data.filter(record => {
+            if (min !== undefined || max !== undefined) {
+                const recordValue = new Date(record[column]) || Number(record[column]);
+                return (!min || recordValue >= (new Date(min) || Number(min))) &&
+                       (!max || recordValue <= (new Date(max) || Number(max)));
+            } else {
+                if (value === 'null') {
+                    return record[column] === null;
+                } else {
+                    return record[column] === value;
+                }
+            }
+        });
 
-//         const totalRecords = records.length;
+        const totalRecords = records.length;
 
-//         res.status(200).json({ success: true, data: records, totalRecords });
-//     } catch (error) {
-//         console.error('Error fetching data by column:', error);
-//         res.status(500).json({ success: false, msg: 'Internal server error' });
-//     }
-// };
+        res.status(200).json({ success: true, data: records, totalRecords });
+    } catch (error) {
+        console.error('Error fetching data by column:', error);
+        res.status(500).json({ success: false, msg: 'Internal server error' });
+    }
+};
 
-// // Get Aggregate Data
-// const getAggregatedByColumn = async (req, res) => {
-//     try {
-//         const { column, value, startdate, enddate } = req.query;
+// Get Aggregate Data
+const getAggregatedByColumn = async (req, res) => {
+    try {
+        const { column, value, startdate, enddate } = req.query;
 
-//         if (!column || (!value && (!startdate || !enddate))) {
-//             return res.status(400).json({ success: false, msg: 'Column and value or both startdate and enddate query parameters are required' });
-//         }
+        if (!column || (!value && (!startdate || !enddate))) {
+            return res.status(400).json({ success: false, msg: 'Column and value or both startdate and enddate query parameters are required' });
+        }
 
-//         const validColumns = [
-//             "Name", "Age", "Night", "Sex", "Nationality", 
-//             "LocalRegion", "Occupation", "Segment", "visitor_number", "Arrival", 
-//             "visitor_category", "Repeater"
-//         ];
+        const validColumns = [
+            "Name", "Age", "Night", "Sex", "Nationality", 
+            "LocalRegion", "Occupation", "Segment", "visitor_number", "Arrival", 
+            "visitor_category", "Repeater"
+        ];
 
-//         if (!validColumns.includes(column)) {
-//             return res.status(400).json({ success: false, msg: 'Invalid column name' });
-//         }
+        if (!validColumns.includes(column)) {
+            return res.status(400).json({ success: false, msg: 'Invalid column name' });
+        }
 
-//         const query = {};
+        const query = {};
 
-//         if (column === "Arrival") {
-//             if (startdate && enddate) {
-//                 const start = new Date(startdate).setUTCHours(0, 0, 0, 0);
-//                 const end = new Date(enddate).setUTCHours(23, 59, 59, 999);
-//                 query[`data.${column}`] = {
-//                     $gte: new Date(start),
-//                     $lte: new Date(end)
-//                 };
-//             } else {
-//                 const dateValue = new Date(value);
-//                 if (isNaN(dateValue)) {
-//                     return res.status(400).json({ success: false, msg: 'Invalid date value' });
-//                 }
-//                 query[`data.${column}`] = {
-//                     $eq: new Date(dateValue.setUTCHours(0, 0, 0, 0))
-//                 };
-//             }
-//         } else {
-//             query[`data.${column}`] = value;
-//         }
+        if (column === "Arrival") {
+            if (startdate && enddate) {
+                const start = new Date(startdate).setUTCHours(0, 0, 0, 0);
+                const end = new Date(enddate).setUTCHours(23, 59, 59, 999);
+                query[`data.${column}`] = {
+                    $gte: new Date(start),
+                    $lte: new Date(end)
+                };
+            } else {
+                const dateValue = new Date(value);
+                if (isNaN(dateValue)) {
+                    return res.status(400).json({ success: false, msg: 'Invalid date value' });
+                }
+                query[`data.${column}`] = {
+                    $eq: new Date(dateValue.setUTCHours(0, 0, 0, 0))
+                };
+            }
+        } else {
+            query[`data.${column}`] = value;
+        }
 
-//         const aggregatedDocs = await AggregatedModel.find(query);
+        const aggregatedDocs = await AggregatedModel.find(query);
 
-//         if (!aggregatedDocs || aggregatedDocs.length === 0) {
-//             return res.status(404).json({ success: false, msg: 'Aggregated data document not found' });
-//         }
+        if (!aggregatedDocs || aggregatedDocs.length === 0) {
+            return res.status(404).json({ success: false, msg: 'Aggregated data document not found' });
+        }
 
-//         const records = [];
-//         aggregatedDocs.forEach(doc => {
-//             doc.data.forEach(record => {
-//                 if (column === "Arrival") {
-//                     const recordDate = new Date(record[column]).setUTCHours(0, 0, 0, 0);
-//                     if ((value && recordDate === new Date(value).setUTCHours(0, 0, 0, 0)) ||
-//                         (startdate && enddate && recordDate >= new Date(startdate).setUTCHours(0, 0, 0, 0) && recordDate <= new Date(enddate).setUTCHours(23, 59, 59, 999))) {
-//                         records.push(record);
-//                     }
-//                 } else if (record[column] === value) {
-//                     records.push(record);
-//                 }
-//             });
-//         });
+        const records = [];
+        aggregatedDocs.forEach(doc => {
+            doc.data.forEach(record => {
+                if (column === "Arrival") {
+                    const recordDate = new Date(record[column]).setUTCHours(0, 0, 0, 0);
+                    if ((value && recordDate === new Date(value).setUTCHours(0, 0, 0, 0)) ||
+                        (startdate && enddate && recordDate >= new Date(startdate).setUTCHours(0, 0, 0, 0) && recordDate <= new Date(enddate).setUTCHours(23, 59, 59, 999))) {
+                        records.push(record);
+                    }
+                } else if (record[column] === value) {
+                    records.push(record);
+                }
+            });
+        });
 
-//         const totalRecords = records.length;
+        const totalRecords = records.length;
 
-//         res.status(200).json({ success: true, data: records, totalRecords });
-//     } catch (error) {
-//         console.error('Error fetching data by column:', error);
-//         res.status(500).json({ success: false, msg: 'Internal server error' });
-//     }
-// };
+        res.status(200).json({ success: true, data: records, totalRecords });
+    } catch (error) {
+        console.error('Error fetching data by column:', error);
+        res.status(500).json({ success: false, msg: 'Internal server error' });
+    }
+};
 
 // Get Category visitor
 const getVisitorCategoryCounts = async (req, res) => {
@@ -1330,15 +1241,8 @@ const getVisitorCategoryCounts = async (req, res) => {
 // Get Room
 const getRoomCounts = async (req, res) => {
     const { startdate, enddate } = req.query;
-    const cacheKey = `roomCounts:${startdate || 'none'}:${enddate || 'none'}`;
 
     try {
-        const cachedData = await getAsync(cacheKey);
-        if (cachedData) {
-            console.log('Data found in cache');
-            return res.status(200).json({ success: true, ...JSON.parse(cachedData) });
-        }
-
         const aggregatedDocs = await MergedDataModel.find();
 
         if (!aggregatedDocs || aggregatedDocs.length === 0) {
@@ -1373,11 +1277,7 @@ const getRoomCounts = async (req, res) => {
         const totalRecords = Object.values(roomtypeCounts).reduce((acc, { count }) => acc + count, 0);
         const totalNight = Object.values(roomtypeCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
 
-        const response = { success: true, roomtypeCounts, totalRecords, totalNight };
-
-        await setAsync(cacheKey, JSON.stringify(response), 'EX', 3600);
-
-        res.status(200).json(response);
+        res.status(200).json({ success: true, roomtypeCounts, totalRecords, totalNight });
     } catch (error) {
         console.error('Error getting room counts:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
@@ -1387,15 +1287,8 @@ const getRoomCounts = async (req, res) => {
 // Get Sorted Company
 const getSortedCompanyByRepeater = async (req, res) => {
     const { startdate, enddate } = req.query;
-    const cacheKey = `sortedCompanyByRepeater:${startdate || 'none'}:${enddate || 'none'}`;
 
     try {
-        const cachedData = await getAsync(cacheKey);
-        if (cachedData) {
-            console.log('Data found in cache');
-            return res.status(200).json({ success: true, ...JSON.parse(cachedData) });
-        }
-
         const aggregatedDocs = await CompanyModel.find();
 
         if (!aggregatedDocs || aggregatedDocs.length === 0) {
@@ -1445,11 +1338,7 @@ const getSortedCompanyByRepeater = async (req, res) => {
 
         const totalRepeater = sortedData.reduce((sum, record) => sum + record.totalRepeater, 0);
 
-        const response = { success: true, totalRepeater, data: sortedData };
-        
-        await setAsync(cacheKey, JSON.stringify(response), 'EX', 3600);
-
-        res.status(200).json(response);
+        res.status(200).json({ success: true, totalRepeater, data: sortedData });
     } catch (error) {
         console.error('Error getting sorted data by company and segment:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
@@ -1459,10 +1348,10 @@ const getSortedCompanyByRepeater = async (req, res) => {
 module.exports = {
     uploadAndImport,
     home,
-    // view,
+    view,
     delete: deleteDocument,
     getAgeCounts,
-    // getDataByColumn,
+    getDataByColumn,
     getSexCounts,
     getOccupationCounts,
     getCityCounts,
@@ -1473,7 +1362,7 @@ module.exports = {
     getSortedCompanyByRepeater,
     getVisitorCategoryCounts,
     getRoomCounts,
-    // getAggregatedByColumn,
+    getAggregatedByColumn,
     mergeInHouseAndExtractFiles,
     getEscortingCounts,
     getGuestPurposeCounts,
