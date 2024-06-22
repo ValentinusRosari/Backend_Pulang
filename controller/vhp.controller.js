@@ -5,14 +5,14 @@ const CombinedModel = require('../model/Filevhp');
 const AggregatedModel = require('../model/AgregatedData');
 const MergedDataModel = require('../model/MergedCombined');
 const CompanyModel = require('../model/CompanyData');
-const Event = require('../model/Event')
-const { getAsync, setAsync } = require('../config/redisClient');
+const Event = require('../model/Event');
+const { getAsync, setAsync, delAsync } = require('../config/redisClient');
+const CACHE_DURATION = 3600;
 
 // Upload File
 const uploadAndImport = async (req, res) => {
     try {
         const file = req.file;
-
         if (!file) {
             return res.status(400).send({ success: false, msg: 'No file uploaded.' });
         }
@@ -22,7 +22,6 @@ const uploadAndImport = async (req, res) => {
         let args;
 
         const sampleFilePath = path.resolve(__dirname, '../components/InHouse-Guest JAN.csv');
-
         if (file.originalname.includes('InHouse')) {
             scriptPath = path.resolve(__dirname, '../script/process_inhousefile.py');
             args = [scriptPath, sampleFilePath, filePath];
@@ -82,6 +81,11 @@ const uploadAndImport = async (req, res) => {
                 await createAggregatedCollection();
                 await createAggregatedCompany();
 
+                // Clear cache
+                await delAsync('merged_data');
+                await delAsync('aggregated_data');
+                await delAsync('company_data');
+
                 res.send({ status: 200, success: true, msg: 'File uploaded and CSV data has been imported successfully!' });
             } catch (jsonError) {
                 console.error('Error parsing JSON:', jsonError);
@@ -99,7 +103,6 @@ const getMonthFromFileName = (fileName) => {
     return match ? match[0].toUpperCase() : null;
 };
 
-// Add Event Record
 const fetchAndProcessEventData = async () => {
     const dynamicEventFields = [
         "guestId", "roomId", "checkInDate", "checkOutDate", "guestPurpose",
@@ -318,11 +321,15 @@ const mergeInHouseAndExtractFiles = async () => {
         });
         await mergedDocument.save();
 
+        // Cache the merged data
+        await setAsync('merged_data', JSON.stringify(finalMergedData), 'EX', CACHE_DURATION);
+
         console.log('All data merged and saved successfully!');
     } catch (error) {
         console.error('Error merging InHouse, Extract, and Event files:', error);
     }
 };
+
 
 // Create collection data
 const createAggregatedCollection = async () => {
@@ -397,6 +404,8 @@ const createAggregatedCollection = async () => {
 
         await AggregatedModel.create({ data: aggregatedArray });
 
+        await delAsync('aggregatedData'); // Invalidate cache
+
         console.log('Aggregated data successfully created!');
     } catch (error) {
         console.error('Error creating aggregated data:', error);
@@ -434,6 +443,8 @@ const createAggregatedCompany = async () => {
 
         await CompanyModel.deleteMany({});
         await CompanyModel.create({ data: aggregatedArray });
+
+        await delAsync('companyData'); // Invalidate cache
 
         console.log('Aggregated data by company and segment successfully created!');
     } catch (error) {
@@ -476,34 +487,14 @@ const removeFileDataFromMergedDocument = async (fileName) => {
 
 // Get All File
 const home = async (req, res) => {
-    const cacheKey = 'combinedFiles';
-
     try {
-        const cachedData = await getAsync(cacheKey);
-        if (cachedData) {
-            console.log('Data found in cache');
-            return res.status(200).json({ success: true, data: JSON.parse(cachedData) });
-        }
         const files = await CombinedModel.find({}, { file: 1 });
-
-        await setAsync(cacheKey, JSON.stringify(files), 'EX', 3600);
-
         res.status(200).json({ success: true, data: files });
     } catch (error) {
         console.error('Error fetching files:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
     }
 };
-// Get View
-// const view = async (req, res) => {
-//     try {
-//         const filesData = await CombinedModel.find({}, 'file data').exec();
-//         res.status(200).send({ success: true, files: filesData });
-//     } catch (error) {
-//         console.error('Error fetching files data:', error);
-//         res.status(500).send({ success: false, msg: 'Internal server error.' });
-//     }
-// };
 
 // Delete file
 const deleteDocument = async (req, res) => {
@@ -521,6 +512,11 @@ const deleteDocument = async (req, res) => {
         await createAggregatedCollection();
         await createAggregatedCompany();
 
+        // Clear cache
+        await delAsync('merged_data');
+        await delAsync('aggregated_data');
+        await delAsync('company_data');
+
         res.status(200).json({ success: true, msg: 'Document deleted successfully' });
     } catch (error) {
         console.error('Error deleting document:', error);
@@ -528,19 +524,33 @@ const deleteDocument = async (req, res) => {
     }
 };
 
+// Get View
+// const view = async (req, res) => {
+//     try {
+//         const filesData = await CombinedModel.find({}, 'file data').exec();
+//         res.status(200).send({ success: true, files: filesData });
+//     } catch (error) {
+//         console.error('Error fetching files data:', error);
+//         res.status(500).send({ success: false, msg: 'Internal server error.' });
+//     }
+// };
+
 // Get Age
 const getAgeCounts = async (req, res) => {
     const { startdate, enddate } = req.query;
-    const cacheKey = `ageCounts:${startdate || 'none'}:${enddate || 'none'}`;
 
     try {
-        const cachedData = await getAsync(cacheKey);
-        if (cachedData) {
-            console.log('Data found in cache');
-            return res.status(200).json({ success: true, ...JSON.parse(cachedData) });
-        }
+        // Check cache first
+        const cachedData = await getAsync('aggregated_data');
+        let aggregatedDocs;
 
-        const aggregatedDocs = await AggregatedModel.find();
+        if (cachedData) {
+            aggregatedDocs = JSON.parse(cachedData);
+        } else {
+            aggregatedDocs = await AggregatedModel.find();
+            // Cache the result
+            await setAsync('aggregated_data', JSON.stringify(aggregatedDocs), 'EX', CACHE_DURATION);
+        }
 
         if (!aggregatedDocs || aggregatedDocs.length === 0) {
             return res.status(404).json({ success: false, msg: 'No aggregated data found' });
@@ -568,16 +578,13 @@ const getAgeCounts = async (req, res) => {
 
         const totalRecords = filteredData.length;
 
-        const response = { success: true, ageCounts, totalRecords };
-
-        await setAsync(cacheKey, JSON.stringify(response), 'EX', 3600);
-
-        res.status(200).json(response);
+        res.status(200).json({ success: true, ageCounts, totalRecords });
     } catch (error) {
         console.error('Error getting age counts:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
     }
 };
+
 
 // Get Sex
 const getSexCounts = async (req, res) => {
@@ -748,15 +755,8 @@ const getEscortingCounts = async (req, res) => {
 // get Guest Priority
 const getGuestPriority = async (req, res) => {
     const { startdate, enddate } = req.query;
-    const cacheKey = `guestPriority:${startdate || 'none'}:${enddate || 'none'}`;
 
     try {
-        const cachedData = await getAsync(cacheKey);
-        if (cachedData) {
-            console.log('Data found in cache');
-            return res.status(200).json({ success: true, data: JSON.parse(cachedData) });
-        }
-
         const aggregatedDocs = await MergedDataModel.find();
 
         if (!aggregatedDocs || aggregatedDocs.length === 0) {
@@ -779,11 +779,7 @@ const getGuestPriority = async (req, res) => {
             guestPriority: record.guestPriority
         }));
 
-        const response = { success: true, data: filteredData };
-
-        await setAsync(cacheKey, JSON.stringify(response), 'EX', 3600);
-
-        res.status(200).json(response);
+        res.status(200).json({ success: true, data: filteredData });
     } catch (error) {
         console.error('Error getting guest priority:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
@@ -1276,30 +1272,55 @@ const getSortedByRepeater = async (req, res) => {
 
 // Get Category visitor
 const getVisitorCategoryCounts = async (req, res) => {
+    const { startdate, enddate } = req.query;
+    const cacheKey = `visitorCategoryCounts:${startdate || 'none'}:${enddate || 'none'}`;
+
     try {
+        const cachedData = await getAsync(cacheKey);
+        if (cachedData) {
+            console.log('Data found in cache');
+            return res.status(200).json({ success: true, ...JSON.parse(cachedData) });
+        }
+
         const mergedDocuments = await MergedDataModel.find();
 
-        let totalRecords = 0;
-        let totalNight = 0;
+        if (!mergedDocuments || mergedDocuments.length === 0) {
+            return res.status(404).json({ success: false, msg: 'No merged data found' });
+        }
 
-        const visitorCategoryCounts = mergedDocuments.reduce((acc, doc) => {
-            doc.data.forEach(record => {
-                const category = record.visitor_category || 'Unknown';
-                const night = record.Night || 0;
+        const allData = mergedDocuments.flatMap(doc => doc.data);
 
-                if (!acc[category]) {
-                    acc[category] = { count: 0, totalNight: 0 };
-                }
+        const filteredData = allData.filter(record => {
+            const arrivalDate = record.Arrival ? new Date(record.Arrival) : null;
+            const isWithinDateRange = (!startdate || (arrivalDate && arrivalDate >= new Date(startdate))) &&
+                                      (!enddate || (arrivalDate && arrivalDate <= new Date(enddate)));
+            const isVisitorCategoryValid = record.visitor_category !== null && record.visitor_category !== undefined;
 
-                acc[category].count += 1;
-                acc[category].totalNight += night;
-                totalRecords += 1;
-                totalNight += night;
-            });
+            return isWithinDateRange && isVisitorCategoryValid;
+        });
+
+        const visitorCategoryCounts = filteredData.reduce((acc, record) => {
+            const { Night = 0 } = record;
+            const { visitor_category } = record;
+
+            if (!acc[visitor_category]) {
+                acc[visitor_category] = { count: 0, totalNight: 0 };
+            }
+
+            acc[visitor_category].count += 1;
+            acc[visitor_category].totalNight += Night;
+
             return acc;
         }, {});
 
-        res.status(200).json({ success: true, data: visitorCategoryCounts, totalRecords, totalNight });
+        const totalRecords = Object.values(visitorCategoryCounts).reduce((acc, { count }) => acc + count, 0);
+        const totalNight = Object.values(visitorCategoryCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
+
+        const response = { success: true, visitorCategoryCounts, totalRecords, totalNight };
+
+        await setAsync(cacheKey, JSON.stringify(response), 'EX', 3600);
+
+        res.status(200).json(response);
     } catch (error) {
         console.error('Error getting visitor category counts:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });

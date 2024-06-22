@@ -3,6 +3,7 @@ const moment = require("moment-timezone");
 
 const feedbackSchema = new mongoose.Schema(
   {
+    eventId: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
     comment: {
       type: String,
       required: true,

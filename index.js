@@ -25,6 +25,7 @@ app.use("/guest", require("./routes/guest"));
 app.use("/identity", require("./routes/identity"));
 app.use("/request", require("./routes/request"));
 app.use("/room", require("./routes/room"));
+app.use("/employee", require("./routes/employee"));
 app.use("/vhp", require("./routes/vhp"));
 app.use("/api/auth", require("./routes/Auth"));
 app.use("/api/admin", require("./routes/AdminRoutes"));

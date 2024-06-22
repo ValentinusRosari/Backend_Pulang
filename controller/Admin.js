@@ -1,6 +1,6 @@
 const UserModel = require('../model/User');
 const bcryptjs = require('bcryptjs');
-const { getAsync, setAsync } = require('../config/redisClient');
+const { getAsync, setAsync, delAsync } = require('../config/redisClient');
 
 // Get all users
 const Getuser = async (req, res) => {
@@ -14,8 +14,7 @@ const Getuser = async (req, res) => {
         }
 
         const users = await UserModel.find();
-
-        await setAsync(cacheKey, JSON.stringify(users), 'EX', 3600);
+        await setAsync(cacheKey, JSON.stringify(users), 3600);
 
         res.status(200).json({ users });
     } catch (error) {
@@ -46,6 +45,7 @@ const addUser = async (req, res) => {
         });
 
         await newUser.save();
+        await delAsync('allUsers');
 
         res.status(200).json({ message: 'User added successfully', newUser });
     } catch (error) {
@@ -73,6 +73,7 @@ const updateUser = async (req, res) => {
         if (role) user.role = role;
 
         await user.save();
+        await delAsync('allUsers');
 
         res.status(200).json({ message: 'User updated successfully', user });
     } catch (error) {
@@ -91,12 +92,13 @@ const deleteUser = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Prevent deletion of admin
         if (user.role === 'admin') {
             return res.status(409).json({ message: 'You cannot delete an admin' });
         }
 
         await UserModel.findByIdAndDelete(userId);
+        await delAsync('allUsers');
+
         res.status(200).json({ message: 'User deleted successfully', user });
     } catch (error) {
         res.status(500).json({ message: 'Internal server error' });

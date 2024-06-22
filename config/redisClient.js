@@ -2,7 +2,7 @@ const { createClient } = require('redis');
 
 const redisClient = createClient({
     socket: {
-        host: '127.0.0.1', // Alamat IP komputer yang menjalankan Redis
+        host: '127.0.0.1',
         port: 6379
     }
 });
@@ -20,10 +20,12 @@ redisClient.on('error', (err) => {
 })();
 
 const getAsync = redisClient.get.bind(redisClient);
-const setAsync = redisClient.set.bind(redisClient);
+const setAsync = (key, value, exp, time) => redisClient.set(key, value, exp, parseInt(time));
+const delAsync = redisClient.del.bind(redisClient);
 
 module.exports = {
     redisClient,
     getAsync,
-    setAsync
+    setAsync,
+    delAsync
 };
