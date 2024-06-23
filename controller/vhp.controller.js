@@ -125,6 +125,7 @@ const fetchAndProcessEventData = async () => {
                 result[field] = record[field] !== undefined ? record[field] : null;
             }
         });
+
         if (result.Arrival && result.Depart) {
             const arrivalDate = new Date(result.Arrival);
             const departDate = new Date(result.Depart);
@@ -132,6 +133,15 @@ const fetchAndProcessEventData = async () => {
             result.Night = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
         } else {
             result.Night = 0;
+        }
+
+        // Set guestCategory based on guestPurpose and guestPriority
+        if (result.guestPurpose && result.guestPurpose.toLowerCase() === 'honeymoon') {
+            result.guestCategory = 'couple';
+        } else if (result.guestPriority && result.guestPriority !== 0) {
+            result.guestCategory = 'family/group';
+        } else {
+            result.guestCategory = 'individual';
         }
 
         return result;
@@ -727,9 +737,6 @@ const getGuestPriority = async (req, res) => {
     }
 };
 
-module.exports = { getGuestPriority };
-
-
 // Get Purpose
 const getGuestPurposeCounts = async (req, res) => {
     const { startdate, enddate } = req.query;
@@ -1010,172 +1017,50 @@ const getSortedByRepeater = async (req, res) => {
     }
 };
 
-// Get Data Join
-const getDataByColumn = async (req, res) => {
-    try {
-        const { column, value, min, max } = req.query;
-
-        if (!column) {
-            return res.status(400).json({ success: false, msg: 'Column query parameter is required' });
-        }
-
-        const validColumns = [
-            "Name", "Room_Type", "Room_Number", "Arrangement",
-            "Birth_Date", "Age", "Lodging", "Breakfast", "Adult", "Child",
-            "Company_TA", "SOB", "Arrival", "Depart", "Night", "Created",
-            "CO_Time", "CI_Time", "Segment", "Repeater", "Nationality", 
-            "LocalRegion", "MobilePhone", "Sex", "Occupation"
-        ];
-
-        if (!validColumns.includes(column)) {
-            return res.status(400).json({ success: false, msg: 'Invalid column name' });
-        }
-
-        const query = {};
-        
-        if (min !== undefined || max !== undefined) {
-            query[column] = {};
-            if (min !== undefined) query[column].$gte = new Date(min) || Number(min);
-            if (max !== undefined) query[column].$lte = new Date(max) || Number(max);
-        } else if (value !== undefined) {
-            if (value === 'null') {
-                query[column] = null;
-            } else {
-                query[column] = value;
-            }
-        } else {
-            return res.status(400).json({ success: false, msg: 'Value or range query parameters are required' });
-        }
-
-        const mergedDoc = await MergedDataModel.findOne({ 'file.fileName': 'Merged-Data.json' });
-
-        if (!mergedDoc) {
-            return res.status(404).json({ success: false, msg: 'Merged data document not found' });
-        }
-
-        const records = mergedDoc.data.filter(record => {
-            if (min !== undefined || max !== undefined) {
-                const recordValue = new Date(record[column]) || Number(record[column]);
-                return (!min || recordValue >= (new Date(min) || Number(min))) &&
-                       (!max || recordValue <= (new Date(max) || Number(max)));
-            } else {
-                if (value === 'null') {
-                    return record[column] === null;
-                } else {
-                    return record[column] === value;
-                }
-            }
-        });
-
-        const totalRecords = records.length;
-
-        res.status(200).json({ success: true, data: records, totalRecords });
-    } catch (error) {
-        console.error('Error fetching data by column:', error);
-        res.status(500).json({ success: false, msg: 'Internal server error' });
-    }
-};
-
-// Get Aggregate Data
-const getAggregatedByColumn = async (req, res) => {
-    try {
-        const { column, value, startdate, enddate } = req.query;
-
-        if (!column || (!value && (!startdate || !enddate))) {
-            return res.status(400).json({ success: false, msg: 'Column and value or both startdate and enddate query parameters are required' });
-        }
-
-        const validColumns = [
-            "Name", "Age", "Night", "Sex", "Nationality", 
-            "LocalRegion", "Occupation", "Segment", "visitor_number", "Arrival", 
-            "visitor_category", "Repeater"
-        ];
-
-        if (!validColumns.includes(column)) {
-            return res.status(400).json({ success: false, msg: 'Invalid column name' });
-        }
-
-        const query = {};
-
-        if (column === "Arrival") {
-            if (startdate && enddate) {
-                const start = new Date(startdate).setUTCHours(0, 0, 0, 0);
-                const end = new Date(enddate).setUTCHours(23, 59, 59, 999);
-                query[`data.${column}`] = {
-                    $gte: new Date(start),
-                    $lte: new Date(end)
-                };
-            } else {
-                const dateValue = new Date(value);
-                if (isNaN(dateValue)) {
-                    return res.status(400).json({ success: false, msg: 'Invalid date value' });
-                }
-                query[`data.${column}`] = {
-                    $eq: new Date(dateValue.setUTCHours(0, 0, 0, 0))
-                };
-            }
-        } else {
-            query[`data.${column}`] = value;
-        }
-
-        const aggregatedDocs = await AggregatedModel.find(query);
-
-        if (!aggregatedDocs || aggregatedDocs.length === 0) {
-            return res.status(404).json({ success: false, msg: 'Aggregated data document not found' });
-        }
-
-        const records = [];
-        aggregatedDocs.forEach(doc => {
-            doc.data.forEach(record => {
-                if (column === "Arrival") {
-                    const recordDate = new Date(record[column]).setUTCHours(0, 0, 0, 0);
-                    if ((value && recordDate === new Date(value).setUTCHours(0, 0, 0, 0)) ||
-                        (startdate && enddate && recordDate >= new Date(startdate).setUTCHours(0, 0, 0, 0) && recordDate <= new Date(enddate).setUTCHours(23, 59, 59, 999))) {
-                        records.push(record);
-                    }
-                } else if (record[column] === value) {
-                    records.push(record);
-                }
-            });
-        });
-
-        const totalRecords = records.length;
-
-        res.status(200).json({ success: true, data: records, totalRecords });
-    } catch (error) {
-        console.error('Error fetching data by column:', error);
-        res.status(500).json({ success: false, msg: 'Internal server error' });
-    }
-};
-
 // Get Category visitor
 const getVisitorCategoryCounts = async (req, res) => {
+    const { startdate, enddate } = req.query;
+
     try {
         const mergedDocuments = await MergedDataModel.find();
 
-        let totalRecords = 0;
-        let totalNight = 0;
+        if (!mergedDocuments || mergedDocuments.length === 0) {
+            return res.status(404).json({ success: false, msg: 'No merged data found' });
+        }
 
-        const visitorCategoryCounts = mergedDocuments.reduce((acc, doc) => {
-            doc.data.forEach(record => {
-                const category = record.visitor_category || 'Unknown';
-                const night = record.Night || 0;
+        const allData = mergedDocuments.flatMap(doc => doc.data);
 
-                if (!acc[category]) {
-                    acc[category] = { count: 0, totalNight: 0 };
-                }
+        const filteredData = allData.filter(record => {
+            const arrivalDate = record.Arrival ? new Date(record.Arrival) : null;
+            const isWithinDateRange = (!startdate || (arrivalDate && arrivalDate >= new Date(startdate))) &&
+                                      (!enddate || (arrivalDate && arrivalDate <= new Date(enddate)));
+            const isGuestCategoryValid = record.guestCategory !== null && record.guestCategory !== undefined;
 
-                acc[category].count += 1;
-                acc[category].totalNight += night;
-                totalRecords += 1;
-                totalNight += night;
-            });
+            return isWithinDateRange && isGuestCategoryValid;
+        });
+
+        const guestCategoryCounts = filteredData.reduce((acc, record) => {
+            const { Night = 0 } = record;
+            const { guestCategory } = record;
+
+            if (!acc[guestCategory]) {
+                acc[guestCategory] = { count: 0, totalNight: 0 };
+            }
+
+            acc[guestCategory].count += 1;
+            acc[guestCategory].totalNight += Night;
+
             return acc;
         }, {});
 
-        res.status(200).json({ success: true, data: visitorCategoryCounts, totalRecords, totalNight });
+        const totalRecords = Object.values(guestCategoryCounts).reduce((acc, { count }) => acc + count, 0);
+        const totalNight = Object.values(guestCategoryCounts).reduce((acc, { totalNight }) => acc + totalNight, 0);
+
+        const response = { success: true, guestCategoryCounts, totalRecords, totalNight };
+
+        res.status(200).json(response);
     } catch (error) {
-        console.error('Error getting visitor category counts:', error);
+        console.error('Error getting guest category counts:', error);
         res.status(500).json({ success: false, msg: 'Internal server error' });
     }
 };
@@ -1287,13 +1172,151 @@ const getSortedCompanyByRepeater = async (req, res) => {
     }
 };
 
+// Get Data Join
+// const getDataByColumn = async (req, res) => {
+//     try {
+//         const { column, value, min, max } = req.query;
+
+//         if (!column) {
+//             return res.status(400).json({ success: false, msg: 'Column query parameter is required' });
+//         }
+
+//         const validColumns = [
+//             "Name", "Room_Type", "Room_Number", "Arrangement",
+//             "Birth_Date", "Age", "Lodging", "Breakfast", "Adult", "Child",
+//             "Company_TA", "SOB", "Arrival", "Depart", "Night", "Created",
+//             "CO_Time", "CI_Time", "Segment", "Repeater", "Nationality", 
+//             "LocalRegion", "MobilePhone", "Sex", "Occupation"
+//         ];
+
+//         if (!validColumns.includes(column)) {
+//             return res.status(400).json({ success: false, msg: 'Invalid column name' });
+//         }
+
+//         const query = {};
+        
+//         if (min !== undefined || max !== undefined) {
+//             query[column] = {};
+//             if (min !== undefined) query[column].$gte = new Date(min) || Number(min);
+//             if (max !== undefined) query[column].$lte = new Date(max) || Number(max);
+//         } else if (value !== undefined) {
+//             if (value === 'null') {
+//                 query[column] = null;
+//             } else {
+//                 query[column] = value;
+//             }
+//         } else {
+//             return res.status(400).json({ success: false, msg: 'Value or range query parameters are required' });
+//         }
+
+//         const mergedDoc = await MergedDataModel.findOne({ 'file.fileName': 'Merged-Data.json' });
+
+//         if (!mergedDoc) {
+//             return res.status(404).json({ success: false, msg: 'Merged data document not found' });
+//         }
+
+//         const records = mergedDoc.data.filter(record => {
+//             if (min !== undefined || max !== undefined) {
+//                 const recordValue = new Date(record[column]) || Number(record[column]);
+//                 return (!min || recordValue >= (new Date(min) || Number(min))) &&
+//                        (!max || recordValue <= (new Date(max) || Number(max)));
+//             } else {
+//                 if (value === 'null') {
+//                     return record[column] === null;
+//                 } else {
+//                     return record[column] === value;
+//                 }
+//             }
+//         });
+
+//         const totalRecords = records.length;
+
+//         res.status(200).json({ success: true, data: records, totalRecords });
+//     } catch (error) {
+//         console.error('Error fetching data by column:', error);
+//         res.status(500).json({ success: false, msg: 'Internal server error' });
+//     }
+// };
+
+// Get Aggregate Data
+// const getAggregatedByColumn = async (req, res) => {
+//     try {
+//         const { column, value, startdate, enddate } = req.query;
+
+//         if (!column || (!value && (!startdate || !enddate))) {
+//             return res.status(400).json({ success: false, msg: 'Column and value or both startdate and enddate query parameters are required' });
+//         }
+
+//         const validColumns = [
+//             "Name", "Age", "Night", "Sex", "Nationality", 
+//             "LocalRegion", "Occupation", "Segment", "visitor_number", "Arrival", 
+//             "visitor_category", "Repeater"
+//         ];
+
+//         if (!validColumns.includes(column)) {
+//             return res.status(400).json({ success: false, msg: 'Invalid column name' });
+//         }
+
+//         const query = {};
+
+//         if (column === "Arrival") {
+//             if (startdate && enddate) {
+//                 const start = new Date(startdate).setUTCHours(0, 0, 0, 0);
+//                 const end = new Date(enddate).setUTCHours(23, 59, 59, 999);
+//                 query[`data.${column}`] = {
+//                     $gte: new Date(start),
+//                     $lte: new Date(end)
+//                 };
+//             } else {
+//                 const dateValue = new Date(value);
+//                 if (isNaN(dateValue)) {
+//                     return res.status(400).json({ success: false, msg: 'Invalid date value' });
+//                 }
+//                 query[`data.${column}`] = {
+//                     $eq: new Date(dateValue.setUTCHours(0, 0, 0, 0))
+//                 };
+//             }
+//         } else {
+//             query[`data.${column}`] = value;
+//         }
+
+//         const aggregatedDocs = await AggregatedModel.find(query);
+
+//         if (!aggregatedDocs || aggregatedDocs.length === 0) {
+//             return res.status(404).json({ success: false, msg: 'Aggregated data document not found' });
+//         }
+
+//         const records = [];
+//         aggregatedDocs.forEach(doc => {
+//             doc.data.forEach(record => {
+//                 if (column === "Arrival") {
+//                     const recordDate = new Date(record[column]).setUTCHours(0, 0, 0, 0);
+//                     if ((value && recordDate === new Date(value).setUTCHours(0, 0, 0, 0)) ||
+//                         (startdate && enddate && recordDate >= new Date(startdate).setUTCHours(0, 0, 0, 0) && recordDate <= new Date(enddate).setUTCHours(23, 59, 59, 999))) {
+//                         records.push(record);
+//                     }
+//                 } else if (record[column] === value) {
+//                     records.push(record);
+//                 }
+//             });
+//         });
+
+//         const totalRecords = records.length;
+
+//         res.status(200).json({ success: true, data: records, totalRecords });
+//     } catch (error) {
+//         console.error('Error fetching data by column:', error);
+//         res.status(500).json({ success: false, msg: 'Internal server error' });
+//     }
+// };
+
 module.exports = {
     uploadAndImport,
     home,
     view,
     delete: deleteDocument,
     getAgeCounts,
-    getDataByColumn,
+    // getDataByColumn,
     getSexCounts,
     getOccupationCounts,
     getCityCounts,
@@ -1304,7 +1327,7 @@ module.exports = {
     getSortedCompanyByRepeater,
     getVisitorCategoryCounts,
     getRoomCounts,
-    getAggregatedByColumn,
+    // getAggregatedByColumn,
     mergeInHouseAndExtractFiles,
     getEscortingCounts,
     getGuestPurposeCounts,
