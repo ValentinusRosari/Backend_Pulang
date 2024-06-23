@@ -34,7 +34,6 @@ const addUser = async (req, res) => {
         });
 
         await newUser.save();
-        await delAsync('allUsers');
 
         res.status(200).json({ message: 'User added successfully', newUser });
     } catch (error) {
@@ -62,7 +61,6 @@ const updateUser = async (req, res) => {
         if (role) user.role = role;
 
         await user.save();
-        await delAsync('allUsers');
 
         res.status(200).json({ message: 'User updated successfully', user });
     } catch (error) {
@@ -86,7 +84,6 @@ const deleteUser = async (req, res) => {
         }
 
         await UserModel.findByIdAndDelete(userId);
-        await delAsync('allUsers');
 
         res.status(200).json({ message: 'User deleted successfully', user });
     } catch (error) {
