@@ -17,6 +17,13 @@ app.use(
   })
 );
 
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: "http://localhost:5173",
+//   })
+// );
+
 app.use("/event", require("./routes/event"));
 app.use("/feedback", require("./routes/feedback"));
 app.use("/guest", require("./routes/guest"));
