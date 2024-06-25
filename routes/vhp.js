@@ -40,7 +40,6 @@ const upload = multer({
 
 router.post('/upload', upload.single('file'), combinedController.uploadAndImport);
 router.get('/files', combinedController.home);
-router.get('/view', combinedController.view);
 router.delete('/delete/:id', combinedController.delete);
 router.get('/getAgeCounts', combinedController.getAgeCounts);
 router.get('/getSexCounts', combinedController.getSexCounts);
@@ -53,7 +52,12 @@ router.get('/getSortedByRepeater', combinedController.getSortedByRepeater);
 router.get('/getVisitorCategoryCounts', combinedController.getVisitorCategoryCounts);
 router.get('/getRoomCounts', combinedController.getRoomCounts);
 router.get('/getSortedCompanyByRepeater', combinedController.getSortedCompanyByRepeater);
-router.get('/getAggregatedByColumn', combinedController.getAggregatedByColumn);
-router.get('/data', combinedController.getDataByColumn);
+
+router.get('/getEscortingCounts', combinedController.getEscortingCounts);
+router.get('/getGuestPurposeCounts', combinedController.getGuestPurposeCounts);
+router.get('/getGuestPriority', combinedController.getGuestPriority);
+// router.get('/view', combinedController.view);
+// router.get('/getAggregatedByColumn', combinedController.getAggregatedByColumn);
+// router.get('/data', combinedController.getDataByColumn);
 
 module.exports = router;

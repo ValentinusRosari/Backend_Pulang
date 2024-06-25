@@ -38,9 +38,17 @@ def process_file(sample_file, input_file):
         df = clean_csv(input_file, expected_columns)
         delete_columns = ['VIP', 'Lunch', 'Dinner', 'Other', 'Rate Code', 'K-Card', 'remarks', 'Member No', 'Member Type', 'Guest No']
         df.drop(columns=delete_columns, inplace=True)
-        df['Name'] = df['Last Name']
+        df['First Name'].replace('', pd.NA, inplace=True)
+        df['First Name'].replace('NULL', pd.NA, inplace=True)
+        df['Last Name'].replace('', pd.NA, inplace=True)
+        df['Last Name'].replace('NULL', pd.NA, inplace=True)
+        df['Name'] = df.apply(lambda row: row['Last Name'] if pd.isnull(row['First Name']) else row['First Name'] + ' ' + row['Last Name'], axis=1)
+        df['Name'] = df['Name'].str.strip() 
         df.drop(columns=['First Name', 'Last Name'], inplace=True)
         df['In House Date'] = pd.to_datetime(df['In House Date'], format='%d/%m/%Y').dt.strftime('%d %B %Y')
+        df['Arrival'] = pd.to_datetime(df['Arrival'], format='%d/%m/%Y')
+        df['Depart'] = pd.to_datetime(df['Depart'], format='%d/%m/%Y')
+        
         df.rename(columns={
             'In House Date': 'In_House_Date',
             'Room Number': 'Room_Number',
@@ -62,10 +70,10 @@ def process_file(sample_file, input_file):
 
         df['LocalRegion'] = df['LocalRegion'].apply(lambda x: x[:3] if isinstance(x, str) else x)
 
-        df['Age'] = pd.to_numeric(df['Age'], errors='coerce')
-        mean_age = df['Age'].mean()
-        df['Age'].fillna(mean_age, inplace=True)
-        df['Age'] = df['Age'].astype(int)
+        # df['Age'] = pd.to_numeric(df['Age'], errors='coerce')
+        # mean_age = df['Age'].mean()
+        # df['Age'].fillna(mean_age, inplace=True)
+        # df['Age'] = df['Age'].astype(int)
 
         df['Adult'] = df['Adult'].astype(int)
         df['Child'] = df['Child'].astype(int)

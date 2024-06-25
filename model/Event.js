@@ -3,8 +3,8 @@ const moment = require("moment-timezone");
 
 const eventSchema = new mongoose.Schema(
   {
-    guestId: { type: mongoose.Schema.Types.ObjectId, ref: "Guest" },
-    roomId: { type: mongoose.Schema.Types.ObjectId, ref: "Room" },
+    guestId: [{ type: mongoose.Schema.Types.ObjectId, ref: "Guest" }],
+    roomId: [{ type: mongoose.Schema.Types.ObjectId, ref: "Room" }],
     checkInDate: {
       type: Date,
       required: true,
@@ -22,7 +22,7 @@ const eventSchema = new mongoose.Schema(
       required: true,
     },
     voucherNumber: {
-      type: Number,
+      type: String,
     },
     guestPriority: {
       type: String,
@@ -30,9 +30,9 @@ const eventSchema = new mongoose.Schema(
     plateNumber: {
       type: String,
     },
-    requestId: { type: mongoose.Schema.Types.ObjectId, ref: "Request" },
-    feedbackId: { type: mongoose.Schema.Types.ObjectId, ref: "Feedback" },
-    employeeId: { type: mongoose.Schema.Types.ObjectId, ref: "Employee" },
+    requestId: [{ type: mongoose.Schema.Types.ObjectId, ref: "Request" }],
+    feedbackId: [{ type: mongoose.Schema.Types.ObjectId, ref: "Feedback" }],
+    employeeId: [{ type: mongoose.Schema.Types.ObjectId, ref: "Employee" }],
   },
   { timestamps: true }
 );

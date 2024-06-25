@@ -3,6 +3,7 @@ const moment = require("moment-timezone");
 
 const requestSchema = new mongoose.Schema(
   {
+    eventId: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
     item: {
       type: String,
       required: true,

@@ -79,12 +79,12 @@ const deleteUser = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Prevent deletion of admin
         if (user.role === 'admin') {
             return res.status(409).json({ message: 'You cannot delete an admin' });
         }
 
         await UserModel.findByIdAndDelete(userId);
+
         res.status(200).json({ message: 'User deleted successfully', user });
     } catch (error) {
         res.status(500).json({ message: 'Internal server error' });

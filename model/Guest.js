@@ -6,7 +6,7 @@ const guestSchema = new mongoose.Schema({
     required: true,
   },
   waNumber: {
-    type: Number,
+    type: String,
     required: true,
   },
 });

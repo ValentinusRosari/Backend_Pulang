@@ -10,15 +10,19 @@ const app = express();
 
 app.use(cookieparser());
 app.use(express.json());
-<<<<<<< Updated upstream
-=======
 app.use(
   cors({
     credentials: true,
-    origin: ["http://192.168.1.141:4000", "http://localhost:5173"],
+    origin: "http://192.168.1.141:4000",
   })
 );
->>>>>>> Stashed changes
+
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: "http://localhost:5173",
+//   })
+// );
 
 app.use("/event", require("./routes/event"));
 app.use("/feedback", require("./routes/feedback"));
@@ -26,9 +30,10 @@ app.use("/guest", require("./routes/guest"));
 app.use("/identity", require("./routes/identity"));
 app.use("/request", require("./routes/request"));
 app.use("/room", require("./routes/room"));
-app.use('/vhp', require("./routes/vhp"));
-app.use('/api/auth', require("./routes/Auth"));
-app.use('/api/admin', require("./routes/AdminRoutes"));
+app.use("/employee", require("./routes/employee"));
+app.use("/vhp", require("./routes/vhp"));
+app.use("/api/auth", require("./routes/Auth"));
+app.use("/api/admin", require("./routes/AdminRoutes"));
 
 connectToDB().then(() => {
   app.listen(PORT, () => {
