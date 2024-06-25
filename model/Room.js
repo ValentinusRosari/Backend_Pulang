@@ -7,15 +7,12 @@ const roomSchema = new mongoose.Schema({
   },
   roomType: {
     type: String,
-    required: true,
   },
   roomFloor: {
     type: Number,
-    required: true,
   },
   roomCapacity: {
     type: Number,
-    required: true,
   },
 });
 

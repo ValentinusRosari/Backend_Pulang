@@ -12,6 +12,16 @@ const createRoom = async (req, res) => {
   }
 };
 
+const createRooms = async (req, res) => {
+  try {
+    const rooms = req.body.rooms; // Expect an array of rooms in the request body
+    const createdRooms = await Rooms.insertMany(rooms); // Insert multiple documents at once
+    res.status(201).json({ success: true, data: createdRooms });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 const readRoom = async (req, res) => {
   try {
     const room = await Room.find();
@@ -55,6 +65,7 @@ const deleteRoom = async (req, res) => {
 
 module.exports = {
   createRoom,
+  createRooms,
   readRoom,
   updateRoom,
   deleteRoom,

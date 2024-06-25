@@ -10,10 +10,15 @@ const app = express();
 
 app.use(cookieparser());
 app.use(express.json());
-app.use(cors({
-  credentials: true,
-  origin: 'http://localhost:5173'
-}));
+<<<<<<< Updated upstream
+=======
+app.use(
+  cors({
+    credentials: true,
+    origin: ["http://192.168.1.141:4000", "http://localhost:5173"],
+  })
+);
+>>>>>>> Stashed changes
 
 app.use("/event", require("./routes/event"));
 app.use("/feedback", require("./routes/feedback"));
