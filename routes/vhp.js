@@ -52,7 +52,6 @@ router.get('/getSortedByRepeater', combinedController.getSortedByRepeater);
 router.get('/getVisitorCategoryCounts', combinedController.getVisitorCategoryCounts);
 router.get('/getRoomCounts', combinedController.getRoomCounts);
 router.get('/getSortedCompanyByRepeater', combinedController.getSortedCompanyByRepeater);
-
 router.get('/getEscortingCounts', combinedController.getEscortingCounts);
 router.get('/getGuestPurposeCounts', combinedController.getGuestPurposeCounts);
 router.get('/getGuestPriority', combinedController.getGuestPriority);
