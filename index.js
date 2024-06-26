@@ -10,19 +10,19 @@ const app = express();
 
 app.use(cookieparser());
 app.use(express.json());
-app.use(
-  cors({
-    credentials: true,
-    origin: "http://192.168.1.141:4000",
-  })
-);
-
 // app.use(
 //   cors({
 //     credentials: true,
-//     origin: "http://localhost:5173",
+//     origin: "http://192.168.1.141:4000",
 //   })
 // );
+
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:5173",
+  })
+);
 
 app.use("/event", require("./routes/event"));
 app.use("/feedback", require("./routes/feedback"));

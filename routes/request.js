@@ -6,5 +6,6 @@ router.post("/", requestController.createRequest);
 router.get("/", requestController.readRequest);
 router.patch("/:id", requestController.updateRequest);
 router.delete("/:id", requestController.deleteRequest);
+router.post("/updateReturnDate", requestController.updateReturnDate);
 
 module.exports = router;
