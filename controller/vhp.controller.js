@@ -20,11 +20,9 @@ const uploadAndImport = async (req, res) => {
         let scriptPath;
         let args;
 
-        const sampleFilePath = path.resolve(__dirname, '../components/InHouse-Guest JAN.csv');
-
         if (file.originalname.includes('InHouse')) {
-            scriptPath = path.resolve(__dirname, '../script/process_inhousefile.py');
-            args = [scriptPath, sampleFilePath, filePath];
+            scriptPath = path.resolve(__dirname, '../script/pithon.py');
+            args = [scriptPath, filePath];
         } else if (file.originalname.includes('Extract')) {
             scriptPath = path.resolve(__dirname, '../script/process_extractguest.py');
             args = [scriptPath, filePath];
