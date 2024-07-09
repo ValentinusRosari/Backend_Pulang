@@ -22,6 +22,23 @@ const readRequest = async (req, res) => {
   }
 };
 
+const readRequestById = async (req, res) => {
+  try {
+    const requestId = req.params.id;
+    const request = await Request.findById(requestId);
+
+    if (!request) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Request not found" });
+    }
+
+    res.status(200).json({ success: true, data: request });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 const updateRequest = async (req, res) => {
   try {
     const requestId = req.params.id;
@@ -80,6 +97,7 @@ const updateReturnDate = async (req, res) => {
 module.exports = {
   createRequest,
   readRequest,
+  readRequestById,
   updateRequest,
   deleteRequest,
   updateReturnDate,
