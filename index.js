@@ -3,6 +3,10 @@ const dotenv = require("dotenv");
 const cookieparser = require("cookie-parser");
 const cors = require("cors");
 const connectToDB = require("./config/dbConnection");
+const frRoutes = require("./routes/FrRoutes");
+const ihRoutes = require("./routes/IhRoutes");
+const obtRoutes = require("./routes/ObtRoutes")
+const path = require("path");
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -10,6 +14,7 @@ const app = express();
 
 app.use(cookieparser());
 app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
 // app.use(
 //   cors({
 //     credentials: true,
@@ -24,6 +29,9 @@ app.use(
   })
 );
 
+app.use("/api/files", obtRoutes)
+app.use("/api/files", frRoutes);
+app.use("/api/files", ihRoutes);
 app.use("/event", require("./routes/event"));
 app.use("/feedback", require("./routes/feedback"));
 app.use("/guest", require("./routes/guest"));

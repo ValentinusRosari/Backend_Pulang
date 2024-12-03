@@ -1,0 +1,38 @@
+# Ignore node_modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+jspm_packages/
+
+# Coverage directory
+coverage/
+
+# Debug
+*.local
+
+# Misc
+.DS_Store
+*.swp
+*.swo
+*.swn
+Thumbs.db
+
+# Optional eslint cache
+.eslintcache
+
+# Ignore all environment files except example
+.env
+!.env.example

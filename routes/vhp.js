@@ -6,7 +6,7 @@ const fs = require('fs');
 
 const combinedController = require('../controller/vhp.controller');
 
-const uploadDir = path.resolve(__dirname, '../public/uploads');
+const uploadDir = path.resolve(__dirname, '../airflow-docker/UPLOAD_DIR/uploads');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }
@@ -39,6 +39,8 @@ const upload = multer({
 });
 
 router.post('/upload', upload.single('file'), combinedController.uploadAndImport);
+router.post('/upload/IH', upload.single('file'), combinedController.uploadIH);
+router.post('/upload/FR', upload.single('file'), combinedController.uploadFR);
 router.get('/files', combinedController.home);
 router.delete('/delete/:id', combinedController.delete);
 router.get('/getAgeCounts', combinedController.getAgeCounts);

@@ -2,6 +2,8 @@ const { spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const CombinedModel = require('../model/Filevhp');
+const FRModel = require('../model/FR')
+const IHModel = require('../model/IH')
 const AggregatedModel = require('../model/AgregatedData');
 const MergedDataModel = require('../model/MergedCombined');
 const CompanyModel = require('../model/CompanyData');
@@ -90,11 +92,182 @@ const uploadAndImport = async (req, res) => {
     }
 };
 
+const uploadIH = async (req, res) => {
+    try {
+        const file = req.file;
+
+        if (!file) {
+            return res.status(400).send({ success: false, msg: 'No file uploaded.' });
+        }
+
+        const filePath = file.path;
+        let scriptPath;
+        let args;
+
+        if (file.originalname.includes('InHouse')) {
+            scriptPath = path.resolve(__dirname, '../script/pithon.py');
+            args = [scriptPath, filePath];
+        } else {
+            return res.status(400).send({ success: false, msg: 'Unknown file type.' });
+        }
+
+        const child = spawn('python', args);
+
+        let stdout = '';
+        let stderr = '';
+
+        child.stdout.on('data', (data) => {
+            stdout += data.toString();
+        });
+
+        child.stderr.on('data', (data) => {
+            stderr += data.toString();
+        });
+
+        child.on('close', async (code) => {
+            if (code !== 0) {
+                console.error(`Child process exited with code ${code}`);
+                console.error(`stderr: ${stderr}`);
+                return res.status(400).send({ success: false, msg: `Exec error: ${stderr}` });
+            }
+
+            try {
+                if (!stdout) {
+                    return res.status(400).send({ success: false, msg: 'No output received from the Python script.' });
+                }
+
+                let output;
+                try {
+                    output = JSON.parse(stdout);
+                } catch (jsonError) {
+                    console.error('Error parsing JSON:', jsonError);
+                    return res.status(400).send({ success: false, msg: 'Invalid JSON returned from Python script.' });
+                }
+
+                if (output.error) {
+                    console.error('Python script error:', output.error);
+                    return res.status(400).send({ success: false, msg: `Python script error: ${output.error}` });
+                }
+
+                console.time('DatabaseUploadTime');
+
+                const combinedDocument = new IHModel({
+                    file: {
+                        fileName: file.originalname,
+                        filePath: file.path,
+                        file: file.filename,
+                    },
+                    data: output,
+                });
+
+                await combinedDocument.save();
+
+                console.timeEnd('DatabaseUploadTime');
+
+                fs.unlink(file.path, (err) => {
+                    if (err) {
+                        console.error('Error removing file', err);
+                    }
+                });
+
+                res.send({ status: 200, success: true, msg: 'File uploaded and CSV data has been imported successfully!' });
+            } catch (jsonError) {
+                console.error('Error parsing JSON:', jsonError);
+                res.status(500).send({ success: false, msg: 'Internal server error.' });
+            }
+        });
+    } catch (error) {
+        console.error('Unexpected server error:', error);
+        res.status(500).send({ success: false, msg: error.message });
+    }
+};
+
+const uploadFR = async (req, res) => {
+    try {
+        const file = req.file;
+
+        if (!file) {
+            return res.status(400).send({ success: false, msg: 'No file uploaded.' });
+        }
+
+        const filePath = file.path;
+        let scriptPath;
+        let args;
+
+        if (file.originalname.includes('FR')) {
+            scriptPath = path.resolve(__dirname, '../script/process_extractguest.py');
+            args = [scriptPath, filePath];
+        } else {
+            return res.status(400).send({ success: false, msg: 'Unknown file type.' });
+        }
+
+        const child = spawn('python', args);
+
+        let stdout = '';
+        let stderr = '';
+
+        child.stdout.on('data', (data) => {
+            stdout += data.toString();
+        });
+
+        child.stderr.on('data', (data) => {
+            stderr += data.toString();
+        });
+
+        child.on('close', async (code) => {
+            if (code !== 0) {
+                console.error(`Child process exited with code ${code}`);
+                console.error(`stderr: ${stderr}`);
+                return res.status(400).send({ success: false, msg: `Exec error: ${stderr}` });
+            }
+
+            try {
+                const output = JSON.parse(stdout);
+
+                if (output.error) {
+                    console.error(`Processing error: ${output.error}`);
+                    return res.status(400).send({ success: false, msg: `Processing error: ${output.error}` });
+                }
+
+                const combinedDocument = new FRModel({
+                    file: {
+                        fileName: file.originalname,
+                        filePath: file.path,
+                        file: file.filename
+                    },
+                    data: output
+                });
+
+                await combinedDocument.save();
+
+                fs.unlink(file.path, (err) => {
+                    if (err) {
+                        console.error('Error removing file', err);
+                    }
+                });
+
+                // await mergeInHouseAndExtractFiles();
+                // await createAggregatedCollection();
+                // await createAggregatedCompany();
+
+                res.send({ status: 200, success: true, msg: 'File uploaded and CSV data has been imported successfully!' });
+            } catch (jsonError) {
+                console.error('Error parsing JSON:', jsonError);
+                res.status(500).send({ success: false, msg: 'Internal server error.' });
+            }
+        });
+    } catch (error) {
+        res.status(400).send({ success: false, msg: error.message });
+    }
+};
+
 // Function to extract the month from the filename
 const getMonthFromFileName = (fileName) => {
     const match = fileName.match(/(JAN 1-16|JAN 17-31|FEB 1-16|FEB 1-28|MAR 1-16|MAR 17-31|APR 1-16|APR 17-30|MAY 1-16|MAY 17-31|JUN 1-16|JUN 17-30|JUL 1-16|JUL 17-31|AUG 1-16|AUG 17-31|SEP 1-16|SEP 17-30|OCT 1-16|OCT 17-31|NOV 1-16|NOV 17-30|DEC 1-16|DEC 17-31)/i);
     return match ? match[0].toUpperCase() : null;
 };
+
+
 
 // Add Event Record
 const fetchAndProcessEventData = async () => {
@@ -1310,6 +1483,8 @@ const getSortedCompanyByRepeater = async (req, res) => {
 
 module.exports = {
     uploadAndImport,
+    uploadIH,
+    uploadFR,
     home,
     view,
     delete: deleteDocument,
