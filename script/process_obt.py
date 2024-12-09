@@ -163,6 +163,10 @@ def process_obt(import_file):
 
     df_updated.drop(columns=['Guest Name'], inplace=True)
 
+    df_updated['Sales'] = df_updated['Sales'].str.replace(',', '').astype(float)
+
+    df_updated['Sales'] = pd.to_numeric(df_updated['Sales'], errors='coerce').fillna(0)
+
     json_data = df_updated.to_json(orient='records')
     return json_data
 

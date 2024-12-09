@@ -6,4 +6,4 @@ const frSchema = new mongoose.Schema({
   data: { type: Array },
 });
 
-module.exports = mongoose.model("FrModel", frSchema);
+module.exports = mongoose.model("ModelFr", frSchema);

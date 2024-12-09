@@ -1,0 +1,20 @@
+[2024-12-05T08:53:28.052+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: obt_file_processing.delete_outlet_data manual__2024-12-05T08:53:26.322726+00:00 [queued]>
+[2024-12-05T08:53:28.059+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: obt_file_processing.delete_outlet_data manual__2024-12-05T08:53:26.322726+00:00 [queued]>
+[2024-12-05T08:53:28.059+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2024-12-05T08:53:28.070+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): delete_outlet_data> on 2024-12-05 08:53:26.322726+00:00
+[2024-12-05T08:53:28.076+0000] {standard_task_runner.py:57} INFO - Started process 361 to run task
+[2024-12-05T08:53:28.082+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'obt_file_processing', 'delete_outlet_data', 'manual__2024-12-05T08:53:26.322726+00:00', '--job-id', '173', '--raw', '--subdir', 'DAGS_FOLDER/OBT_file_processing.py', '--cfg-path', '/tmp/tmprrx3hrdv']
+[2024-12-05T08:53:28.083+0000] {standard_task_runner.py:85} INFO - Job 173: Subtask delete_outlet_data
+[2024-12-05T08:53:28.141+0000] {task_command.py:410} INFO - Running <TaskInstance: obt_file_processing.delete_outlet_data manual__2024-12-05T08:53:26.322726+00:00 [running]> on host effe9442f8f2
+[2024-12-05T08:53:28.234+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='obt_file_processing' AIRFLOW_CTX_TASK_ID='delete_outlet_data' AIRFLOW_CTX_EXECUTION_DATE='2024-12-05T08:53:26.322726+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-05T08:53:26.322726+00:00'
+[2024-12-05T08:53:36.943+0000] {OBT_file_processing.py:45} INFO - Deleted 77042 documents from restaurant_bar_obt collection.
+[2024-12-05T08:53:37.033+0000] {OBT_file_processing.py:45} INFO - Deleted 522 documents from room_service_obt collection.
+[2024-12-05T08:53:37.075+0000] {OBT_file_processing.py:45} INFO - Deleted 200 documents from banquet_obt collection.
+[2024-12-05T08:53:38.845+0000] {OBT_file_processing.py:45} INFO - Deleted 18878 documents from restaurant_bar_sales_per_bill collection.
+[2024-12-05T08:53:39.114+0000] {OBT_file_processing.py:45} INFO - Deleted 166 documents from room_service_sales_per_bill collection.
+[2024-12-05T08:53:44.583+0000] {OBT_file_processing.py:45} INFO - Deleted 58 documents from banquet_sales_per_bill collection.
+[2024-12-05T08:53:44.590+0000] {OBT_file_processing.py:47} INFO - Deleted documents from outlet collections.
+[2024-12-05T08:53:44.595+0000] {python.py:183} INFO - Done. Returned value was: None
+[2024-12-05T08:53:44.652+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=obt_file_processing, task_id=delete_outlet_data, execution_date=20241205T085326, start_date=20241205T085328, end_date=20241205T085344
+[2024-12-05T08:53:44.722+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0
+[2024-12-05T08:53:44.761+0000] {taskinstance.py:2653} INFO - 1 downstream tasks scheduled from follow-on schedule check

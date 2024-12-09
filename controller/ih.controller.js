@@ -13,15 +13,8 @@ const uploadIH = async (req, res) => {
         }
 
         const filePath = file.path;
-        let scriptPath;
-        let args;
-
-        if (file.originalname.includes('InHouse')) {
-            scriptPath = path.resolve(__dirname, '../script/pithon.py');
-            args = [scriptPath, filePath];
-        } else {
-            return res.status(400).send({ success: false, msg: 'Unknown file type.' });
-        }
+        const scriptPath = path.resolve(__dirname, "../script/process_ih.py");
+        const args = [scriptPath, filePath];
 
         const child = spawn('python', args);
 
@@ -63,13 +56,13 @@ const uploadIH = async (req, res) => {
 
                 console.time('DatabaseUploadTime');
 
-                const combinedDocument = new IHModel({
+                const Document = new IHModel({
                     fileName: file.filename,
                     filePath: file.path,
                     data: output,
                 });
 
-                await combinedDocument.save();
+                await Document.save();
 
                 console.timeEnd('DatabaseUploadTime');
 

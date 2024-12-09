@@ -1,0 +1,32 @@
+[2024-12-03T15:29:41.953+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_process_obt_dag.etl_process_obt_task manual__2024-12-03T15:29:32.174743+00:00 [queued]>
+[2024-12-03T15:29:41.969+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_process_obt_dag.etl_process_obt_task manual__2024-12-03T15:29:32.174743+00:00 [queued]>
+[2024-12-03T15:29:41.970+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2024-12-03T15:29:41.986+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): etl_process_obt_task> on 2024-12-03 15:29:32.174743+00:00
+[2024-12-03T15:29:42.013+0000] {standard_task_runner.py:57} INFO - Started process 81 to run task
+[2024-12-03T15:29:42.029+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'etl_process_obt_dag', 'etl_process_obt_task', 'manual__2024-12-03T15:29:32.174743+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/OBT_file_processing.py', '--cfg-path', '/tmp/tmph4icifi8']
+[2024-12-03T15:29:42.031+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask etl_process_obt_task
+[2024-12-03T15:29:42.078+0000] {task_command.py:410} INFO - Running <TaskInstance: etl_process_obt_dag.etl_process_obt_task manual__2024-12-03T15:29:32.174743+00:00 [running]> on host a7b0e18ff197
+[2024-12-03T15:29:42.143+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_process_obt_dag' AIRFLOW_CTX_TASK_ID='etl_process_obt_task' AIRFLOW_CTX_EXECUTION_DATE='2024-12-03T15:29:32.174743+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-03T15:29:32.174743+00:00'
+[2024-12-03T15:29:42.295+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/OBT_file_processing.py", line 60, in etl_process_obt
+    .config("spark.mongodb.output.uri", f"mongodb://{MONGO_URI}/{DB_NAME}.{ETL_COLLECTION}") \
+  File "/home/airflow/.local/lib/python3.7/site-packages/pyspark/sql/session.py", line 477, in getOrCreate
+    sc = SparkContext.getOrCreate(sparkConf)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pyspark/context.py", line 512, in getOrCreate
+    SparkContext(conf=conf or SparkConf())
+  File "/home/airflow/.local/lib/python3.7/site-packages/pyspark/context.py", line 198, in __init__
+    SparkContext._ensure_initialized(self, gateway=gateway, conf=conf)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pyspark/context.py", line 432, in _ensure_initialized
+    SparkContext._gateway = gateway or launch_gateway(conf)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pyspark/java_gateway.py", line 106, in launch_gateway
+    raise RuntimeError("Java gateway process exited before sending its port number")
+RuntimeError: Java gateway process exited before sending its port number
+[2024-12-03T15:29:42.315+0000] {taskinstance.py:1350} INFO - Marking task as UP_FOR_RETRY. dag_id=etl_process_obt_dag, task_id=etl_process_obt_task, execution_date=20241203T152932, start_date=20241203T152941, end_date=20241203T152942
+[2024-12-03T15:29:42.354+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 3 for task etl_process_obt_task (Java gateway process exited before sending its port number; 81)
+[2024-12-03T15:29:42.451+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2024-12-03T15:29:42.541+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

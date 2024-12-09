@@ -37,13 +37,13 @@ const uploadOBT = async (req, res) => {
       try {
         const cleanedData = JSON.parse(stdout);
 
-        const newFile = new OBTModel({
+        const Document = new OBTModel({
           fileName: file.filename,
           filePath: filePath,
           data: cleanedData,
         });
 
-        await newFile.save();
+        await Document.save();
 
         try {
           const response = await axios.post(

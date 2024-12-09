@@ -6,4 +6,4 @@ const IhSchema = new mongoose.Schema({
   data: { type: Array },
 });
 
-module.exports = mongoose.model('IhModel', IhSchema);
+module.exports = mongoose.model('ModelIh', IhSchema);

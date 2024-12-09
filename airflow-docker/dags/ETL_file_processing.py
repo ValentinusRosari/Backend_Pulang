@@ -3,14 +3,19 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime
 from pymongo import MongoClient
 import pandas as pd
+from dotenv import load_dotenv
+import os
 
-MONGO_URI = "mongodb+srv://ituttara:mongopulang72@cluster0.18jylse.mongodb.net/Pulang2?retryWrites=true&w=majority&appName=Cluster0"
+# Load environment variables from .env file
+load_dotenv()
+
+DB_URI = os.getenv("DB_URI")
 DB_NAME = "Pulang2"
-RAW_COLLECTION_FR = "frmodels"
-ETL_COLLECTION_FR = "etl_fr_data"
-RAW_COLLECTION_IH = "ihmodels"
-ETL_COLLECTION_IH = "etl_ih_data"
-MERGED_COLLECTION = "etl_merged_data"
+RAW_COLLECTION_FR = "modelfrs"
+ETL_COLLECTION_FR = "etl_fr"
+RAW_COLLECTION_IH = "modelihs"
+ETL_COLLECTION_IH = "etl_ih"
+MERGED_COLLECTION = "etl_merged_ih&fr"
 
 default_args = {
     "owner": "airflow",
@@ -22,7 +27,7 @@ def etl_process_fr():
     """
     ETL process for FR data.
     """
-    client = MongoClient(MONGO_URI)
+    client = MongoClient(DB_URI)
     db = client[DB_NAME]
     raw_collection = db[RAW_COLLECTION_FR]
     etl_collection = db[ETL_COLLECTION_FR]
@@ -53,7 +58,7 @@ def etl_process_ih():
     """
     ETL process for IH data.
     """
-    client = MongoClient(MONGO_URI)
+    client = MongoClient(DB_URI)
     db = client[DB_NAME]
     raw_collection = db[RAW_COLLECTION_IH]
     etl_collection = db[ETL_COLLECTION_IH]
@@ -84,7 +89,7 @@ def etl_merge():
     """
     Merges the FR and IH data based on 'Name' field and stores the merged data.
     """
-    client = MongoClient(MONGO_URI)
+    client = MongoClient(DB_URI)
     db = client[DB_NAME]
 
     fr_etl_collection = db[ETL_COLLECTION_FR]
@@ -100,7 +105,7 @@ def etl_merge():
         fr_df = pd.DataFrame(fr_data)
         ih_df = pd.DataFrame(ih_data)
 
-        merged_df = pd.merge(fr_df, ih_df, on="Name", how="outer", suffixes=("_fr", "_ih"))
+        merged_df = pd.merge(ih_df, fr_df, on="Name", how="outer", suffixes=("_ih", "_fr"))
 
         merged_collection.insert_many(merged_df.to_dict(orient="records"))
         print("FR and IH data merged and stored successfully.")
