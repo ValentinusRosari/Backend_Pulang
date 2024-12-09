@@ -12,13 +12,14 @@ x-airflow-common: &airflow-common
     AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
     AIRFLOW__API__AUTH_BACKENDS: airflow.api.auth.backend.basic_auth
     AIRFLOW__SCHEDULER__HEALTH_CHECK_THRESHOLD: 120
-    _PIP_ADDITIONAL_REQUIREMENTS: "pymongo"
+    _PIP_ADDITIONAL_REQUIREMENTS: "pymongo python-dotenv"
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./config:/opt/airflow/config
     - ./plugins:/opt/airflow/plugins
     - ./UPLOAD_DIR:/opt/airflow/public/uploads
+    - /Users/tasyanadhila/Backend_Pulang/.env:/opt/airflow/.env 
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     redis:

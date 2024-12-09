@@ -12,7 +12,7 @@ const uploadFR = async (req, res) => {
     }
 
     const filePath = file.path;
-    const scriptPath = path.resolve(__dirname, "../script/process_extractguest.py");
+    const scriptPath = path.resolve(__dirname, "../script/process_fr.py");
     const args = [scriptPath, filePath];
 
     const child = spawn("python", args);
@@ -37,13 +37,13 @@ const uploadFR = async (req, res) => {
       try {
         const cleanedData = JSON.parse(stdout);
 
-        const newFile = new FRModel({
+        const Document = new FRModel({
           fileName: file.filename,
           filePath: filePath,
           data: cleanedData,
         });
 
-        await newFile.save();
+        await Document.save();
 
         try {
           const response = await axios.post(

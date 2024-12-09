@@ -1,0 +1,22 @@
+[2024-12-04T14:28:58.323+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: FoReport_file_processing.etl_merge_FO manual__2024-12-04T14:27:16.077404+00:00 [queued]>
+[2024-12-04T14:28:58.349+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: FoReport_file_processing.etl_merge_FO manual__2024-12-04T14:27:16.077404+00:00 [queued]>
+[2024-12-04T14:28:58.350+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2024-12-04T14:28:58.401+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): etl_merge_FO> on 2024-12-04 14:27:16.077404+00:00
+[2024-12-04T14:28:58.467+0000] {standard_task_runner.py:57} INFO - Started process 327 to run task
+[2024-12-04T14:28:58.482+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'FoReport_file_processing', 'etl_merge_FO', 'manual__2024-12-04T14:27:16.077404+00:00', '--job-id', '59', '--raw', '--subdir', 'DAGS_FOLDER/FoReport_file_processing.py', '--cfg-path', '/tmp/tmpdnmxtyba']
+[2024-12-04T14:28:58.503+0000] {standard_task_runner.py:85} INFO - Job 59: Subtask etl_merge_FO
+[2024-12-04T14:28:58.748+0000] {task_command.py:410} INFO - Running <TaskInstance: FoReport_file_processing.etl_merge_FO manual__2024-12-04T14:27:16.077404+00:00 [running]> on host effe9442f8f2
+[2024-12-04T14:28:59.136+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='FoReport_file_processing' AIRFLOW_CTX_TASK_ID='etl_merge_FO' AIRFLOW_CTX_EXECUTION_DATE='2024-12-04T14:27:16.077404+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-04T14:27:16.077404+00:00'
+[2024-12-04T14:28:59.890+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/FoReport_file_processing.py", line 139, in etl_merge_FO
+    escort_data = list(escort_etl_collection)
+TypeError: 'Collection' object is not iterable
+[2024-12-04T14:28:59.949+0000] {taskinstance.py:1350} INFO - Marking task as UP_FOR_RETRY. dag_id=FoReport_file_processing, task_id=etl_merge_FO, execution_date=20241204T142716, start_date=20241204T142858, end_date=20241204T142859
+[2024-12-04T14:29:00.056+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 59 for task etl_merge_FO ('Collection' object is not iterable; 327)
+[2024-12-04T14:29:00.264+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2024-12-04T14:29:00.570+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

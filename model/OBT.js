@@ -6,4 +6,4 @@ const obtSchema = new mongoose.Schema({
   data: { type: Array },
 });
 
-module.exports = mongoose.model("ObtModel", obtSchema);
+module.exports = mongoose.model("ModelObt", obtSchema);
