@@ -1,5 +1,6 @@
 const FRModel = require("../model/FR");
 const path = require("path");
+const fs = require('fs');
 const { spawn } = require("child_process");
 const axios = require("axios");
 
@@ -45,6 +46,12 @@ const uploadFR = async (req, res) => {
 
         await Document.save();
 
+        fs.unlink(file.path, (err) => {
+          if (err) {
+              console.error('Error removing file', err);
+          }
+        });
+
         try {
           const response = await axios.post(
             "http://localhost:8080/api/v1/dags/etl_file_processing/dagRuns",
@@ -53,10 +60,7 @@ const uploadFR = async (req, res) => {
           );
 
           console.log("Airflow DAG triggered successfully:", response.data);
-          res.status(200).json({
-            success: true,
-            msg: "File uploaded, processed, and DAG triggered.",
-          });
+          res.status(200).json({ success: true, msg: "File uploaded, processed, and DAG triggered.", });
         } catch (error) {
           console.error("Error triggering Airflow DAG:", error.response?.data || error.message);
           res.status(500).json({ success: false, msg: "Failed to trigger Airflow DAG." });
@@ -83,8 +87,6 @@ const deleteFR = async (req, res) => {
 
     await FRModel.findByIdAndDelete(fileId);
 
-    await FRModel.deleteOne({ filePath: fileToDelete.filePath });
-
     const response = await axios.post(
       "http://localhost:8080/api/v1/dags/etl_file_processing/dagRuns",
       { conf: {} },
@@ -98,4 +100,17 @@ const deleteFR = async (req, res) => {
   }
 };
 
-module.exports = { uploadFR, deleteFR };
+const getFR = async (req, res) => {
+  try {
+      const files = await FRModel.find().select("-data");
+      if (!files || files.length === 0) {
+          return res.status(404).json({ success: false, msg: "No files found." });
+      }
+      res.status(200).json({ success: true, data: files });
+  } catch (error) {
+      console.error("Error fetching files:", error);
+      res.status(500).json({ success: false, msg: "Error fetching files." });
+  }
+};
+
+module.exports = { uploadFR, deleteFR, getFR };

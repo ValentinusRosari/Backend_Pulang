@@ -1,0 +1,14 @@
+[2025-01-07T09:56:43.576+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cashier_file_processing.etl_process_roomservice manual__2025-01-07T09:56:39.551398+00:00 [queued]>
+[2025-01-07T09:56:43.580+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cashier_file_processing.etl_process_roomservice manual__2025-01-07T09:56:39.551398+00:00 [queued]>
+[2025-01-07T09:56:43.580+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2025-01-07T09:56:43.588+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): etl_process_roomservice> on 2025-01-07 09:56:39.551398+00:00
+[2025-01-07T09:56:43.596+0000] {standard_task_runner.py:57} INFO - Started process 1496 to run task
+[2025-01-07T09:56:43.600+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'cashier_file_processing', 'etl_process_roomservice', 'manual__2025-01-07T09:56:39.551398+00:00', '--job-id', '390', '--raw', '--subdir', 'DAGS_FOLDER/Cashier_file_processing.py', '--cfg-path', '/tmp/tmpp814fkla']
+[2025-01-07T09:56:43.601+0000] {standard_task_runner.py:85} INFO - Job 390: Subtask etl_process_roomservice
+[2025-01-07T09:56:43.640+0000] {task_command.py:410} INFO - Running <TaskInstance: cashier_file_processing.etl_process_roomservice manual__2025-01-07T09:56:39.551398+00:00 [running]> on host 8fff7f1050bf
+[2025-01-07T09:56:43.691+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='cashier_file_processing' AIRFLOW_CTX_TASK_ID='etl_process_roomservice' AIRFLOW_CTX_EXECUTION_DATE='2025-01-07T09:56:39.551398+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-07T09:56:39.551398+00:00'
+[2025-01-07T09:56:47.064+0000] {logging_mixin.py:150} INFO - No data found in the 'roomservicemodels' collection.
+[2025-01-07T09:56:47.068+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-01-07T09:56:47.098+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=cashier_file_processing, task_id=etl_process_roomservice, execution_date=20250107T095639, start_date=20250107T095643, end_date=20250107T095647
+[2025-01-07T09:56:47.150+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0
+[2025-01-07T09:56:47.190+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

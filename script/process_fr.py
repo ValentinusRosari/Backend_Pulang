@@ -91,9 +91,6 @@ def process_fr(import_file):
     for replacement, patterns in replacements.items():
         data['Occupation'] = data['Occupation'].replace(patterns, replacement)
 
-    # data['Address'] = data['Address'].replace('N A', 'NaN')
-    # data.rename(columns={'GuestName': 'Name'}, inplace=True)
-
     def remove_titles(name):
         titles = ['MR', 'MRS', 'MS', 'MISS', 'DR', 'PROF', 'SIR', 'MADAM', 'BPK']
         name_parts = [part for part in name.split() if part.upper().strip(',') not in titles]

@@ -1,0 +1,25 @@
+[2025-01-07T12:26:28.270+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: obt_file_processing.etl_billNumber manual__2025-01-07T12:23:06.214462+00:00 [queued]>
+[2025-01-07T12:26:28.287+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: obt_file_processing.etl_billNumber manual__2025-01-07T12:23:06.214462+00:00 [queued]>
+[2025-01-07T12:26:28.287+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2025-01-07T12:26:28.303+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): etl_billNumber> on 2025-01-07 12:23:06.214462+00:00
+[2025-01-07T12:26:28.317+0000] {standard_task_runner.py:57} INFO - Started process 4682 to run task
+[2025-01-07T12:26:28.326+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'obt_file_processing', 'etl_billNumber', 'manual__2025-01-07T12:23:06.214462+00:00', '--job-id', '708', '--raw', '--subdir', 'DAGS_FOLDER/OBT_file_processing.py', '--cfg-path', '/tmp/tmpudnk6w1b']
+[2025-01-07T12:26:28.328+0000] {standard_task_runner.py:85} INFO - Job 708: Subtask etl_billNumber
+[2025-01-07T12:26:28.431+0000] {task_command.py:410} INFO - Running <TaskInstance: obt_file_processing.etl_billNumber manual__2025-01-07T12:23:06.214462+00:00 [running]> on host 8fff7f1050bf
+[2025-01-07T12:26:28.618+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='obt_file_processing' AIRFLOW_CTX_TASK_ID='etl_billNumber' AIRFLOW_CTX_EXECUTION_DATE='2025-01-07T12:23:06.214462+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-07T12:23:06.214462+00:00'
+[2025-01-07T12:26:40.651+0000] {OBT_file_processing.py:60} INFO - Inserted batch of 1000 documents.
+[2025-01-07T12:26:41.651+0000] {OBT_file_processing.py:60} INFO - Inserted batch of 1000 documents.
+[2025-01-07T12:26:42.652+0000] {OBT_file_processing.py:60} INFO - Inserted batch of 1000 documents.
+[2025-01-07T12:26:43.676+0000] {OBT_file_processing.py:60} INFO - Inserted batch of 1000 documents.
+[2025-01-07T12:26:44.702+0000] {OBT_file_processing.py:60} INFO - Inserted batch of 1000 documents.
+[2025-01-07T12:26:45.734+0000] {OBT_file_processing.py:60} INFO - Inserted batch of 1000 documents.
+[2025-01-07T12:26:46.640+0000] {OBT_file_processing.py:60} INFO - Inserted batch of 1000 documents.
+[2025-01-07T12:26:48.640+0000] {OBT_file_processing.py:60} INFO - Inserted batch of 1000 documents.
+[2025-01-07T12:26:49.654+0000] {OBT_file_processing.py:60} INFO - Inserted batch of 1000 documents.
+[2025-01-07T12:26:52.635+0000] {OBT_file_processing.py:60} INFO - Inserted batch of 439 documents.
+[2025-01-07T12:26:53.632+0000] {OBT_file_processing.py:60} INFO - Inserted batch of 83 documents.
+[2025-01-07T12:26:53.769+0000] {OBT_file_processing.py:60} INFO - Inserted batch of 29 documents.
+[2025-01-07T12:26:53.775+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-01-07T12:26:53.825+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=obt_file_processing, task_id=etl_billNumber, execution_date=20250107T122306, start_date=20250107T122628, end_date=20250107T122653
+[2025-01-07T12:26:53.917+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0
+[2025-01-07T12:26:53.997+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

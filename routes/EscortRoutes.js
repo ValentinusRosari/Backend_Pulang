@@ -1,7 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
-const { uploadESCORT, deleteESCORT } = require("../controller/escort.controller");
+const { uploadESCORT, deleteESCORT, getESCORT } = require("../controller/escort.controller");
 
 const router = express.Router();
 
@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
+    cb(null, `${file.originalname}`);
   },
 });
 
@@ -33,5 +33,6 @@ const upload = multer({
 
 router.post("/uploadEscort", upload.single("file"), uploadESCORT);
 router.delete("/deleteEscort/:fileId", deleteESCORT);
+router.get("/Escort", getESCORT);
 
 module.exports = router;
