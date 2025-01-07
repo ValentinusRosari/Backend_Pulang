@@ -1,0 +1,14 @@
+[2025-01-07T12:08:28.505+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_file_processing.etl_merge manual__2025-01-07T12:07:54.533020+00:00 [queued]>
+[2025-01-07T12:08:28.734+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_file_processing.etl_merge manual__2025-01-07T12:07:54.533020+00:00 [queued]>
+[2025-01-07T12:08:28.772+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2025-01-07T12:08:29.015+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): etl_merge> on 2025-01-07 12:07:54.533020+00:00
+[2025-01-07T12:08:29.171+0000] {standard_task_runner.py:57} INFO - Started process 4322 to run task
+[2025-01-07T12:08:29.269+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'etl_file_processing', 'etl_merge', 'manual__2025-01-07T12:07:54.533020+00:00', '--job-id', '672', '--raw', '--subdir', 'DAGS_FOLDER/ETL_file_processing.py', '--cfg-path', '/tmp/tmpico3x83e']
+[2025-01-07T12:08:29.279+0000] {standard_task_runner.py:85} INFO - Job 672: Subtask etl_merge
+[2025-01-07T12:08:29.772+0000] {task_command.py:410} INFO - Running <TaskInstance: etl_file_processing.etl_merge manual__2025-01-07T12:07:54.533020+00:00 [running]> on host 8fff7f1050bf
+[2025-01-07T12:08:30.585+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_file_processing' AIRFLOW_CTX_TASK_ID='etl_merge' AIRFLOW_CTX_EXECUTION_DATE='2025-01-07T12:07:54.533020+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-07T12:07:54.533020+00:00'
+[2025-01-07T12:08:32.171+0000] {logging_mixin.py:150} INFO - No data to merge.
+[2025-01-07T12:08:32.179+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-01-07T12:08:32.286+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=etl_file_processing, task_id=etl_merge, execution_date=20250107T120754, start_date=20250107T120828, end_date=20250107T120832
+[2025-01-07T12:08:32.441+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0
+[2025-01-07T12:08:32.733+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

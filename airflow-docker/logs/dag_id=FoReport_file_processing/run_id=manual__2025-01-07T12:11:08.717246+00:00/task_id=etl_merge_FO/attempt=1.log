@@ -1,0 +1,14 @@
+[2025-01-07T12:14:56.946+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: FoReport_file_processing.etl_merge_FO manual__2025-01-07T12:11:08.717246+00:00 [queued]>
+[2025-01-07T12:14:57.234+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: FoReport_file_processing.etl_merge_FO manual__2025-01-07T12:11:08.717246+00:00 [queued]>
+[2025-01-07T12:14:57.237+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2025-01-07T12:14:58.238+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): etl_merge_FO> on 2025-01-07 12:11:08.717246+00:00
+[2025-01-07T12:14:58.474+0000] {standard_task_runner.py:57} INFO - Started process 4598 to run task
+[2025-01-07T12:14:58.712+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'FoReport_file_processing', 'etl_merge_FO', 'manual__2025-01-07T12:11:08.717246+00:00', '--job-id', '699', '--raw', '--subdir', 'DAGS_FOLDER/FoReport_file_processing.py', '--cfg-path', '/tmp/tmpn83nzqvb']
+[2025-01-07T12:14:58.798+0000] {standard_task_runner.py:85} INFO - Job 699: Subtask etl_merge_FO
+[2025-01-07T12:15:04.082+0000] {task_command.py:410} INFO - Running <TaskInstance: FoReport_file_processing.etl_merge_FO manual__2025-01-07T12:11:08.717246+00:00 [running]> on host 8fff7f1050bf
+[2025-01-07T12:15:30.809+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='FoReport_file_processing' AIRFLOW_CTX_TASK_ID='etl_merge_FO' AIRFLOW_CTX_EXECUTION_DATE='2025-01-07T12:11:08.717246+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-07T12:11:08.717246+00:00'
+[2025-01-07T12:15:46.919+0000] {logging_mixin.py:150} INFO - IH with Escort, Comment, and Request data merged and stored successfully.
+[2025-01-07T12:15:47.324+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-01-07T12:15:48.287+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=FoReport_file_processing, task_id=etl_merge_FO, execution_date=20250107T121108, start_date=20250107T121457, end_date=20250107T121548
+[2025-01-07T12:15:48.771+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0
+[2025-01-07T12:15:49.100+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,966 @@
+[2024-12-22T00:05:19.503+0000] {processor.py:157} INFO - Started process (PID=80553) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:05:19.507+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T00:05:19.509+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:05:19.508+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:05:20.926+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:05:20.980+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:05:20.980+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T00:05:21.024+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:05:21.024+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T00:05:21.048+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.569 seconds
+[2024-12-22T00:05:51.630+0000] {processor.py:157} INFO - Started process (PID=80644) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:05:51.637+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T00:05:51.644+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:05:51.642+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:05:52.312+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:05:52.338+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:05:52.337+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T00:05:52.360+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:05:52.360+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T00:05:52.377+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.756 seconds
+[2024-12-22T00:21:45.768+0000] {processor.py:157} INFO - Started process (PID=80735) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:21:45.788+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T00:21:45.799+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:21:45.798+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:21:46.690+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:21:46.717+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:21:46.717+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T00:21:46.742+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:21:46.742+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T00:21:46.769+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.011 seconds
+[2024-12-22T00:37:41.030+0000] {processor.py:157} INFO - Started process (PID=80826) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:37:41.032+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T00:37:41.033+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:37:41.032+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:37:41.646+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:37:41.668+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:37:41.668+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T00:37:41.699+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:37:41.699+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T00:37:41.719+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.697 seconds
+[2024-12-22T00:38:12.456+0000] {processor.py:157} INFO - Started process (PID=80917) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:38:12.459+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T00:38:12.461+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:38:12.460+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:38:12.853+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:38:12.874+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:38:12.873+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T00:38:12.900+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:38:12.899+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T00:38:12.915+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.463 seconds
+[2024-12-22T00:50:33.886+0000] {processor.py:157} INFO - Started process (PID=81008) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:50:33.888+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T00:50:33.890+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:50:33.890+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:50:34.389+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T00:50:34.421+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:50:34.421+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T00:50:34.449+0000] {logging_mixin.py:150} INFO - [2024-12-22T00:50:34.449+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T00:50:34.468+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.589 seconds
+[2024-12-22T01:06:19.278+0000] {processor.py:157} INFO - Started process (PID=81099) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:06:19.286+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T01:06:19.290+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:06:19.289+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:06:20.937+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:06:21.006+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:06:21.006+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T01:06:21.041+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:06:21.041+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T01:06:21.062+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.820 seconds
+[2024-12-22T01:22:15.019+0000] {processor.py:157} INFO - Started process (PID=81190) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:22:15.028+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T01:22:15.032+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:22:15.031+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:22:17.010+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:22:17.082+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:22:17.081+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T01:22:17.133+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:22:17.133+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T01:22:17.159+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 2.174 seconds
+[2024-12-22T01:22:47.885+0000] {processor.py:157} INFO - Started process (PID=81281) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:22:47.888+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T01:22:47.892+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:22:47.891+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:22:48.371+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:22:48.411+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:22:48.411+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T01:22:48.439+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:22:48.439+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T01:22:48.558+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.682 seconds
+[2024-12-22T01:38:41.085+0000] {processor.py:157} INFO - Started process (PID=81372) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:38:41.094+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T01:38:41.100+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:38:41.097+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:38:42.394+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:38:42.455+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:38:42.455+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T01:38:42.487+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:38:42.487+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T01:38:42.513+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.442 seconds
+[2024-12-22T01:51:12.021+0000] {processor.py:157} INFO - Started process (PID=81463) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:51:12.024+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T01:51:12.027+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:51:12.026+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:51:12.564+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:51:12.608+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:51:12.607+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T01:51:12.635+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:51:12.635+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T01:51:12.654+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.660 seconds
+[2024-12-22T01:51:43.162+0000] {processor.py:157} INFO - Started process (PID=81554) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:51:43.165+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T01:51:43.167+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:51:43.166+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:51:43.678+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T01:51:43.707+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:51:43.706+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T01:51:43.737+0000] {logging_mixin.py:150} INFO - [2024-12-22T01:51:43.737+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T01:51:43.761+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.618 seconds
+[2024-12-22T02:07:38.332+0000] {processor.py:157} INFO - Started process (PID=81645) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:07:38.339+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T02:07:38.341+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:07:38.340+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:07:39.569+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:07:39.621+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:07:39.620+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T02:07:39.653+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:07:39.653+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T02:07:39.691+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.387 seconds
+[2024-12-22T02:23:33.556+0000] {processor.py:157} INFO - Started process (PID=81736) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:23:33.559+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T02:23:33.563+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:23:33.562+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:23:34.691+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:23:34.743+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:23:34.743+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T02:23:34.783+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:23:34.782+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T02:23:34.818+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.275 seconds
+[2024-12-22T02:24:05.408+0000] {processor.py:157} INFO - Started process (PID=81827) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:24:05.412+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T02:24:05.414+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:24:05.414+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:24:05.937+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:24:05.969+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:24:05.968+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T02:24:06.005+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:24:06.005+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T02:24:06.024+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.627 seconds
+[2024-12-22T02:39:59.420+0000] {processor.py:157} INFO - Started process (PID=81918) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:39:59.422+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T02:39:59.425+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:39:59.424+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:39:59.950+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:39:59.982+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:39:59.981+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T02:40:00.008+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:40:00.008+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T02:40:00.040+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.625 seconds
+[2024-12-22T02:52:19.957+0000] {processor.py:157} INFO - Started process (PID=82009) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:52:19.962+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T02:52:19.964+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:52:19.963+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:52:21.186+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:52:21.249+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:52:21.248+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T02:52:21.295+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:52:21.294+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T02:52:21.626+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.678 seconds
+[2024-12-22T02:52:52.037+0000] {processor.py:157} INFO - Started process (PID=82100) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:52:52.040+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T02:52:52.042+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:52:52.041+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:52:52.786+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T02:52:52.836+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:52:52.836+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T02:52:53.157+0000] {logging_mixin.py:150} INFO - [2024-12-22T02:52:53.156+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T02:52:53.203+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.181 seconds
+[2024-12-22T03:08:45.550+0000] {processor.py:157} INFO - Started process (PID=82191) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T03:08:45.555+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T03:08:45.560+0000] {logging_mixin.py:150} INFO - [2024-12-22T03:08:45.559+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T03:08:46.303+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T03:08:46.350+0000] {logging_mixin.py:150} INFO - [2024-12-22T03:08:46.347+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T03:08:46.583+0000] {logging_mixin.py:150} INFO - [2024-12-22T03:08:46.583+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T03:08:46.599+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.064 seconds
+[2024-12-22T03:24:39.959+0000] {processor.py:157} INFO - Started process (PID=82282) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T03:24:39.966+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T03:24:39.968+0000] {logging_mixin.py:150} INFO - [2024-12-22T03:24:39.967+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T03:24:41.067+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T03:24:41.522+0000] {logging_mixin.py:150} INFO - [2024-12-22T03:24:41.521+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T03:24:41.548+0000] {logging_mixin.py:150} INFO - [2024-12-22T03:24:41.548+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T03:24:41.567+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.614 seconds
+[2024-12-22T03:40:35.930+0000] {processor.py:157} INFO - Started process (PID=82373) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T03:40:35.933+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T03:40:35.935+0000] {logging_mixin.py:150} INFO - [2024-12-22T03:40:35.935+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T03:40:36.825+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T03:40:36.869+0000] {logging_mixin.py:150} INFO - [2024-12-22T03:40:36.868+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T03:40:36.914+0000] {logging_mixin.py:150} INFO - [2024-12-22T03:40:36.914+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T03:40:36.938+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.018 seconds
+[2024-12-22T03:41:06.990+0000] {processor.py:157} INFO - Started process (PID=82463) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T03:41:06.992+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T03:41:06.993+0000] {logging_mixin.py:150} INFO - [2024-12-22T03:41:06.993+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T03:41:07.776+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T03:41:07.799+0000] {logging_mixin.py:150} INFO - [2024-12-22T03:41:07.797+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T03:41:07.824+0000] {logging_mixin.py:150} INFO - [2024-12-22T03:41:07.824+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T03:41:07.843+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.859 seconds
+[2024-12-22T03:53:29.234+0000] {processor.py:157} INFO - Started process (PID=82555) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T03:53:29.243+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T03:53:29.247+0000] {logging_mixin.py:150} INFO - [2024-12-22T03:53:29.246+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T03:53:30.940+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T03:53:30.960+0000] {logging_mixin.py:150} INFO - [2024-12-22T03:53:30.959+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T03:53:30.984+0000] {logging_mixin.py:150} INFO - [2024-12-22T03:53:30.983+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T03:53:31.003+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.798 seconds
+[2024-12-22T04:09:24.212+0000] {processor.py:157} INFO - Started process (PID=82646) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:09:24.222+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T04:09:24.227+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:09:24.226+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:09:25.310+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:09:25.329+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:09:25.329+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T04:09:25.351+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:09:25.351+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T04:09:25.372+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.171 seconds
+[2024-12-22T04:09:55.708+0000] {processor.py:157} INFO - Started process (PID=82737) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:09:55.717+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T04:09:55.722+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:09:55.722+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:09:56.494+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:09:56.534+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:09:56.533+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T04:09:56.563+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:09:56.563+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T04:09:56.600+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.915 seconds
+[2024-12-22T04:25:49.841+0000] {processor.py:157} INFO - Started process (PID=82828) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:25:49.850+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T04:25:49.855+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:25:49.854+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:25:51.187+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:25:51.227+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:25:51.226+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T04:25:51.265+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:25:51.264+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T04:25:51.290+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.472 seconds
+[2024-12-22T04:41:45.751+0000] {processor.py:157} INFO - Started process (PID=82919) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:41:45.755+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T04:41:45.759+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:41:45.758+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:41:47.042+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:41:47.066+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:41:47.065+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T04:41:47.091+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:41:47.091+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T04:41:47.106+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.364 seconds
+[2024-12-22T04:42:17.254+0000] {processor.py:157} INFO - Started process (PID=83010) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:42:17.259+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T04:42:17.262+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:42:17.261+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:42:18.117+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:42:18.136+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:42:18.135+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T04:42:18.165+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:42:18.165+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T04:42:18.182+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.951 seconds
+[2024-12-22T04:54:38.533+0000] {processor.py:157} INFO - Started process (PID=83101) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:54:38.555+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T04:54:38.558+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:54:38.558+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:54:39.790+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T04:54:39.820+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:54:39.819+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T04:54:39.846+0000] {logging_mixin.py:150} INFO - [2024-12-22T04:54:39.846+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T04:54:39.866+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.348 seconds
+[2024-12-22T05:10:33.946+0000] {processor.py:157} INFO - Started process (PID=83192) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:10:33.950+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T05:10:33.954+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:10:33.953+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:10:35.046+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:10:35.068+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:10:35.067+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T05:10:35.094+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:10:35.093+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T05:10:35.113+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.177 seconds
+[2024-12-22T05:26:28.997+0000] {processor.py:157} INFO - Started process (PID=83283) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:26:29.003+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T05:26:29.006+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:26:29.005+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:26:30.386+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:26:30.418+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:26:30.418+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T05:26:30.458+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:26:30.458+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T05:26:30.480+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.493 seconds
+[2024-12-22T05:27:01.066+0000] {processor.py:157} INFO - Started process (PID=83374) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:27:01.069+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T05:27:01.073+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:27:01.072+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:27:01.900+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:27:01.941+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:27:01.940+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T05:27:01.964+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:27:01.964+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T05:27:01.980+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.927 seconds
+[2024-12-22T05:42:54.440+0000] {processor.py:157} INFO - Started process (PID=83465) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:42:54.447+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T05:42:54.451+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:42:54.450+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:42:55.308+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:42:55.387+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:42:55.386+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T05:42:55.490+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:42:55.488+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T05:42:55.557+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.137 seconds
+[2024-12-22T05:55:13.950+0000] {processor.py:157} INFO - Started process (PID=83556) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:55:13.958+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T05:55:13.963+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:55:13.962+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:55:15.162+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:55:15.191+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:55:15.190+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T05:55:15.238+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:55:15.237+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T05:55:15.266+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.324 seconds
+[2024-12-22T05:55:45.516+0000] {processor.py:157} INFO - Started process (PID=83647) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:55:45.520+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T05:55:45.524+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:55:45.524+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:55:46.239+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T05:55:46.262+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:55:46.261+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T05:55:46.291+0000] {logging_mixin.py:150} INFO - [2024-12-22T05:55:46.291+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T05:55:46.314+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.817 seconds
+[2024-12-22T06:11:38.618+0000] {processor.py:157} INFO - Started process (PID=83738) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:11:38.622+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T06:11:38.627+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:11:38.625+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:11:39.875+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:11:39.894+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:11:39.894+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T06:11:39.938+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:11:39.938+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T06:11:39.959+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.350 seconds
+[2024-12-22T06:27:34.214+0000] {processor.py:157} INFO - Started process (PID=83829) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:27:34.216+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T06:27:34.217+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:27:34.217+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:27:35.442+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:27:35.618+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:27:35.612+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T06:27:35.726+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:27:35.726+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T06:27:35.784+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.580 seconds
+[2024-12-22T06:28:06.018+0000] {processor.py:157} INFO - Started process (PID=83920) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:28:06.033+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T06:28:06.036+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:28:06.035+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:28:06.715+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:28:06.741+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:28:06.738+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T06:28:06.774+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:28:06.774+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T06:28:06.794+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.785 seconds
+[2024-12-22T06:43:59.958+0000] {processor.py:157} INFO - Started process (PID=84011) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:43:59.960+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T06:43:59.963+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:43:59.962+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:44:01.571+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:44:01.606+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:44:01.606+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T06:44:01.636+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:44:01.636+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T06:44:01.656+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.706 seconds
+[2024-12-22T06:56:14.765+0000] {processor.py:157} INFO - Started process (PID=84102) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:56:14.767+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T06:56:14.768+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:56:14.768+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:56:15.521+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:56:15.562+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:56:15.561+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T06:56:15.637+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:56:15.636+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T06:56:15.691+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.936 seconds
+[2024-12-22T06:56:46.175+0000] {processor.py:157} INFO - Started process (PID=84193) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:56:46.178+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T06:56:46.179+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:56:46.179+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:56:46.860+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T06:56:46.886+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:56:46.886+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T06:56:46.913+0000] {logging_mixin.py:150} INFO - [2024-12-22T06:56:46.913+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T06:56:46.932+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.786 seconds
+[2024-12-22T07:12:40.374+0000] {processor.py:157} INFO - Started process (PID=84284) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:12:40.378+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T07:12:40.382+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:12:40.382+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:12:42.083+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:12:42.196+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:12:42.194+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T07:12:42.253+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:12:42.253+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T07:12:42.281+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.916 seconds
+[2024-12-22T07:28:36.775+0000] {processor.py:157} INFO - Started process (PID=84375) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:28:36.788+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T07:28:36.791+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:28:36.790+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:28:37.875+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:28:37.903+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:28:37.903+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T07:28:37.926+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:28:37.926+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T07:28:37.948+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.194 seconds
+[2024-12-22T07:29:08.640+0000] {processor.py:157} INFO - Started process (PID=84466) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:29:08.643+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T07:29:08.645+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:29:08.645+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:29:09.357+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:29:09.382+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:29:09.382+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T07:29:09.407+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:29:09.407+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T07:29:09.427+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.796 seconds
+[2024-12-22T07:45:02.321+0000] {processor.py:157} INFO - Started process (PID=84557) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:45:02.330+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T07:45:02.332+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:45:02.332+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:45:03.884+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:45:03.944+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:45:03.943+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T07:45:03.980+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:45:03.979+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T07:45:04.013+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.717 seconds
+[2024-12-22T07:57:18.406+0000] {processor.py:157} INFO - Started process (PID=84648) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:57:18.409+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T07:57:18.414+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:57:18.413+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:57:19.828+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:57:19.848+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:57:19.848+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T07:57:19.872+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:57:19.872+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T07:57:19.892+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.509 seconds
+[2024-12-22T07:57:50.376+0000] {processor.py:157} INFO - Started process (PID=84739) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:57:50.380+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T07:57:50.384+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:57:50.384+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:57:52.451+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T07:57:52.626+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:57:52.618+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T07:57:52.739+0000] {logging_mixin.py:150} INFO - [2024-12-22T07:57:52.737+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T07:57:52.888+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 2.522 seconds
+[2024-12-22T08:13:44.233+0000] {processor.py:157} INFO - Started process (PID=84830) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T08:13:44.244+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T08:13:44.247+0000] {logging_mixin.py:150} INFO - [2024-12-22T08:13:44.246+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T08:13:45.451+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T08:13:45.484+0000] {logging_mixin.py:150} INFO - [2024-12-22T08:13:45.483+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T08:13:45.533+0000] {logging_mixin.py:150} INFO - [2024-12-22T08:13:45.533+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T08:13:45.561+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.356 seconds
+[2024-12-22T08:29:40.225+0000] {processor.py:157} INFO - Started process (PID=84921) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T08:29:40.228+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T08:29:40.229+0000] {logging_mixin.py:150} INFO - [2024-12-22T08:29:40.229+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T08:29:41.990+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T08:29:42.026+0000] {logging_mixin.py:150} INFO - [2024-12-22T08:29:42.025+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T08:29:42.065+0000] {logging_mixin.py:150} INFO - [2024-12-22T08:29:42.065+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T08:29:42.091+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.880 seconds
+[2024-12-22T08:30:12.212+0000] {processor.py:157} INFO - Started process (PID=85011) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T08:30:12.217+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T08:30:12.219+0000] {logging_mixin.py:150} INFO - [2024-12-22T08:30:12.218+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T08:30:13.431+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T08:30:13.504+0000] {logging_mixin.py:150} INFO - [2024-12-22T08:30:13.503+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T08:30:13.579+0000] {logging_mixin.py:150} INFO - [2024-12-22T08:30:13.578+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T08:30:13.654+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.464 seconds
+[2024-12-22T08:46:06.221+0000] {processor.py:157} INFO - Started process (PID=85103) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T08:46:06.229+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T08:46:06.236+0000] {logging_mixin.py:150} INFO - [2024-12-22T08:46:06.232+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T08:46:07.420+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T08:46:07.447+0000] {logging_mixin.py:150} INFO - [2024-12-22T08:46:07.447+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T08:46:07.477+0000] {logging_mixin.py:150} INFO - [2024-12-22T08:46:07.477+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T08:46:07.495+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.282 seconds
+[2024-12-22T08:58:24.558+0000] {processor.py:157} INFO - Started process (PID=85194) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T08:58:24.560+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T08:58:24.562+0000] {logging_mixin.py:150} INFO - [2024-12-22T08:58:24.562+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T08:58:25.716+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T08:58:25.866+0000] {logging_mixin.py:150} INFO - [2024-12-22T08:58:25.864+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T08:58:26.001+0000] {logging_mixin.py:150} INFO - [2024-12-22T08:58:26.000+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T08:58:26.181+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.629 seconds
+[2024-12-22T09:14:19.548+0000] {processor.py:157} INFO - Started process (PID=85285) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:14:19.552+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T09:14:19.554+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:14:19.554+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:14:21.019+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:14:21.058+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:14:21.058+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T09:14:21.085+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:14:21.085+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T09:14:21.104+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.575 seconds
+[2024-12-22T09:14:51.360+0000] {processor.py:157} INFO - Started process (PID=85376) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:14:51.363+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T09:14:51.365+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:14:51.364+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:14:52.080+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:14:52.108+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:14:52.108+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T09:14:52.132+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:14:52.132+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T09:14:52.151+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.803 seconds
+[2024-12-22T09:30:45.871+0000] {processor.py:157} INFO - Started process (PID=85467) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:30:45.875+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T09:30:45.877+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:30:45.877+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:30:47.440+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:30:47.491+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:30:47.490+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T09:30:47.531+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:30:47.531+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T09:30:47.552+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.690 seconds
+[2024-12-22T09:46:41.144+0000] {processor.py:157} INFO - Started process (PID=85558) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:46:41.146+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T09:46:41.147+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:46:41.147+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:46:42.512+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:46:42.556+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:46:42.555+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T09:46:42.582+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:46:42.582+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T09:46:42.616+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.481 seconds
+[2024-12-22T09:47:12.734+0000] {processor.py:157} INFO - Started process (PID=85649) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:47:12.738+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T09:47:12.740+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:47:12.739+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:47:13.404+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:47:13.426+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:47:13.426+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T09:47:13.451+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:47:13.450+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T09:47:13.469+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.760 seconds
+[2024-12-22T09:59:32.470+0000] {processor.py:157} INFO - Started process (PID=85740) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:59:32.476+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T09:59:32.479+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:59:32.479+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:59:33.620+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T09:59:33.647+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:59:33.647+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T09:59:33.670+0000] {logging_mixin.py:150} INFO - [2024-12-22T09:59:33.669+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T09:59:33.688+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.233 seconds
+[2024-12-22T10:15:27.244+0000] {processor.py:157} INFO - Started process (PID=85831) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T10:15:27.248+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T10:15:27.251+0000] {logging_mixin.py:150} INFO - [2024-12-22T10:15:27.250+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T10:15:28.993+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T10:15:29.057+0000] {logging_mixin.py:150} INFO - [2024-12-22T10:15:29.057+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T10:15:29.100+0000] {logging_mixin.py:150} INFO - [2024-12-22T10:15:29.100+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T10:15:29.130+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.899 seconds
+[2024-12-22T10:15:59.754+0000] {processor.py:157} INFO - Started process (PID=85922) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T10:15:59.756+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T10:15:59.758+0000] {logging_mixin.py:150} INFO - [2024-12-22T10:15:59.757+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T10:16:00.496+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T10:16:00.539+0000] {logging_mixin.py:150} INFO - [2024-12-22T10:16:00.538+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T10:16:00.575+0000] {logging_mixin.py:150} INFO - [2024-12-22T10:16:00.575+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T10:16:00.601+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.856 seconds
+[2024-12-22T10:31:52.480+0000] {processor.py:157} INFO - Started process (PID=86013) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T10:31:52.482+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T10:31:52.485+0000] {logging_mixin.py:150} INFO - [2024-12-22T10:31:52.484+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T10:31:53.828+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T10:31:53.864+0000] {logging_mixin.py:150} INFO - [2024-12-22T10:31:53.863+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T10:31:53.897+0000] {logging_mixin.py:150} INFO - [2024-12-22T10:31:53.897+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T10:31:53.917+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.445 seconds
+[2024-12-22T10:47:47.818+0000] {processor.py:157} INFO - Started process (PID=86104) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T10:47:47.820+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T10:47:47.823+0000] {logging_mixin.py:150} INFO - [2024-12-22T10:47:47.823+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T10:47:48.792+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T10:47:48.868+0000] {logging_mixin.py:150} INFO - [2024-12-22T10:47:48.866+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T10:47:48.950+0000] {logging_mixin.py:150} INFO - [2024-12-22T10:47:48.949+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T10:47:49.014+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.212 seconds
+[2024-12-22T10:48:19.218+0000] {processor.py:157} INFO - Started process (PID=86195) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T10:48:19.228+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T10:48:19.231+0000] {logging_mixin.py:150} INFO - [2024-12-22T10:48:19.230+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T10:48:20.832+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T10:48:20.973+0000] {logging_mixin.py:150} INFO - [2024-12-22T10:48:20.971+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T10:48:21.035+0000] {logging_mixin.py:150} INFO - [2024-12-22T10:48:21.035+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T10:48:21.082+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.889 seconds
+[2024-12-22T11:00:37.393+0000] {processor.py:157} INFO - Started process (PID=86286) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:00:37.401+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T11:00:37.405+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:00:37.404+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:00:38.522+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:00:38.579+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:00:38.579+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T11:00:38.613+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:00:38.613+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T11:00:38.634+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.255 seconds
+[2024-12-22T11:16:32.647+0000] {processor.py:157} INFO - Started process (PID=86377) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:16:32.651+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T11:16:32.654+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:16:32.654+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:16:33.751+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:16:33.812+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:16:33.811+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T11:16:33.844+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:16:33.843+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T11:16:33.868+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.231 seconds
+[2024-12-22T11:32:29.270+0000] {processor.py:157} INFO - Started process (PID=86468) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:32:29.274+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T11:32:29.278+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:32:29.278+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:32:30.141+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:32:30.198+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:32:30.197+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T11:32:30.250+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:32:30.249+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T11:32:30.274+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.018 seconds
+[2024-12-22T11:33:00.395+0000] {processor.py:157} INFO - Started process (PID=86559) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:33:00.398+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T11:33:00.401+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:33:00.400+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:33:00.918+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:33:00.969+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:33:00.969+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T11:33:00.997+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:33:00.996+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T11:33:01.021+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.648 seconds
+[2024-12-22T11:49:58.352+0000] {processor.py:157} INFO - Started process (PID=86650) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:49:58.358+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T11:49:58.362+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:49:58.361+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:49:59.596+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:49:59.655+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:49:59.655+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T11:49:59.688+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:49:59.687+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T11:49:59.711+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.372 seconds
+[2024-12-22T11:50:30.569+0000] {processor.py:157} INFO - Started process (PID=86741) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:50:30.572+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T11:50:30.573+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:50:30.572+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:50:31.112+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T11:50:31.143+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:50:31.143+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T11:50:31.183+0000] {logging_mixin.py:150} INFO - [2024-12-22T11:50:31.183+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T11:50:31.203+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.656 seconds
+[2024-12-22T12:01:31.778+0000] {processor.py:157} INFO - Started process (PID=86832) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:01:31.780+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T12:01:31.782+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:01:31.781+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:01:32.283+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:01:32.316+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:01:32.316+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T12:01:32.341+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:01:32.341+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T12:01:32.360+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.594 seconds
+[2024-12-22T12:17:27.571+0000] {processor.py:157} INFO - Started process (PID=86923) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:17:27.573+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T12:17:27.574+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:17:27.574+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:17:28.670+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:17:28.766+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:17:28.765+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T12:17:28.818+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:17:28.817+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T12:17:28.840+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.278 seconds
+[2024-12-22T12:17:59.026+0000] {processor.py:157} INFO - Started process (PID=87014) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:17:59.030+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T12:17:59.032+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:17:59.032+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:17:59.498+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:17:59.552+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:17:59.551+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T12:17:59.600+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:17:59.599+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T12:17:59.625+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.621 seconds
+[2024-12-22T12:23:01.839+0000] {processor.py:157} INFO - Started process (PID=87105) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:23:01.841+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T12:23:01.845+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:23:01.844+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:23:03.032+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:23:03.128+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:23:03.127+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T12:23:03.167+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:23:03.167+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T12:23:03.211+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.385 seconds
+[2024-12-22T12:38:57.846+0000] {processor.py:157} INFO - Started process (PID=87196) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:38:57.850+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T12:38:57.854+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:38:57.853+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:38:58.543+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:38:58.696+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:38:58.694+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T12:38:58.782+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:38:58.781+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T12:38:58.842+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.005 seconds
+[2024-12-22T12:39:29.131+0000] {processor.py:157} INFO - Started process (PID=87287) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:39:29.136+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T12:39:29.147+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:39:29.145+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:39:29.745+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:39:29.803+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:39:29.803+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T12:39:29.853+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:39:29.853+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T12:39:29.878+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.763 seconds
+[2024-12-22T12:55:24.013+0000] {processor.py:157} INFO - Started process (PID=87378) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:55:24.016+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T12:55:24.019+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:55:24.018+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:55:24.968+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T12:55:25.030+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:55:25.029+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T12:55:25.061+0000] {logging_mixin.py:150} INFO - [2024-12-22T12:55:25.061+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T12:55:25.095+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.097 seconds
+[2024-12-22T13:02:28.112+0000] {processor.py:157} INFO - Started process (PID=87469) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:02:28.121+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T13:02:28.125+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:02:28.124+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:02:28.827+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:02:28.865+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:02:28.864+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T13:02:28.902+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:02:28.902+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T13:02:29.142+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.050 seconds
+[2024-12-22T13:18:23.132+0000] {processor.py:157} INFO - Started process (PID=87560) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:18:23.139+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T13:18:23.140+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:18:23.140+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:18:23.930+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:18:24.073+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:18:24.071+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T13:18:24.699+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:18:24.698+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T13:18:24.732+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.609 seconds
+[2024-12-22T13:18:55.310+0000] {processor.py:157} INFO - Started process (PID=87651) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:18:55.312+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T13:18:55.314+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:18:55.314+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:18:55.797+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:18:55.850+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:18:55.849+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T13:18:56.048+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:18:56.048+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T13:18:56.064+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.758 seconds
+[2024-12-22T13:34:48.842+0000] {processor.py:157} INFO - Started process (PID=87742) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:34:48.849+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T13:34:48.852+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:34:48.852+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:34:50.212+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:34:50.621+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:34:50.621+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T13:34:50.650+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:34:50.649+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T13:34:50.664+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.828 seconds
+[2024-12-22T13:50:44.522+0000] {processor.py:157} INFO - Started process (PID=87833) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:50:44.525+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T13:50:44.528+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:50:44.528+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:50:45.372+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:50:45.434+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:50:45.432+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T13:50:45.519+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:50:45.518+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T13:50:45.690+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.181 seconds
+[2024-12-22T13:51:15.999+0000] {processor.py:157} INFO - Started process (PID=87924) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:51:16.002+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T13:51:16.006+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:51:16.005+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:51:16.699+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T13:51:16.717+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:51:16.717+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T13:51:16.739+0000] {logging_mixin.py:150} INFO - [2024-12-22T13:51:16.738+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T13:51:16.755+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.770 seconds
+[2024-12-22T14:03:34.894+0000] {processor.py:157} INFO - Started process (PID=88015) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T14:03:34.898+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T14:03:34.901+0000] {logging_mixin.py:150} INFO - [2024-12-22T14:03:34.900+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T14:03:36.273+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T14:03:36.304+0000] {logging_mixin.py:150} INFO - [2024-12-22T14:03:36.303+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T14:03:36.332+0000] {logging_mixin.py:150} INFO - [2024-12-22T14:03:36.331+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T14:03:36.363+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.479 seconds
+[2024-12-22T14:19:30.293+0000] {processor.py:157} INFO - Started process (PID=88106) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T14:19:30.296+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T14:19:30.300+0000] {logging_mixin.py:150} INFO - [2024-12-22T14:19:30.300+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T14:19:31.194+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T14:19:31.252+0000] {logging_mixin.py:150} INFO - [2024-12-22T14:19:31.251+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T14:19:31.340+0000] {logging_mixin.py:150} INFO - [2024-12-22T14:19:31.340+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T14:19:31.410+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.125 seconds
+[2024-12-22T14:20:01.894+0000] {processor.py:157} INFO - Started process (PID=88197) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T14:20:01.896+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T14:20:01.898+0000] {logging_mixin.py:150} INFO - [2024-12-22T14:20:01.897+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T14:20:02.638+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T14:20:02.655+0000] {logging_mixin.py:150} INFO - [2024-12-22T14:20:02.655+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T14:20:02.679+0000] {logging_mixin.py:150} INFO - [2024-12-22T14:20:02.679+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T14:20:02.695+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.809 seconds
+[2024-12-22T14:35:55.610+0000] {processor.py:157} INFO - Started process (PID=88288) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T14:35:55.613+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T14:35:55.618+0000] {logging_mixin.py:150} INFO - [2024-12-22T14:35:55.617+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T14:35:57.216+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T14:35:57.246+0000] {logging_mixin.py:150} INFO - [2024-12-22T14:35:57.246+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T14:35:57.273+0000] {logging_mixin.py:150} INFO - [2024-12-22T14:35:57.273+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T14:35:57.300+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.728 seconds
+[2024-12-22T14:51:51.284+0000] {processor.py:157} INFO - Started process (PID=88379) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T14:51:51.290+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T14:51:51.293+0000] {logging_mixin.py:150} INFO - [2024-12-22T14:51:51.293+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T14:51:52.357+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T14:51:52.500+0000] {logging_mixin.py:150} INFO - [2024-12-22T14:51:52.498+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T14:51:52.614+0000] {logging_mixin.py:150} INFO - [2024-12-22T14:51:52.614+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T14:51:52.673+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.400 seconds
+[2024-12-22T15:04:11.890+0000] {processor.py:157} INFO - Started process (PID=88470) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:04:11.893+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T15:04:11.899+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:04:11.897+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:04:13.465+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:04:13.503+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:04:13.503+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T15:04:13.527+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:04:13.527+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T15:04:13.547+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.673 seconds
+[2024-12-22T15:04:43.756+0000] {processor.py:157} INFO - Started process (PID=88561) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:04:43.759+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T15:04:43.763+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:04:43.763+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:04:44.440+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:04:44.464+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:04:44.464+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T15:04:44.502+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:04:44.501+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T15:04:44.527+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.795 seconds
+[2024-12-22T15:20:37.766+0000] {processor.py:157} INFO - Started process (PID=88652) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:20:37.773+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T15:20:37.777+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:20:37.776+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:20:39.047+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:20:39.071+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:20:39.070+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T15:20:39.108+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:20:39.108+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T15:20:39.128+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.395 seconds
+[2024-12-22T15:36:33.366+0000] {processor.py:157} INFO - Started process (PID=88743) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:36:33.371+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T15:36:33.375+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:36:33.373+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:36:34.953+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:36:34.974+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:36:34.974+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T15:36:34.999+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:36:34.999+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T15:36:35.025+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.670 seconds
+[2024-12-22T15:37:05.263+0000] {processor.py:157} INFO - Started process (PID=88834) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:37:05.270+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T15:37:05.272+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:37:05.272+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:37:05.965+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:37:05.987+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:37:05.986+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T15:37:06.007+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:37:06.007+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T15:37:06.024+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.787 seconds
+[2024-12-22T15:42:27.047+0000] {processor.py:157} INFO - Started process (PID=88925) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:42:27.050+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T15:42:27.060+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:42:27.059+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:42:28.460+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:42:28.510+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:42:28.509+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T15:42:28.534+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:42:28.534+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T15:42:28.552+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.514 seconds
+[2024-12-22T15:58:22.214+0000] {processor.py:157} INFO - Started process (PID=89016) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:58:22.218+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T15:58:22.221+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:58:22.219+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:58:23.000+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:58:23.065+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:58:23.064+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T15:58:23.148+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:58:23.147+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T15:58:23.194+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.999 seconds
+[2024-12-22T15:58:53.464+0000] {processor.py:157} INFO - Started process (PID=89107) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:58:53.467+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T15:58:53.470+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:58:53.470+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:58:54.166+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T15:58:54.202+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:58:54.201+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T15:58:54.231+0000] {logging_mixin.py:150} INFO - [2024-12-22T15:58:54.231+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T15:58:54.252+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.807 seconds
+[2024-12-22T16:05:36.266+0000] {processor.py:157} INFO - Started process (PID=89198) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T16:05:36.272+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T16:05:36.275+0000] {logging_mixin.py:150} INFO - [2024-12-22T16:05:36.275+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T16:05:37.641+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T16:05:37.748+0000] {logging_mixin.py:150} INFO - [2024-12-22T16:05:37.747+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T16:05:37.821+0000] {logging_mixin.py:150} INFO - [2024-12-22T16:05:37.821+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T16:05:37.850+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.599 seconds
+[2024-12-22T16:21:32.349+0000] {processor.py:157} INFO - Started process (PID=89289) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T16:21:32.358+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T16:21:32.362+0000] {logging_mixin.py:150} INFO - [2024-12-22T16:21:32.361+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T16:21:33.488+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T16:21:33.508+0000] {logging_mixin.py:150} INFO - [2024-12-22T16:21:33.507+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T16:21:33.528+0000] {logging_mixin.py:150} INFO - [2024-12-22T16:21:33.528+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T16:21:33.548+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.234 seconds
+[2024-12-22T16:37:28.763+0000] {processor.py:157} INFO - Started process (PID=89380) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T16:37:28.777+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T16:37:28.785+0000] {logging_mixin.py:150} INFO - [2024-12-22T16:37:28.784+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T16:37:30.756+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T16:37:30.821+0000] {logging_mixin.py:150} INFO - [2024-12-22T16:37:30.820+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T16:37:30.911+0000] {logging_mixin.py:150} INFO - [2024-12-22T16:37:30.909+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T16:37:31.003+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 2.255 seconds
+[2024-12-22T16:38:01.155+0000] {processor.py:157} INFO - Started process (PID=89471) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T16:38:01.158+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T16:38:01.161+0000] {logging_mixin.py:150} INFO - [2024-12-22T16:38:01.160+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T16:38:01.803+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T16:38:01.842+0000] {logging_mixin.py:150} INFO - [2024-12-22T16:38:01.841+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T16:38:01.865+0000] {logging_mixin.py:150} INFO - [2024-12-22T16:38:01.865+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T16:38:01.884+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.746 seconds
+[2024-12-22T16:53:53.963+0000] {processor.py:157} INFO - Started process (PID=89562) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T16:53:53.965+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T16:53:53.966+0000] {logging_mixin.py:150} INFO - [2024-12-22T16:53:53.966+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T16:53:55.527+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T16:53:55.557+0000] {logging_mixin.py:150} INFO - [2024-12-22T16:53:55.556+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T16:53:55.591+0000] {logging_mixin.py:150} INFO - [2024-12-22T16:53:55.591+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T16:53:55.612+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.659 seconds
+[2024-12-22T17:06:12.307+0000] {processor.py:157} INFO - Started process (PID=89653) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:06:12.315+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T17:06:12.322+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:06:12.320+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:06:13.893+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:06:13.917+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:06:13.917+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T17:06:13.960+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:06:13.960+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T17:06:13.981+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.684 seconds
+[2024-12-22T17:06:44.270+0000] {processor.py:157} INFO - Started process (PID=89744) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:06:44.277+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T17:06:44.280+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:06:44.280+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:06:44.954+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:06:44.992+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:06:44.992+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T17:06:45.020+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:06:45.020+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T17:06:45.037+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.794 seconds
+[2024-12-22T17:22:37.667+0000] {processor.py:157} INFO - Started process (PID=89835) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:22:37.670+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T17:22:37.671+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:22:37.671+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:22:39.092+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:22:39.155+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:22:39.154+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T17:22:39.190+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:22:39.190+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T17:22:39.254+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.595 seconds
+[2024-12-22T17:38:33.903+0000] {processor.py:157} INFO - Started process (PID=89926) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:38:33.912+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T17:38:33.914+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:38:33.914+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:38:34.858+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:38:34.886+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:38:34.885+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T17:38:34.914+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:38:34.913+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T17:38:34.932+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.042 seconds
+[2024-12-22T17:39:05.668+0000] {processor.py:157} INFO - Started process (PID=90017) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:39:05.673+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T17:39:05.675+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:39:05.675+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:39:06.352+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:39:06.373+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:39:06.372+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T17:39:06.408+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:39:06.408+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T17:39:06.432+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.788 seconds
+[2024-12-22T17:54:59.586+0000] {processor.py:157} INFO - Started process (PID=90108) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:54:59.597+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T17:54:59.601+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:54:59.600+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:55:01.190+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T17:55:01.242+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:55:01.241+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T17:55:01.269+0000] {logging_mixin.py:150} INFO - [2024-12-22T17:55:01.269+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T17:55:01.289+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.727 seconds
+[2024-12-22T18:07:18.877+0000] {processor.py:157} INFO - Started process (PID=90199) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:07:18.880+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T18:07:18.882+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:07:18.882+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:07:20.249+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:07:20.273+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:07:20.273+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T18:07:20.298+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:07:20.298+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T18:07:20.316+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.448 seconds
+[2024-12-22T18:07:50.841+0000] {processor.py:157} INFO - Started process (PID=90290) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:07:50.846+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T18:07:50.848+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:07:50.847+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:07:51.575+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:07:51.615+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:07:51.615+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T18:07:51.644+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:07:51.644+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T18:07:51.663+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.828 seconds
+[2024-12-22T18:23:45.177+0000] {processor.py:157} INFO - Started process (PID=90381) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:23:45.181+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T18:23:45.184+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:23:45.183+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:23:46.198+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:23:46.227+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:23:46.226+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T18:23:46.251+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:23:46.251+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T18:23:46.272+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.107 seconds
+[2024-12-22T18:39:40.099+0000] {processor.py:157} INFO - Started process (PID=90472) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:39:40.101+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T18:39:40.103+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:39:40.103+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:39:41.418+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:39:41.543+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:39:41.542+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T18:39:41.612+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:39:41.612+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T18:39:41.642+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.548 seconds
+[2024-12-22T18:40:12.142+0000] {processor.py:157} INFO - Started process (PID=90563) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:40:12.145+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T18:40:12.149+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:40:12.149+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:40:14.236+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:40:14.332+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:40:14.331+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T18:40:14.368+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:40:14.368+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T18:40:14.394+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 2.282 seconds
+[2024-12-22T18:56:06.063+0000] {processor.py:157} INFO - Started process (PID=90654) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:56:06.069+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T18:56:06.071+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:56:06.071+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:56:07.606+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T18:56:07.641+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:56:07.640+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T18:56:07.666+0000] {logging_mixin.py:150} INFO - [2024-12-22T18:56:07.665+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T18:56:07.685+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.630 seconds
+[2024-12-22T19:12:02.126+0000] {processor.py:157} INFO - Started process (PID=90745) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T19:12:02.129+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T19:12:02.131+0000] {logging_mixin.py:150} INFO - [2024-12-22T19:12:02.130+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T19:12:03.606+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T19:12:03.674+0000] {logging_mixin.py:150} INFO - [2024-12-22T19:12:03.673+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T19:12:03.706+0000] {logging_mixin.py:150} INFO - [2024-12-22T19:12:03.706+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T19:12:03.742+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.633 seconds
+[2024-12-22T19:27:56.793+0000] {processor.py:157} INFO - Started process (PID=90836) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T19:27:56.796+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T19:27:56.800+0000] {logging_mixin.py:150} INFO - [2024-12-22T19:27:56.800+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T19:27:58.451+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T19:27:58.495+0000] {logging_mixin.py:150} INFO - [2024-12-22T19:27:58.494+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T19:27:58.532+0000] {logging_mixin.py:150} INFO - [2024-12-22T19:27:58.532+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T19:27:58.555+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.771 seconds
+[2024-12-22T19:28:29.235+0000] {processor.py:157} INFO - Started process (PID=90927) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T19:28:29.240+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T19:28:29.241+0000] {logging_mixin.py:150} INFO - [2024-12-22T19:28:29.241+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T19:28:29.981+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T19:28:30.008+0000] {logging_mixin.py:150} INFO - [2024-12-22T19:28:30.008+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T19:28:30.037+0000] {logging_mixin.py:150} INFO - [2024-12-22T19:28:30.037+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T19:28:30.063+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.837 seconds
+[2024-12-22T19:44:23.117+0000] {processor.py:157} INFO - Started process (PID=91018) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T19:44:23.136+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T19:44:23.140+0000] {logging_mixin.py:150} INFO - [2024-12-22T19:44:23.139+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T19:44:24.263+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T19:44:24.292+0000] {logging_mixin.py:150} INFO - [2024-12-22T19:44:24.292+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T19:44:24.314+0000] {logging_mixin.py:150} INFO - [2024-12-22T19:44:24.314+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T19:44:24.334+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.259 seconds
+[2024-12-22T20:00:18.722+0000] {processor.py:157} INFO - Started process (PID=91109) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:00:18.732+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T20:00:18.735+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:00:18.734+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:00:20.092+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:00:20.157+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:00:20.156+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T20:00:20.210+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:00:20.210+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T20:00:20.233+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.527 seconds
+[2024-12-22T20:00:50.324+0000] {processor.py:157} INFO - Started process (PID=91200) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:00:50.327+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T20:00:50.329+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:00:50.329+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:00:50.992+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:00:51.032+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:00:51.032+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T20:00:51.061+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:00:51.060+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T20:00:51.080+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.775 seconds
+[2024-12-22T20:16:43.365+0000] {processor.py:157} INFO - Started process (PID=91291) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:16:43.375+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T20:16:43.381+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:16:43.380+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:16:43.915+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:16:44.037+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:16:44.036+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T20:16:44.155+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:16:44.154+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T20:16:44.262+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.905 seconds
+[2024-12-22T20:32:40.001+0000] {processor.py:157} INFO - Started process (PID=91382) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:32:40.015+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T20:32:40.021+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:32:40.019+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:32:40.661+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:32:40.707+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:32:40.706+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T20:32:40.745+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:32:40.744+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T20:32:40.768+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.776 seconds
+[2024-12-22T20:33:11.602+0000] {processor.py:157} INFO - Started process (PID=91473) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:33:11.605+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T20:33:11.606+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:33:11.606+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:33:12.244+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:33:12.294+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:33:12.294+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T20:33:12.324+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:33:12.323+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T20:33:12.349+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.768 seconds
+[2024-12-22T20:51:27.188+0000] {processor.py:157} INFO - Started process (PID=91564) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:51:27.190+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T20:51:27.192+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:51:27.192+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:51:27.661+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:51:27.701+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:51:27.701+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T20:51:27.732+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:51:27.732+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T20:51:27.760+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.594 seconds
+[2024-12-22T20:51:58.310+0000] {processor.py:157} INFO - Started process (PID=91655) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:51:58.314+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T20:51:58.315+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:51:58.315+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:51:58.803+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T20:51:58.830+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:51:58.829+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T20:51:58.863+0000] {logging_mixin.py:150} INFO - [2024-12-22T20:51:58.863+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T20:51:58.889+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.591 seconds
+[2024-12-22T21:07:53.966+0000] {processor.py:157} INFO - Started process (PID=91746) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T21:07:53.971+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T21:07:53.973+0000] {logging_mixin.py:150} INFO - [2024-12-22T21:07:53.973+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T21:07:55.732+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T21:07:55.841+0000] {logging_mixin.py:150} INFO - [2024-12-22T21:07:55.840+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T21:07:55.890+0000] {logging_mixin.py:150} INFO - [2024-12-22T21:07:55.890+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T21:07:55.915+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.958 seconds
+[2024-12-22T21:23:49.897+0000] {processor.py:157} INFO - Started process (PID=91837) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T21:23:49.909+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T21:23:49.922+0000] {logging_mixin.py:150} INFO - [2024-12-22T21:23:49.921+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T21:23:51.799+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T21:23:51.999+0000] {logging_mixin.py:150} INFO - [2024-12-22T21:23:51.997+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T21:23:52.067+0000] {logging_mixin.py:150} INFO - [2024-12-22T21:23:52.066+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T21:23:52.098+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 2.213 seconds
+[2024-12-22T21:57:47.885+0000] {processor.py:157} INFO - Started process (PID=91928) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T21:57:47.888+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T21:57:47.893+0000] {logging_mixin.py:150} INFO - [2024-12-22T21:57:47.892+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T21:57:48.760+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T21:57:48.953+0000] {logging_mixin.py:150} INFO - [2024-12-22T21:57:48.950+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T21:57:49.098+0000] {logging_mixin.py:150} INFO - [2024-12-22T21:57:49.096+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T21:57:49.177+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.300 seconds
+[2024-12-22T21:58:19.650+0000] {processor.py:157} INFO - Started process (PID=92019) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T21:58:19.656+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T21:58:19.659+0000] {logging_mixin.py:150} INFO - [2024-12-22T21:58:19.658+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T21:58:20.148+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T21:58:20.179+0000] {logging_mixin.py:150} INFO - [2024-12-22T21:58:20.178+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T21:58:20.216+0000] {logging_mixin.py:150} INFO - [2024-12-22T21:58:20.216+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T21:58:20.234+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.607 seconds
+[2024-12-22T22:14:12.788+0000] {processor.py:157} INFO - Started process (PID=92110) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T22:14:12.795+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T22:14:12.801+0000] {logging_mixin.py:150} INFO - [2024-12-22T22:14:12.799+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T22:14:14.028+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T22:14:14.115+0000] {logging_mixin.py:150} INFO - [2024-12-22T22:14:14.114+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T22:14:14.154+0000] {logging_mixin.py:150} INFO - [2024-12-22T22:14:14.154+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T22:14:14.201+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.427 seconds
+[2024-12-22T22:30:08.485+0000] {processor.py:157} INFO - Started process (PID=92201) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T22:30:08.494+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T22:30:08.501+0000] {logging_mixin.py:150} INFO - [2024-12-22T22:30:08.499+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T22:30:08.964+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T22:30:08.992+0000] {logging_mixin.py:150} INFO - [2024-12-22T22:30:08.992+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T22:30:09.023+0000] {logging_mixin.py:150} INFO - [2024-12-22T22:30:09.023+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T22:30:09.048+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.570 seconds
+[2024-12-22T22:30:39.671+0000] {processor.py:157} INFO - Started process (PID=92292) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T22:30:39.684+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T22:30:39.692+0000] {logging_mixin.py:150} INFO - [2024-12-22T22:30:39.689+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T22:30:41.229+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T22:30:41.277+0000] {logging_mixin.py:150} INFO - [2024-12-22T22:30:41.277+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T22:30:41.324+0000] {logging_mixin.py:150} INFO - [2024-12-22T22:30:41.324+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T22:30:41.653+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.998 seconds
+[2024-12-22T22:46:34.418+0000] {processor.py:157} INFO - Started process (PID=92383) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T22:46:34.426+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T22:46:34.430+0000] {logging_mixin.py:150} INFO - [2024-12-22T22:46:34.428+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T22:46:35.868+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T22:46:35.918+0000] {logging_mixin.py:150} INFO - [2024-12-22T22:46:35.917+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T22:46:36.243+0000] {logging_mixin.py:150} INFO - [2024-12-22T22:46:36.243+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T22:46:36.262+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.851 seconds
+[2024-12-22T23:02:24.605+0000] {processor.py:157} INFO - Started process (PID=92474) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:02:24.607+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T23:02:24.610+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:02:24.609+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:02:25.179+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:02:25.285+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:02:25.284+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T23:02:26.031+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:02:26.027+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T23:02:26.268+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.681 seconds
+[2024-12-22T23:02:56.928+0000] {processor.py:157} INFO - Started process (PID=92565) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:02:56.931+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T23:02:56.934+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:02:56.933+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:02:58.261+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:02:58.341+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:02:58.340+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T23:02:58.695+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:02:58.694+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T23:02:58.716+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.797 seconds
+[2024-12-22T23:18:50.315+0000] {processor.py:157} INFO - Started process (PID=92656) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:18:50.316+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T23:18:50.317+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:18:50.317+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:18:51.494+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:18:51.589+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:18:51.588+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T23:18:51.640+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:18:51.640+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T23:18:51.681+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.370 seconds
+[2024-12-22T23:34:45.599+0000] {processor.py:157} INFO - Started process (PID=92747) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:34:45.609+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T23:34:45.612+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:34:45.611+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:34:46.814+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:34:46.923+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:34:46.921+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T23:34:47.008+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:34:47.008+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T23:34:47.038+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.450 seconds
+[2024-12-22T23:50:41.447+0000] {processor.py:157} INFO - Started process (PID=92838) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:50:41.452+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T23:50:41.454+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:50:41.453+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:50:42.879+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:50:42.906+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:50:42.906+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T23:50:42.939+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:50:42.939+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T23:50:42.966+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.534 seconds
+[2024-12-22T23:51:13.838+0000] {processor.py:157} INFO - Started process (PID=92929) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:51:13.840+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T23:51:13.841+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:51:13.841+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:51:14.552+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:51:14.585+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:51:14.584+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T23:51:14.610+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:51:14.609+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T23:51:14.630+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 0.803 seconds
+[2024-12-22T23:58:59.156+0000] {processor.py:157} INFO - Started process (PID=93020) to work on /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:58:59.174+0000] {processor.py:826} INFO - Processing file /opt/airflow/dags/FoReport_file_processing.py for tasks to queue
+[2024-12-22T23:58:59.182+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:58:59.179+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:59:00.591+0000] {processor.py:836} INFO - DAG(s) dict_keys(['FoReport_file_processing']) retrieved from /opt/airflow/dags/FoReport_file_processing.py
+[2024-12-22T23:59:00.611+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:59:00.610+0000] {dag.py:2742} INFO - Sync 1 DAGs
+[2024-12-22T23:59:00.632+0000] {logging_mixin.py:150} INFO - [2024-12-22T23:59:00.632+0000] {dag.py:3508} INFO - Setting next_dagrun for FoReport_file_processing to None, run_after=None
+[2024-12-22T23:59:00.657+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/FoReport_file_processing.py took 1.517 seconds

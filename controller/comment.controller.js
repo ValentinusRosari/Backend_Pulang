@@ -126,4 +126,17 @@ const deleteCOMMENT = async (req, res) => {
     }
 };
 
-module.exports = { uploadCOMMENT, deleteCOMMENT };
+const getCOMMENT = async (req, res) => {
+    try {
+        const files = await COMMENTModel.find().select("-data");
+        if (!files || files.length === 0) {
+            return res.status(404).json({ success: false, msg: "No files found." });
+        }
+        res.status(200).json({ success: true, data: files });
+    } catch (error) {
+        console.error("Error fetching files:", error);
+        res.status(500).json({ success: false, msg: "Error fetching files." });
+    }
+};
+
+module.exports = { uploadCOMMENT, deleteCOMMENT, getCOMMENT };

@@ -1,5 +1,6 @@
 const OBTModel = require("../model/OBT");
 const path = require("path");
+const fs = require('fs');
 const { spawn } = require("child_process");
 const axios = require("axios");
 
@@ -45,6 +46,12 @@ const uploadOBT = async (req, res) => {
 
         await Document.save();
 
+        fs.unlink(file.path, (err) => {
+          if (err) {
+              console.error('Error removing file', err);
+          }
+        });
+
         try {
           const response = await axios.post(
             "http://localhost:8080/api/v1/dags/obt_file_processing/dagRuns",
@@ -53,10 +60,7 @@ const uploadOBT = async (req, res) => {
           );
 
           console.log("Airflow DAG triggered successfully:", response.data);
-          res.status(200).json({
-            success: true,
-            msg: "File uploaded, processed, and DAG triggered.",
-          });
+          res.status(200).json({ success: true, msg: "File uploaded, processed, and DAG triggered.", });
         } catch (error) {
           console.error("Error triggering Airflow DAG:", error.response?.data || error.message);
           res.status(500).json({ success: false, msg: "Failed to trigger Airflow DAG." });
@@ -83,8 +87,6 @@ const deleteOBT = async (req, res) => {
 
     await OBTModel.findByIdAndDelete(fileId);
 
-    await OBTModel.deleteOne({ filePath: fileToDelete.filePath });
-
     const response = await axios.post(
       "http://localhost:8080/api/v1/dags/obt_file_processing/dagRuns",
       { conf: {} },
@@ -98,4 +100,17 @@ const deleteOBT = async (req, res) => {
   }
 };
 
-module.exports = { uploadOBT, deleteOBT };
+const getOBT = async (req, res) => {
+  try {
+      const files = await OBTModel.find().select("-data");
+      if (!files || files.length === 0) {
+          return res.status(404).json({ success: false, msg: "No files found." });
+      }
+      res.status(200).json({ success: true, data: files });
+  } catch (error) {
+      console.error("Error fetching files:", error);
+      res.status(500).json({ success: false, msg: "Error fetching files." });
+  }
+};
+
+module.exports = { uploadOBT, deleteOBT, getOBT };

@@ -1,7 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
-const { uploadBANQUET, deleteBANQUET } = require("../controller/banquet.controller");
+const { uploadBANQUET, deleteBANQUET, getBANQUET } = require("../controller/banquet.controller");
 
 const router = express.Router();
 
@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
+    cb(null, `${file.originalname}`);
   },
 });
 
@@ -33,5 +33,6 @@ const upload = multer({
 
 router.post("/uploadBanquet", upload.single("file"), uploadBANQUET);
 router.delete("/deleteBanquet/:fileId", deleteBANQUET);
+router.get("/Banquet", getBANQUET);
 
 module.exports = router;

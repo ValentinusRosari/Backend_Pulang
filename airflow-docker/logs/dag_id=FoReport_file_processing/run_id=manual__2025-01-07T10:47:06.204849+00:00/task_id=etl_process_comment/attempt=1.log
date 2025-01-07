@@ -1,0 +1,14 @@
+[2025-01-07T10:47:16.049+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: FoReport_file_processing.etl_process_comment manual__2025-01-07T10:47:06.204849+00:00 [queued]>
+[2025-01-07T10:47:16.058+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: FoReport_file_processing.etl_process_comment manual__2025-01-07T10:47:06.204849+00:00 [queued]>
+[2025-01-07T10:47:16.059+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2025-01-07T10:47:16.072+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): etl_process_comment> on 2025-01-07 10:47:06.204849+00:00
+[2025-01-07T10:47:16.091+0000] {standard_task_runner.py:57} INFO - Started process 2020 to run task
+[2025-01-07T10:47:16.102+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'FoReport_file_processing', 'etl_process_comment', 'manual__2025-01-07T10:47:06.204849+00:00', '--job-id', '442', '--raw', '--subdir', 'DAGS_FOLDER/FoReport_file_processing.py', '--cfg-path', '/tmp/tmpg_3t9lva']
+[2025-01-07T10:47:16.104+0000] {standard_task_runner.py:85} INFO - Job 442: Subtask etl_process_comment
+[2025-01-07T10:47:16.164+0000] {task_command.py:410} INFO - Running <TaskInstance: FoReport_file_processing.etl_process_comment manual__2025-01-07T10:47:06.204849+00:00 [running]> on host 8fff7f1050bf
+[2025-01-07T10:47:16.245+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='FoReport_file_processing' AIRFLOW_CTX_TASK_ID='etl_process_comment' AIRFLOW_CTX_EXECUTION_DATE='2025-01-07T10:47:06.204849+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-07T10:47:06.204849+00:00'
+[2025-01-07T10:47:16.955+0000] {logging_mixin.py:150} INFO - Comment ETL process completed successfully.
+[2025-01-07T10:47:16.956+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-01-07T10:47:16.969+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=FoReport_file_processing, task_id=etl_process_comment, execution_date=20250107T104706, start_date=20250107T104716, end_date=20250107T104716
+[2025-01-07T10:47:17.029+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0
+[2025-01-07T10:47:17.078+0000] {taskinstance.py:2653} INFO - 1 downstream tasks scheduled from follow-on schedule check
