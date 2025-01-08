@@ -1,2 +1,5 @@
 .env
 node_modules/
+airflow-docker/logs/*
+!airflow-docker/logs/
+package-lock.json
