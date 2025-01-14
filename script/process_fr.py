@@ -3,7 +3,7 @@ import numpy as np
 import sys
 
 def process_fr(import_file):
-    data = pd.read_csv(import_file, skiprows=2, on_bad_lines='skip')
+    data = pd.read_csv(import_file, skiprows=6, on_bad_lines='skip')
 
     data.columns = ['Name', 'Guest No', 'Segment', 'Type ID', 'ID No.', 'Address', 'Zip',
                     'City', 'Nat', 'Country', 'L-Region', 'Phone', 'Telefax', 'Sex',

@@ -19,7 +19,7 @@ x-airflow-common: &airflow-common
     - ./config:/opt/airflow/config
     - ./plugins:/opt/airflow/plugins
     - ./UPLOAD_DIR:/opt/airflow/public/uploads
-    - /Users/tasyanadhila/Backend_Pulang/.env:/opt/airflow/.env 
+    - ./env:/opt/airflow/.env
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     redis:
