@@ -21,19 +21,19 @@ const app = express();
 app.use(cookieparser());
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
-// app.use(
-//   cors({
-//     credentials: true,
-//     origin: "http://192.168.1.141:4000",
-//   })
-// );
-
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:5173",
+    origin: "http://192.168.18.49:4000",
   })
 );
+
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: "http://localhost:5173",
+//   })
+// );
 
 app.use("/api/files", obtRoutes);
 app.use("/api/files", frRoutes);

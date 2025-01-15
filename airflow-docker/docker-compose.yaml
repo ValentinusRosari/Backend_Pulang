@@ -2,6 +2,8 @@ version: '3.8'
 
 x-airflow-common: &airflow-common
   image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.6.3}
+  env_file:
+    - ./env/.env
   environment:
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
@@ -16,10 +18,10 @@ x-airflow-common: &airflow-common
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
-    - ./config:/opt/airflow/config
     - ./plugins:/opt/airflow/plugins
     - ./UPLOAD_DIR:/opt/airflow/public/uploads
     - ./env:/opt/airflow/.env
+    - ./config/airflow.cfg:/opt/airflow/airflow.cfg
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     redis:
@@ -59,23 +61,21 @@ services:
     <<: *airflow-common
     command: webserver
     ports:
-      - "8080:8080"
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 30s
+      - "8888:8888"
     restart: always
 
   airflow-scheduler:
     <<: *airflow-common
     command: scheduler
+    ports:
+      - "8889:8888"
     restart: always
 
   airflow-worker:
     <<: *airflow-common
     command: celery worker
+    ports:
+      - "8887:8888"
     restart: always
 
   airflow-init:

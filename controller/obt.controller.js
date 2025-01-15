@@ -3,6 +3,7 @@ const path = require("path");
 const fs = require('fs');
 const { spawn } = require("child_process");
 const axios = require("axios");
+require("dotenv").config();
 
 const uploadOBT = async (req, res) => {
   try {
@@ -54,9 +55,14 @@ const uploadOBT = async (req, res) => {
 
         try {
           const response = await axios.post(
-            "http://localhost:8080/api/v1/dags/obt_file_processing/dagRuns",
+            `${process.env.AIRFLOW_BASE_URL}/api/v1/dags/obt_file_processing/dagRuns`,
             { conf: {} },
-            { auth: { username: "admin", password: "admin" } }
+            {
+              auth: {
+                username: process.env.AIRFLOW_USERNAME,
+                password: process.env.AIRFLOW_PASSWORD,
+              },
+            }
           );
 
           console.log("Airflow DAG triggered successfully:", response.data);
@@ -88,9 +94,14 @@ const deleteOBT = async (req, res) => {
     await OBTModel.findByIdAndDelete(fileId);
 
     const response = await axios.post(
-      "http://localhost:8080/api/v1/dags/obt_file_processing/dagRuns",
+      `${process.env.AIRFLOW_BASE_URL}/api/v1/dags/obt_file_processing/dagRuns`,
       { conf: {} },
-      { auth: { username: "admin", password: "admin" } }
+      {
+        auth: {
+          username: process.env.AIRFLOW_USERNAME,
+          password: process.env.AIRFLOW_PASSWORD,
+        },
+      }
     );
 
     res.status(200).json({ success: true, msg: "File and corresponding ETL data deleted successfully." });

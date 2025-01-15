@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const axios = require("axios");
 const BANQUETModel = require('../model/Banquet');
+require("dotenv").config();
 
 const uploadBANQUET = async (req, res) => {
     try {
@@ -74,9 +75,14 @@ const uploadBANQUET = async (req, res) => {
 
                 try {
                     const response = await axios.post(
-                        "http://localhost:8080/api/v1/dags/cashier_file_processing/dagRuns",
+                        `${process.env.AIRFLOW_BASE_URL}/api/v1/dags/cashier_file_processing/dagRuns`,
                         { conf: {} },
-                        { auth: { username: "admin", password: "admin" } }
+                        {
+                            auth: {
+                                username: process.env.AIRFLOW_USERNAME,
+                                password: process.env.AIRFLOW_PASSWORD,
+                            },
+                        }
                     );
 
                     console.log("Airflow DAG triggered successfully:", response.data);
@@ -110,9 +116,14 @@ const deleteBANQUET = async (req, res) => {
 
         try {
             const response = await axios.post(
-                "http://localhost:8080/api/v1/dags/cashier_file_processing/dagRuns",
+                `${process.env.AIRFLOW_BASE_URL}/api/v1/dags/cashier_file_processing/dagRuns`,
                 { conf: {} },
-                { auth: { username: "admin", password: "admin" } }
+                {
+                    auth: {
+                        username: process.env.AIRFLOW_USERNAME,
+                        password: process.env.AIRFLOW_PASSWORD,
+                    },
+                }
             );
 
             res.status(200).json({ success: true, msg: "File and corresponding ETL data deleted successfully." });

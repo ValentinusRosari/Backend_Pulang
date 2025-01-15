@@ -1,8 +1,9 @@
 const FRModel = require("../model/FR");
 const path = require("path");
-const fs = require('fs');
+const fs = require("fs");
 const { spawn } = require("child_process");
 const axios = require("axios");
+require("dotenv").config();
 
 const uploadFR = async (req, res) => {
   try {
@@ -48,15 +49,20 @@ const uploadFR = async (req, res) => {
 
         fs.unlink(file.path, (err) => {
           if (err) {
-              console.error('Error removing file', err);
+            console.error("Error removing file", err);
           }
         });
 
         try {
           const response = await axios.post(
-            "http://localhost:8080/api/v1/dags/etl_file_processing/dagRuns",
+            `${process.env.AIRFLOW_BASE_URL}/api/v1/dags/etl_file_processing/dagRuns`,
             { conf: {} },
-            { auth: { username: "admin", password: "admin" } }
+            {
+              auth: {
+                username: process.env.AIRFLOW_USERNAME,
+                password: process.env.AIRFLOW_PASSWORD,
+              },
+            }
           );
 
           console.log("Airflow DAG triggered successfully:", response.data);
@@ -88,9 +94,14 @@ const deleteFR = async (req, res) => {
     await FRModel.findByIdAndDelete(fileId);
 
     const response = await axios.post(
-      "http://localhost:8080/api/v1/dags/etl_file_processing/dagRuns",
+      `${process.env.AIRFLOW_BASE_URL}/api/v1/dags/etl_file_processing/dagRuns`,
       { conf: {} },
-      { auth: { username: "admin", password: "admin" } }
+      {
+        auth: {
+          username: process.env.AIRFLOW_USERNAME,
+          password: process.env.AIRFLOW_PASSWORD,
+        },
+      }
     );
 
     res.status(200).json({ success: true, msg: "File and corresponding ETL data deleted successfully." });
@@ -102,14 +113,14 @@ const deleteFR = async (req, res) => {
 
 const getFR = async (req, res) => {
   try {
-      const files = await FRModel.find().select("-data");
-      if (!files || files.length === 0) {
-          return res.status(404).json({ success: false, msg: "No files found." });
-      }
-      res.status(200).json({ success: true, data: files });
+    const files = await FRModel.find().select("-data");
+    if (!files || files.length === 0) {
+      return res.status(404).json({ success: false, msg: "No files found." });
+    }
+    res.status(200).json({ success: true, data: files });
   } catch (error) {
-      console.error("Error fetching files:", error);
-      res.status(500).json({ success: false, msg: "Error fetching files." });
+    console.error("Error fetching files:", error);
+    res.status(500).json({ success: false, msg: "Error fetching files." });
   }
 };
 
